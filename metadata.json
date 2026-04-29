@@ -1,0 +1,6 @@
+{
+  "name": "HPD Noise Protection Calculator",
+  "description": "A professional-grade hearing protection device calculator based on WorkSafeBC and CSA Z94.2-14 standards. Calculate NRR derating, noise exposure limits, and required protection classes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

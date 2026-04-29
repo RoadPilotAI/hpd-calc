@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-industrial-bg: #0f0f1a;
+  --color-industrial-card: #1a1a2e;
+  --color-industrial-accent: #f97316;
+}
+
+@layer base {
+  body {
+    @apply bg-industrial-bg text-[#f1f0e8] antialiased;
+  }
+
+  /* Custom Slider Styling */
+  input[type='range'] {
+    @apply accent-orange-500;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(249, 115, 22, 0.1);
+}
