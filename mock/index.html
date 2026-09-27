@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>HPD Adequacy Calculator — Design Mock</title>
   <style>
-    /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; }
     body {
@@ -18,37 +17,36 @@
 
     /* ── Tokens ── */
     :root {
-      --orange: #e65100;
-      --orange-mid: #f57c00;
-      --orange-light: #fff3e0;
+      --orange:        #e65100;
+      --orange-light:  #fff3e0;
       --orange-border: #ffcc80;
-      --green: #1b5e20;
-      --green-mid: #2e7d32;
-      --green-light: #e8f5e9;
-      --green-border: #a5d6a7;
-      --yellow: #7c4f00;
-      --yellow-light: #fffde7;
+      --green:         #1b5e20;
+      --green-mid:     #2e7d32;
+      --green-light:   #e8f5e9;
+      --green-border:  #a5d6a7;
+      --yellow:        #7c4f00;
+      --yellow-mid:    #f57f17;
+      --yellow-light:  #fff8e1;
       --yellow-border: #ffe082;
-      --red: #b71c1c;
-      --red-light: #ffebee;
-      --red-border: #ef9a9a;
-      --blue: #0d47a1;
-      --blue-light: #e3f2fd;
-      --blue-border: #90caf9;
-      --gray-900: #1a1a1a;
-      --gray-700: #424242;
-      --gray-500: #757575;
-      --gray-400: #9e9e9e;
-      --gray-200: #e0e0e0;
-      --gray-100: #f5f5f5;
-      --white: #ffffff;
-      --border-radius: 12px;
-      --border-radius-sm: 8px;
-      --shadow: 0 2px 12px rgba(0,0,0,0.08);
-      --shadow-elevated: 0 4px 24px rgba(0,0,0,0.12);
+      --red:           #b71c1c;
+      --red-light:     #ffebee;
+      --red-border:    #ef9a9a;
+      --blue:          #0d47a1;
+      --blue-light:    #e3f2fd;
+      --blue-border:   #90caf9;
+      --gray-900:      #1a1a1a;
+      --gray-700:      #424242;
+      --gray-500:      #757575;
+      --gray-400:      #9e9e9e;
+      --gray-200:      #e0e0e0;
+      --gray-100:      #f5f5f5;
+      --white:         #ffffff;
+      --radius:        12px;
+      --radius-sm:     8px;
+      --shadow:        0 2px 12px rgba(0,0,0,0.08);
     }
 
-    /* ── Layout ── */
+    /* ── Header ── */
     .app-header {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
@@ -59,194 +57,112 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     .app-header-inner {
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 56px;
+      gap: 12px;
     }
-    .app-title { font-size: 15px; font-weight: 700; color: var(--gray-900); }
-    .app-subtitle { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
-    .disclaimer-chip {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--orange);
-      background: var(--orange-light);
-      border: 1px solid var(--orange-border);
-      border-radius: 20px;
-      padding: 3px 8px;
-      white-space: nowrap;
-      display: none;
-    }
-    @media (min-width: 400px) { .disclaimer-chip { display: block; } }
-
-    .main {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 16px 16px 80px;
-    }
-
-    /* ── Step indicator ── */
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 20px;
-      padding-top: 8px;
-    }
-    .step-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .app-title    { font-size: 15px; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+    .app-subtitle { font-size: 10px; color: var(--gray-500); margin-top: 1px; }
+    .jur-select {
       font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-      transition: all 0.2s;
-      border: 2px solid var(--gray-200);
-      background: var(--white);
-      color: var(--gray-400);
-    }
-    .step-dot.active {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: var(--white);
-    }
-    .step-dot.done {
-      background: var(--green-mid);
-      border-color: var(--green-mid);
-      color: var(--white);
-    }
-    .step-line {
-      flex: 1;
-      height: 2px;
-      background: var(--gray-200);
-      transition: background 0.2s;
-    }
-    .step-line.done { background: var(--green-mid); }
-    .step-label {
-      font-size: 10px;
       font-weight: 600;
-      color: var(--gray-400);
+      border: 2px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      outline: none;
+      flex-shrink: 0;
+    }
+    .jur-select:focus { border-color: var(--orange); }
+
+    /* ── Main ── */
+    .main {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 16px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ── Mock banner ── */
+    .mock-banner {
+      background: #311b92;
+      color: #ede7f6;
       text-align: center;
-      margin-top: 4px;
-      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px;
       letter-spacing: 0.04em;
     }
-    .step-label.active { color: var(--orange); }
-    .step-label.done { color: var(--green-mid); }
-    .step-with-label { display: flex; flex-direction: column; align-items: center; }
 
-    /* ── Screens ── */
-    .screen { display: none; }
-    .screen.active { display: block; }
-
-    /* ── Cards ── */
+    /* ── Section card ── */
     .card {
       background: var(--white);
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 20px;
-      margin-bottom: 12px;
     }
-    .card-title {
-      font-size: 13px;
+    .section-tag {
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--gray-500);
-      margin-bottom: 12px;
-    }
-
-    /* ── Section heading ── */
-    .section-heading {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--gray-900);
+      letter-spacing: 0.1em;
+      color: var(--orange);
       margin-bottom: 6px;
     }
-    .section-sub {
-      font-size: 13px;
-      color: var(--gray-500);
-      margin-bottom: 20px;
+    .section-heading {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 14px;
     }
 
-    /* ── Form elements ── */
-    label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
-    input[type="number"], input[type="text"], select {
+    /* ── Entry mode toggle ── */
+    .mode-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .mode-btn.active {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: var(--orange-light);
+    }
+
+    /* ── Search ── */
+    .search-wrap { position: relative; }
+    .search-wrap input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 12px 14px 12px 40px;
       font-size: 15px;
       border: 2px solid var(--gray-200);
-      border-radius: var(--border-radius-sm);
+      border-radius: var(--radius-sm);
       background: var(--white);
       color: var(--gray-900);
       outline: none;
       transition: border-color 0.15s;
       -webkit-appearance: none;
     }
-    input[type="number"]:focus,
-    input[type="text"]:focus,
-    select:focus { border-color: var(--orange); }
-    .field { margin-bottom: 16px; }
-    .helper-text { font-size: 12px; color: var(--gray-500); margin-top: 5px; }
-    .error-text { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
-    .error-text.visible { display: block; }
-
-    /* ── Toggle buttons ── */
-    .toggle-group { display: flex; gap: 0; border: 2px solid var(--gray-200); border-radius: var(--border-radius-sm); overflow: hidden; }
-    .toggle-btn {
-      flex: 1;
-      padding: 10px 0;
-      font-size: 13px;
-      font-weight: 600;
-      border: none;
-      background: var(--white);
-      color: var(--gray-500);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .toggle-btn.active {
-      background: var(--orange);
-      color: var(--white);
-    }
-
-    /* ── Path cards (Step 2) ── */
-    .path-cards { display: grid; gap: 12px; margin-bottom: 20px; }
-    .path-card {
-      border: 2px solid var(--gray-200);
-      border-radius: var(--border-radius);
-      padding: 16px;
-      cursor: pointer;
-      transition: all 0.15s;
-      position: relative;
-    }
-    .path-card:hover { border-color: var(--orange-border); }
-    .path-card.selected { border-color: var(--orange); background: var(--orange-light); }
-    .path-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .path-card-title { font-size: 15px; font-weight: 700; color: var(--gray-900); }
-    .path-card-sub { font-size: 12px; color: var(--gray-500); margin-top: 3px; }
-    .recommended-badge {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      background: var(--orange);
-      color: var(--white);
-      border-radius: 4px;
-      padding: 2px 7px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .path-card-content { margin-top: 14px; display: none; }
-    .path-card.selected .path-card-content { display: block; }
-
-    /* ── Search ── */
-    .search-wrap { position: relative; margin-bottom: 8px; }
-    .search-wrap input { padding-left: 40px; }
+    .search-wrap input:focus { border-color: var(--orange); }
     .search-icon {
       position: absolute;
       left: 13px;
@@ -258,692 +174,521 @@
       pointer-events: none;
     }
     .search-results {
-      border: 2px solid var(--orange-border);
-      border-radius: var(--border-radius-sm);
-      overflow: hidden;
-      margin-top: 4px;
       display: none;
+      border: 2px solid var(--orange-border);
+      border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .search-results.visible { display: block; }
-    .search-result-item {
+    .search-results.open { display: block; }
+    .sr-item {
       padding: 11px 14px;
       border-bottom: 1px solid var(--gray-100);
       cursor: pointer;
-      transition: background 0.1s;
-    }
-    .search-result-item:last-child { border-bottom: none; }
-    .search-result-item:hover { background: var(--orange-light); }
-    .result-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
-    .result-meta { font-size: 11px; color: var(--gray-500); margin-top: 2px; display: flex; gap: 12px; }
-    .result-dba { font-size: 14px; font-weight: 700; color: var(--orange); }
-    .source-level-tag {
-      font-size: 10px;
-      font-weight: 600;
-      background: var(--yellow-light);
-      color: var(--yellow);
-      border: 1px solid var(--yellow-border);
-      border-radius: 4px;
-      padding: 1px 5px;
-    }
-
-    /* ── Task list ── */
-    .task-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
-    .task-row {
-      background: var(--gray-100);
-      border-radius: var(--border-radius-sm);
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .task-row-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--gray-900); }
-    .task-row-dba { font-size: 12px; color: var(--gray-500); }
-    .task-hours { width: 70px; padding: 6px 8px; font-size: 14px; text-align: center; }
-    .task-remove { color: var(--gray-400); font-size: 18px; cursor: pointer; line-height: 1; padding: 4px; }
-    .task-remove:hover { color: var(--red); }
-
-    /* ── Lex display ── */
-    .lex-display {
-      background: var(--orange-light);
-      border: 2px solid var(--orange-border);
-      border-radius: var(--border-radius-sm);
-      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 12px;
+      gap: 8px;
+      transition: background 0.1s;
     }
-    .lex-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray-700); }
-    .lex-value { font-size: 22px; font-weight: 800; color: var(--orange); font-variant-numeric: tabular-nums; }
-    .lex-unit { font-size: 13px; color: var(--gray-500); }
+    .sr-item:last-child { border-bottom: none; }
+    .sr-item:hover { background: var(--orange-light); }
+    .sr-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+    .sr-env  { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    .sr-dba  { font-size: 15px; font-weight: 700; color: var(--orange); white-space: nowrap; }
 
-    /* ── HPD type selector ── */
-    .hpd-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .hpd-type-btn {
-      padding: 12px 8px;
+    /* ── Selected chip ── */
+    .selected-chip {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: var(--gray-100);
       border: 2px solid var(--gray-200);
-      border-radius: var(--border-radius-sm);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .selected-chip.visible { display: flex; }
+    .chip-icon { font-size: 18px; flex-shrink: 0; }
+    .chip-body { flex: 1; min-width: 0; }
+    .chip-name { font-size: 13px; font-weight: 600; color: var(--gray-900); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chip-meta { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    .chip-dba  { font-size: 15px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+    .chip-clear {
+      color: var(--gray-400);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px 4px;
+      flex-shrink: 0;
+    }
+    .chip-clear:hover { color: var(--red); }
+
+    /* ── Manual Lex entry ── */
+    .manual-entry { display: none; }
+    .manual-entry.visible { display: block; }
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 5px;
+    }
+    .field input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 18px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .field input[type="number"]:focus { border-color: var(--orange); }
+    .toggle-group { display: flex; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); overflow: hidden; }
+    .toggle-btn {
+      flex: 1;
+      padding: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toggle-btn.active { background: var(--orange); color: var(--white); }
+    .helper { font-size: 11px; color: var(--gray-500); margin-top: 5px; line-height: 1.5; }
+    .error-msg { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+    .error-msg.show { display: block; }
+
+    /* ── HPD type ── */
+    .hpd-type-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .hpd-type-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
       background: var(--white);
       cursor: pointer;
       text-align: center;
       transition: all 0.15s;
     }
     .hpd-type-btn:hover { border-color: var(--orange-border); }
-    .hpd-type-btn.selected { border-color: var(--orange); background: var(--orange-light); }
-    .hpd-type-btn .icon { font-size: 22px; display: block; margin-bottom: 4px; }
-    .hpd-type-btn .btn-label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
-    .hpd-type-btn.selected .btn-label { color: var(--orange); }
+    .hpd-type-btn.active { border-color: var(--orange); background: var(--orange-light); }
+    .hpd-type-btn .t-icon  { font-size: 20px; display: block; margin-bottom: 3px; }
+    .hpd-type-btn .t-label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
+    .hpd-type-btn.active .t-label { color: var(--orange); }
 
-    /* ── Selected HPD chip ── */
-    .selected-hpd-chip {
-      display: none;
-      background: var(--green-light);
-      border: 1px solid var(--green-border);
-      border-radius: var(--border-radius-sm);
-      padding: 10px 12px;
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--green);
-      align-items: center;
-      gap: 8px;
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 14px 0; }
+
+    /* ── NRR manual ── */
+    .nrr-row { display: flex; align-items: center; gap: 10px; }
+    .nrr-row input[type="number"] {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 18px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      outline: none;
+      -webkit-appearance: none;
+      text-align: center;
     }
-    .selected-hpd-chip.visible { display: flex; }
-    .selected-hpd-chip .chip-name { flex: 1; }
-    .selected-hpd-chip .chip-nrr { font-size: 12px; color: var(--gray-500); }
-    .chip-clear { color: var(--gray-400); cursor: pointer; font-size: 16px; }
-    .chip-clear:hover { color: var(--red); }
+    .nrr-row input[type="number"]:focus { border-color: var(--orange); }
+    .nrr-unit { font-size: 14px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
 
     /* ── Info box ── */
     .info-box {
       background: var(--blue-light);
       border: 1px solid var(--blue-border);
-      border-radius: var(--border-radius-sm);
-      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
       font-size: 12px;
-      color: var(--blue);
-      margin-top: 12px;
+      color: #1565c0;
       line-height: 1.5;
-    }
-    .warning-box {
-      background: var(--yellow-light);
-      border: 1px solid var(--yellow-border);
-      border-radius: var(--border-radius-sm);
-      padding: 12px 14px;
-      font-size: 12px;
-      color: var(--yellow);
       margin-top: 12px;
-      line-height: 1.5;
     }
 
-    /* ── Buttons ── */
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      font-size: 15px;
-      font-weight: 700;
-      border: none;
-      border-radius: var(--border-radius-sm);
-      cursor: pointer;
-      transition: all 0.15s;
-      text-align: center;
+    /* ══════════════════════════════════════
+       RESULT CARD
+    ═══════════════════════════════════════ */
+    .result-card {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: none;
     }
-    .btn-primary { background: var(--orange); color: var(--white); }
-    .btn-primary:hover { background: #bf360c; }
-    .btn-primary:active { transform: scale(0.98); }
-    .btn-secondary {
-      background: var(--white);
-      color: var(--gray-700);
-      border: 2px solid var(--gray-200);
-    }
-    .btn-secondary:hover { border-color: var(--gray-400); }
-    .btn-row { display: flex; gap: 10px; margin-top: 16px; }
-    .btn-row .btn { margin-top: 0; }
-    .btn-back { flex: 0 0 auto; width: auto; padding: 14px 20px; }
+    .result-card.visible { display: block; }
 
-    /* ── Results screen ── */
-    .verdict-card {
-      border-radius: var(--border-radius);
+    /* colour variants */
+    .result-card.adequate  { border: 3px solid var(--green-border); }
+    .result-card.adequate  .result-hero { background: var(--green-light); }
+    .result-card.adequate  .result-value  { color: var(--green-mid); }
+    .result-card.adequate  .verdict-pill  { background: var(--green-mid); }
+
+    .result-card.caution   { border: 3px solid var(--yellow-border); }
+    .result-card.caution   .result-hero { background: var(--yellow-light); }
+    .result-card.caution   .result-value  { color: var(--yellow-mid); }
+    .result-card.caution   .verdict-pill  { background: var(--yellow-mid); }
+
+    .result-card.danger    { border: 3px solid var(--red-border); }
+    .result-card.danger    .result-hero { background: var(--red-light); }
+    .result-card.danger    .result-value  { color: var(--red); }
+    .result-card.danger    .verdict-pill  { background: var(--red); }
+
+    .result-card.over      { border: 3px solid var(--blue-border); }
+    .result-card.over      .result-hero { background: var(--blue-light); }
+    .result-card.over      .result-value  { color: var(--blue); }
+    .result-card.over      .verdict-pill  { background: var(--blue); }
+
+    .result-hero {
       padding: 28px 20px;
       text-align: center;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
     }
-    .verdict-card.adequate {
-      background: var(--green-light);
-      border: 2px solid var(--green-border);
+    .result-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 6px; }
+    .result-value {
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
     }
-    .verdict-card.over {
-      background: var(--yellow-light);
-      border: 2px solid var(--yellow-border);
-    }
-    .verdict-card.under {
-      background: var(--red-light);
-      border: 2px solid var(--red-border);
-    }
-    .protected-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 8px; }
-    .protected-value { font-size: 64px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 12px; }
-    .verdict-card.adequate .protected-value { color: var(--green-mid); }
-    .verdict-card.over .protected-value { color: var(--yellow); }
-    .verdict-card.under .protected-value { color: var(--red); }
-    .verdict-badge {
+    .result-unit  { font-size: 16px; color: var(--gray-500); margin-bottom: 14px; }
+    .verdict-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      margin-bottom: 12px;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .verdict-card.adequate .verdict-badge { background: var(--green-mid); color: var(--white); }
-    .verdict-card.over .verdict-badge { background: #e65100; color: var(--white); }
-    .verdict-card.under .verdict-badge { background: var(--red); color: var(--white); }
-    .verdict-desc { font-size: 13px; color: var(--gray-700); max-width: 280px; margin: 0 auto; line-height: 1.5; }
+    .verdict-text { font-size: 13px; color: var(--gray-700); max-width: 300px; margin: 0 auto; line-height: 1.5; }
 
-    .dual-flag {
-      background: var(--red-light);
-      border: 2px solid var(--red-border);
-      border-radius: var(--border-radius-sm);
-      padding: 12px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--red);
-      margin-bottom: 12px;
-      display: none;
-    }
-    .dual-flag.visible { display: block; }
+    .result-body { background: var(--white); padding: 16px 20px; }
 
-    .breakdown-row {
+    /* CSA class row */
+    .csa-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--gray-100);
-      font-size: 13px;
-    }
-    .breakdown-row:last-child { border-bottom: none; }
-    .breakdown-key { color: var(--gray-500); }
-    .breakdown-val { font-weight: 600; color: var(--gray-900); }
-
-    .csa-class-box {
+      justify-content: space-between;
+      padding: 12px 14px;
       background: var(--orange-light);
       border: 2px solid var(--orange-border);
-      border-radius: var(--border-radius-sm);
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-radius: var(--radius-sm);
       margin-bottom: 12px;
     }
-    .csa-class-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray-700); }
-    .csa-class-value { font-size: 22px; font-weight: 800; color: var(--orange); }
+    .csa-row-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray-700); }
+    .csa-row-value { font-size: 20px; font-weight: 800; color: var(--orange); }
 
-    .disclaimer {
-      background: var(--gray-100);
-      border-radius: var(--border-radius-sm);
-      padding: 14px;
-      font-size: 11px;
-      color: var(--gray-500);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    .disclaimer strong { color: var(--gray-700); }
-
-    /* ── Mock label ── */
-    .mock-banner {
-      background: #311b92;
-      color: #ede7f6;
-      text-align: center;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 6px;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Footer ── */
-    .app-footer {
-      border-top: 1px solid var(--gray-200);
-      padding: 20px 16px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--gray-400);
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .app-footer a { color: var(--orange); text-decoration: none; }
-
-    /* ── Divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--gray-200);
-      margin: 16px 0;
-    }
-
-    /* ── Collapsible ── */
-    .collapsible-toggle {
+    /* Breakdown */
+    .breakdown-toggle {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 12px;
       font-weight: 600;
       color: var(--orange);
-      cursor: pointer;
       background: none;
       border: none;
-      padding: 0;
-      margin-top: 8px;
-    }
-    .collapsible-toggle .arrow { transition: transform 0.2s; }
-    .collapsible-toggle.open .arrow { transform: rotate(90deg); }
-    .collapsible-content { display: none; margin-top: 10px; }
-    .collapsible-content.open { display: block; }
-
-    .formula-block {
-      background: var(--gray-100);
-      border-radius: var(--border-radius-sm);
-      padding: 12px;
-      font-size: 12px;
-      font-family: "Courier New", monospace;
-      color: var(--gray-700);
-      line-height: 1.8;
-    }
-
-    /* ── Jurisdiction selector ── */
-    .jurisdiction-list {
-      display: grid;
-      gap: 8px;
-    }
-    .jurisdiction-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--border-radius-sm);
       cursor: pointer;
+      padding: 0;
+      margin-bottom: 4px;
+    }
+    .breakdown-toggle .arr { transition: transform 0.2s; display: inline-block; }
+    .breakdown-toggle.open .arr { transform: rotate(90deg); }
+    .breakdown-body { display: none; margin-top: 10px; }
+    .breakdown-body.open { display: block; }
+    .br-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 13px;
+      gap: 12px;
+    }
+    .br-row:last-child { border-bottom: none; }
+    .br-key { color: var(--gray-500); flex-shrink: 0; }
+    .br-val { font-weight: 600; color: var(--gray-900); text-align: right; }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    .disclaimer strong { color: var(--gray-700); }
+
+    /* Print button */
+    .print-btn {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      text-align: center;
       transition: all 0.15s;
     }
-    .jurisdiction-item:hover { border-color: var(--orange-border); background: var(--orange-light); }
-    .jurisdiction-item.selected { border-color: var(--orange); background: var(--orange-light); }
-    .jurisdiction-flag { font-size: 20px; }
-    .jurisdiction-name { font-size: 14px; font-weight: 600; flex: 1; }
-    .jurisdiction-limit { font-size: 11px; color: var(--gray-500); }
-    .jurisdiction-radio {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid var(--gray-300);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .jurisdiction-item.selected .jurisdiction-radio {
-      border-color: var(--orange);
-      background: var(--orange);
-    }
-    .jurisdiction-item.selected .jurisdiction-radio::after {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-    }
+    .print-btn:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* ── Print styles ── */
+    /* Footer */
+    .app-footer {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+    }
+    .app-footer a { color: var(--orange); text-decoration: none; }
+
     @media print {
+      .mock-banner, .app-header, .breakdown-toggle, .print-btn { display: none !important; }
       body { background: white; }
-      .mock-banner, .step-indicator, .btn-row, .app-footer, .collapsible-toggle { display: none !important; }
-      .screen { display: block !important; }
-      .screen:not(.print-target) { display: none !important; }
+      .breakdown-body { display: block !important; }
     }
   </style>
 </head>
 <body>
 
-<div class="mock-banner">⚠ DESIGN MOCK — Fake data, no real calculations — For review only</div>
+<div class="mock-banner">⚠ DESIGN MOCK — Fake data, for review only</div>
 
 <header class="app-header">
   <div class="app-header-inner">
     <div>
       <div class="app-title">HPD Adequacy Calculator</div>
-      <div class="app-subtitle">CSA Z94.2 — Canadian Standard</div>
+      <div class="app-subtitle">CSA Z94.2 · Screening estimates only</div>
     </div>
-    <div class="disclaimer-chip">Screening estimates only</div>
+    <select class="jur-select" onchange="setJurisdiction(this.value)">
+      <option value="BC">🇨🇦 BC</option>
+      <option value="AB">🇨🇦 AB</option>
+      <option value="SK">🇨🇦 SK</option>
+      <option value="MB">🇨🇦 MB</option>
+      <option value="ON">🇨🇦 ON</option>
+      <option value="QC">🇨🇦 QC</option>
+      <option value="NB">🇨🇦 NB</option>
+      <option value="NS">🇨🇦 NS</option>
+      <option value="PE">🇨🇦 PE</option>
+      <option value="NL">🇨🇦 NL</option>
+      <option value="YT">🇨🇦 YT</option>
+      <option value="NT">🇨🇦 NT</option>
+      <option value="NU">🇨🇦 NU</option>
+      <option value="FED">🏛 Federal</option>
+    </select>
   </div>
 </header>
 
 <main class="main">
 
-  <!-- Step indicator -->
-  <div class="step-indicator" id="stepIndicator">
-    <div class="step-with-label">
-      <div class="step-dot active" id="dot1">1</div>
-      <div class="step-label active" id="lbl1">Where</div>
-    </div>
-    <div class="step-line" id="line1"></div>
-    <div class="step-with-label">
-      <div class="step-dot" id="dot2">2</div>
-      <div class="step-label" id="lbl2">Exposure</div>
-    </div>
-    <div class="step-line" id="line2"></div>
-    <div class="step-with-label">
-      <div class="step-dot" id="dot3">3</div>
-      <div class="step-label" id="lbl3">Protector</div>
-    </div>
-    <div class="step-line" id="line3"></div>
-    <div class="step-with-label">
-      <div class="step-dot" id="dot4">4</div>
-      <div class="step-label" id="lbl4">Result</div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       SCREEN 1 — Jurisdiction
-  ════════════════════════════════════════════ -->
-  <div class="screen active" id="screen1">
-    <div class="section-heading">Which province or jurisdiction?</div>
-    <div class="section-sub">Determines the regulatory noise exposure limit.</div>
-
-    <div class="jurisdiction-list">
-      <div class="jurisdiction-item selected" data-jur="BC" onclick="selectJurisdiction(this)">
-        <div class="jurisdiction-flag">🇨🇦</div>
-        <div>
-          <div class="jurisdiction-name">British Columbia</div>
-          <div class="jurisdiction-limit">Limit: 85 dBA · 3 dB exchange rate</div>
-        </div>
-        <div class="jurisdiction-radio"></div>
-      </div>
-      <div class="jurisdiction-item" data-jur="AB" onclick="selectJurisdiction(this)">
-        <div class="jurisdiction-flag">🇨🇦</div>
-        <div>
-          <div class="jurisdiction-name">Alberta</div>
-          <div class="jurisdiction-limit">Limit: 85 dBA · 3 dB exchange rate</div>
-        </div>
-        <div class="jurisdiction-radio"></div>
-      </div>
-      <div class="jurisdiction-item" data-jur="SK" onclick="selectJurisdiction(this)">
-        <div class="jurisdiction-flag">🇨🇦</div>
-        <div>
-          <div class="jurisdiction-name">Saskatchewan</div>
-          <div class="jurisdiction-limit">Limit: 85 dBA · 3 dB exchange rate</div>
-        </div>
-        <div class="jurisdiction-radio"></div>
-      </div>
-      <div class="jurisdiction-item" data-jur="ON" onclick="selectJurisdiction(this)">
-        <div class="jurisdiction-flag">🇨🇦</div>
-        <div>
-          <div class="jurisdiction-name">Ontario</div>
-          <div class="jurisdiction-limit">Limit: 85 dBA · 3 dB exchange rate</div>
-        </div>
-        <div class="jurisdiction-radio"></div>
-      </div>
-      <div class="jurisdiction-item" data-jur="FED" onclick="selectJurisdiction(this)">
-        <div class="jurisdiction-flag">🏛</div>
-        <div>
-          <div class="jurisdiction-name">Federal (Canada Labour Code)</div>
-          <div class="jurisdiction-limit">Limit: 87 dBA · 3 dB exchange rate · aviation, rail, telecom</div>
-        </div>
-        <div class="jurisdiction-radio"></div>
-      </div>
-    </div>
-
-    <div class="btn-row" style="margin-top:20px;">
-      <button class="btn btn-primary" onclick="goTo(2)">Next →</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       SCREEN 2 — Noise Exposure
-  ════════════════════════════════════════════ -->
-  <div class="screen" id="screen2">
+  <!-- ══════════════════════════════════
+       SECTION 1 — Noise Exposure
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="section-tag">Step 1</div>
     <div class="section-heading">What is the noise exposure?</div>
-    <div class="section-sub">Use a measured value whenever possible — it's more accurate.</div>
 
-    <div class="path-cards">
+    <div class="mode-row">
+      <button class="mode-btn active" id="modeOccup" onclick="setMode('occup')">🔍 Search occupation</button>
+      <button class="mode-btn" id="modeMeasured" onclick="setMode('measured')">📏 Enter measured value</button>
+    </div>
 
-      <!-- PATH A: Measured value -->
-      <div class="path-card selected" id="pathA" onclick="selectPath('A')">
-        <div class="path-card-header">
-          <div>
-            <div class="path-card-title">I have a measured value</div>
-            <div class="path-card-sub">Lex or Leq from a dosimeter or sound level meter</div>
-          </div>
-          <div class="recommended-badge">Recommended</div>
+    <!-- Occupation search -->
+    <div id="occupSection">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="occupSearch"
+               placeholder="e.g. Forklift operator, Carpenter, Welder…"
+               oninput="searchOccup(this.value)"
+               autocomplete="off" />
+      </div>
+      <div class="search-results" id="occupResults"></div>
+
+      <div class="selected-chip" id="occupChip">
+        <span class="chip-icon">👷</span>
+        <div class="chip-body">
+          <div class="chip-name" id="occupChipName"></div>
+          <div class="chip-meta" id="occupChipMeta"></div>
         </div>
-        <div class="path-card-content">
-          <div class="field">
-            <label for="lexInput">Lex,8h or Leq value</label>
-            <input type="number" id="lexInput" placeholder="e.g. 95" min="50" max="140" value="" />
-            <div class="error-text" id="lexError">Please enter a number between 50 and 140.</div>
-          </div>
-          <div class="field">
-            <label>Measurement weighting</label>
-            <div class="toggle-group">
-              <button class="toggle-btn active" id="btnDba" onclick="setWeighting('dBA')">dB(A)</button>
-              <button class="toggle-btn" id="btnDbc" onclick="setWeighting('dBC')">dB(C)</button>
-            </div>
-            <div class="helper-text" id="weightingHelp">A +3 dB spectral correction will be applied in the formula.</div>
-          </div>
-          <div class="info-box">
-            📏 <strong>BC note:</strong> Noise measurement is required where workers may be exposed above 82 dBA Lex (WorkSafeBC OHS Regulation Part 7).
-          </div>
-        </div>
+        <div class="chip-dba" id="occupChipDba"></div>
+        <span class="chip-clear" onclick="clearOccup()">✕</span>
       </div>
 
-      <!-- PATH B: Build from tasks -->
-      <div class="path-card" id="pathB" onclick="selectPath('B')">
-        <div class="path-card-header">
-          <div>
-            <div class="path-card-title">Build from tasks</div>
-            <div class="path-card-sub">No measurement? Pick tasks and enter hours to estimate Lex.</div>
-          </div>
-        </div>
-        <div class="path-card-content">
-
-          <div class="field">
-            <label>Measurement weighting</label>
-            <div class="toggle-group">
-              <button class="toggle-btn active" id="btnDbaB" onclick="setWeighting('dBA')">dB(A)</button>
-              <button class="toggle-btn" id="btnDbcB" onclick="setWeighting('dBC')">dB(C)</button>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="taskSearch">Search for a task or occupation</label>
-            <div class="search-wrap">
-              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              <input type="text" id="taskSearch" placeholder="e.g. Jackhammer, Carpenter, Welder…" oninput="searchTasks(this.value)" autocomplete="off" />
-            </div>
-            <div class="search-results" id="taskResults"></div>
-          </div>
-
-          <div class="task-list" id="taskList"></div>
-
-          <div class="lex-display" id="lexDisplay" style="display:none;">
-            <div>
-              <div class="lex-label">Estimated Lex,8h</div>
-              <div class="lex-unit">3 dB exchange rate</div>
-            </div>
-            <div class="lex-value" id="lexCalc">—</div>
-          </div>
-
-          <button class="collapsible-toggle" onclick="toggleFormula(this)">
-            <span class="arrow">▶</span> Show formula
-          </button>
-          <div class="collapsible-content">
-            <div class="formula-block">
-Lex = 10 · log₁₀( Σ (tᵢ / 8) · 10^(Lᵢ/10) )
-
-tᵢ = hours for task i
-Lᵢ = noise level (dBA) for task i
-</div>
-          </div>
-        </div>
+      <div class="helper" style="margin-top:8px;">
+        Can't find your occupation? Use "Enter measured value" above if you have dosimetry data, or try broader search terms (e.g. "operator", "labourer").
       </div>
     </div>
 
-    <div class="btn-row">
-      <button class="btn btn-secondary btn-back" onclick="goTo(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToStep3()">Next →</button>
+    <!-- Measured value entry -->
+    <div class="manual-entry" id="measuredSection">
+      <div class="field">
+        <label for="lexInput">Lex,8h or Leq (daily noise exposure)</label>
+        <input type="number" id="lexInput" placeholder="95" min="50" max="140"
+               oninput="onLexInput()" />
+        <div class="error-msg" id="lexError">Enter a number between 50 and 140.</div>
+      </div>
+      <div class="field">
+        <label>Measurement weighting</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="btnDba" onclick="setWeighting('dBA')">dB(A)</button>
+          <button class="toggle-btn"        id="btnDbc" onclick="setWeighting('dBC')">dB(C)</button>
+        </div>
+        <div class="helper" id="weightNote">+3 dB spectral correction will be applied in the CSA formula.</div>
+      </div>
+      <div class="info-box">
+        📏 <strong>BC note:</strong> Noise measurement is required where workers may be exposed above 82 dBA Lex (WorkSafeBC OHS Reg Part 7).
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       SCREEN 3 — Hearing Protector
-  ════════════════════════════════════════════ -->
-  <div class="screen" id="screen3">
+  <!-- ══════════════════════════════════
+       SECTION 2 — Hearing Protector
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="section-tag">Step 2</div>
     <div class="section-heading">What hearing protector is being used?</div>
-    <div class="section-sub">Search by brand and model to look up the NRR automatically.</div>
 
-    <div class="card">
-      <div class="card-title">HPD Type</div>
-      <div class="hpd-type-grid">
-        <div class="hpd-type-btn selected" id="typeEarplug" onclick="selectHpdType('earplug')">
-          <span class="icon">🟠</span>
-          <div class="btn-label">Earplug</div>
-        </div>
-        <div class="hpd-type-btn" id="typeEarmuff" onclick="selectHpdType('earmuff')">
-          <span class="icon">🎧</span>
-          <div class="btn-label">Earmuff</div>
-        </div>
-        <div class="hpd-type-btn" id="typeDual" onclick="selectHpdType('dual')">
-          <span class="icon">🔇</span>
-          <div class="btn-label">Dual</div>
-        </div>
+    <!-- HPD type -->
+    <div class="hpd-type-row">
+      <div class="hpd-type-btn active" id="typeEarplug" onclick="setHpdType('earplug')">
+        <span class="t-icon">🟠</span>
+        <div class="t-label">Earplug</div>
       </div>
-      <div class="info-box" style="margin-top:12px;">
-        <strong>CSA derating:</strong> Earplug 50% · Earmuff 70% · Dual 65% of (higher NRR + 5)
+      <div class="hpd-type-btn" id="typeEarmuff" onclick="setHpdType('earmuff')">
+        <span class="t-icon">🎧</span>
+        <div class="t-label">Earmuff</div>
+      </div>
+      <div class="hpd-type-btn" id="typeDual" onclick="setHpdType('dual')">
+        <span class="t-icon">🔇</span>
+        <div class="t-label">Dual</div>
       </div>
     </div>
 
-    <!-- Primary HPD -->
-    <div class="card">
-      <div class="card-title" id="primaryHpdLabel">Primary HPD</div>
-      <div class="search-wrap">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="hpdSearch1" placeholder="Search brand or model…" oninput="searchHpd(this.value, 1)" autocomplete="off" />
+    <!-- Primary HPD search -->
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="hpdSearch1"
+             placeholder="Search brand or model (e.g. 3M, Howard Leight…)"
+             oninput="searchHpd(this.value, 1)"
+             autocomplete="off" />
+    </div>
+    <div class="search-results" id="hpdResults1"></div>
+    <div class="selected-chip" id="hpdChip1">
+      <span class="chip-icon">🛡</span>
+      <div class="chip-body">
+        <div class="chip-name" id="hpdChip1Name"></div>
+        <div class="chip-meta" id="hpdChip1Meta"></div>
       </div>
-      <div class="search-results" id="hpdResults1"></div>
-      <div class="selected-hpd-chip" id="selectedHpd1">
-        <span class="chip-name" id="chip1Name"></span>
-        <span class="chip-nrr" id="chip1Nrr"></span>
-        <span class="chip-clear" onclick="clearHpd(1)">✕</span>
-      </div>
-      <div class="field" style="margin-top:12px;">
-        <label for="nrrInput1">NRR value (auto-filled from selection, or enter manually)</label>
-        <input type="number" id="nrrInput1" placeholder="e.g. 29" min="1" max="40" />
-      </div>
+      <div class="chip-dba" id="hpdChip1Nrr"></div>
+      <span class="chip-clear" onclick="clearHpd(1)">✕</span>
     </div>
 
-    <!-- Second HPD (dual only) -->
-    <div class="card" id="dualCard" style="display:none;">
-      <div class="card-title">Second HPD (Dual Protection)</div>
+    <div class="divider"></div>
+
+    <div class="field">
+      <label for="nrrInput1" id="nrrLabel1">NRR <span style="font-weight:400;color:var(--gray-500)">(auto-filled from search, or enter manually)</span></label>
+      <div class="nrr-row">
+        <input type="number" id="nrrInput1" placeholder="29" min="1" max="40" oninput="recalc()" />
+        <span class="nrr-unit">NRR</span>
+      </div>
+      <div class="helper" id="deratingNote">CSA Z94.2: earplugs derated at 50%</div>
+    </div>
+
+    <!-- Dual — second HPD -->
+    <div id="dualSection" style="display:none;">
+      <div class="divider"></div>
+      <div class="section-tag" style="margin-bottom:6px;">Second device</div>
       <div class="search-wrap">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="hpdSearch2" placeholder="Search second device…" oninput="searchHpd(this.value, 2)" autocomplete="off" />
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="hpdSearch2"
+               placeholder="Search second device…"
+               oninput="searchHpd(this.value, 2)"
+               autocomplete="off" />
       </div>
       <div class="search-results" id="hpdResults2"></div>
-      <div class="selected-hpd-chip" id="selectedHpd2">
-        <span class="chip-name" id="chip2Name"></span>
-        <span class="chip-nrr" id="chip2Nrr"></span>
+      <div class="selected-chip" id="hpdChip2">
+        <span class="chip-icon">🛡</span>
+        <div class="chip-body">
+          <div class="chip-name" id="hpdChip2Name"></div>
+          <div class="chip-meta" id="hpdChip2Meta"></div>
+        </div>
+        <div class="chip-dba" id="hpdChip2Nrr"></div>
         <span class="chip-clear" onclick="clearHpd(2)">✕</span>
       </div>
       <div class="field" style="margin-top:12px;">
-        <label for="nrrInput2">NRR value (second device)</label>
-        <input type="number" id="nrrInput2" placeholder="e.g. 27" min="1" max="40" />
+        <label for="nrrInput2">Second device NRR</label>
+        <div class="nrr-row">
+          <input type="number" id="nrrInput2" placeholder="27" min="1" max="40" oninput="recalc()" />
+          <span class="nrr-unit">NRR</span>
+        </div>
       </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-secondary btn-back" onclick="goTo(2)">← Back</button>
-      <button class="btn btn-primary" onclick="calculate()">Calculate →</button>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       SCREEN 4 — Result
-  ════════════════════════════════════════════ -->
-  <div class="screen print-target" id="screen4">
-    <div class="section-heading" style="margin-bottom:16px;">Result</div>
-
-    <!-- Dual flag -->
-    <div class="dual-flag" id="dualFlag">
-      ⚠ Dual protection required — single device cannot reduce exposure to the limit.
+  <!-- ══════════════════════════════════
+       RESULT
+  ═══════════════════════════════════ -->
+  <div class="result-card" id="resultCard">
+    <div class="result-hero">
+      <div class="result-label">Estimated protected level at ear</div>
+      <div class="result-value" id="resultValue">—</div>
+      <div class="result-unit">dBA</div>
+      <div class="verdict-pill" id="verdictPill">—</div>
+      <div class="verdict-text" id="verdictText">—</div>
     </div>
 
-    <!-- Verdict card -->
-    <div class="verdict-card" id="verdictCard">
-      <div class="protected-label">Estimated Protected Level at Ear</div>
-      <div class="protected-value" id="protectedValue">—</div>
-      <div style="font-size:14px; color:var(--gray-500); margin-bottom:12px;" id="protectedUnit">dBA</div>
-      <div class="verdict-badge" id="verdictBadge">—</div>
-      <div class="verdict-desc" id="verdictDesc">—</div>
-    </div>
+    <div class="result-body">
+      <div class="csa-row">
+        <div>
+          <div class="csa-row-label">Minimum HPD class required</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:2px;" id="csaGradeNote">for this exposure</div>
+        </div>
+        <div class="csa-row-value" id="csaClassVal">—</div>
+      </div>
 
-    <!-- CSA class recommendation -->
-    <div class="csa-class-box">
-      <div>
-        <div class="csa-class-label">Minimum required HPD class</div>
-        <div style="font-size:11px; color:var(--gray-500);" id="csaGradeLabel">for this exposure</div>
+      <button class="breakdown-toggle" onclick="toggleBreakdown(this)">
+        <span class="arr">▶</span> Show calculation
+      </button>
+      <div class="breakdown-body" id="breakdownBody">
+        <div class="br-row"><span class="br-key">Jurisdiction</span>     <span class="br-val" id="brJur">—</span></div>
+        <div class="br-row"><span class="br-key">Noise exposure (Lex)</span> <span class="br-val" id="brLex">—</span></div>
+        <div class="br-row"><span class="br-key">Spectral correction</span> <span class="br-val" id="brCorr">—</span></div>
+        <div class="br-row"><span class="br-key">HPD</span>               <span class="br-val" id="brHpd">—</span></div>
+        <div class="br-row"><span class="br-key">NRR</span>               <span class="br-val" id="brNrr">—</span></div>
+        <div class="br-row"><span class="br-key">Derating (CSA Z94.2)</span> <span class="br-val" id="brDerate">—</span></div>
+        <div class="br-row"><span class="br-key">Protected level</span>   <span class="br-val" id="brProtected">—</span></div>
+        <div class="br-row"><span class="br-key">Regulatory limit</span>  <span class="br-val" id="brLimit">—</span></div>
       </div>
-      <div class="csa-class-value" id="csaClassValue">—</div>
-    </div>
 
-    <!-- Breakdown -->
-    <div class="card">
-      <div class="card-title">Calculation breakdown</div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Jurisdiction</span>
-        <span class="breakdown-val" id="brJurisdiction">—</span>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> Results are screening estimates only and do not replace noise measurement or a formal noise assessment. In BC, measurement is required where a worker may be exposed above 82 dBA Lex. Actual protection depends on proper fit, device condition, and consistent use. Consult a qualified occupational hygienist or audiometric technician for compliance decisions.
       </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Noise exposure (Lex,8h)</span>
-        <span class="breakdown-val" id="brLex">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Weighting correction</span>
-        <span class="breakdown-val" id="brCorrection">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">HPD</span>
-        <span class="breakdown-val" id="brHpd">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">NRR</span>
-        <span class="breakdown-val" id="brNrr">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Derating (CSA Z94.2)</span>
-        <span class="breakdown-val" id="brDerating">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Effective reduction</span>
-        <span class="breakdown-val" id="brReduction">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key" style="font-weight:700;">Protected level</span>
-        <span class="breakdown-val" id="brProtected" style="font-size:15px;">—</span>
-      </div>
-      <div class="breakdown-row">
-        <span class="breakdown-key">Regulatory limit</span>
-        <span class="breakdown-val" id="brLimit">85 dBA</span>
-      </div>
-    </div>
 
-    <!-- Disclaimer -->
-    <div class="disclaimer">
-      <strong>Disclaimer:</strong> Results are screening estimates only and do not replace noise measurement or a formal noise assessment. In BC, noise measurement is required where a worker may be exposed above 82 dBA Lex. The CSA Z94.2 derating formulas are applied as published; actual protection depends on proper fit and consistent use. Consult a qualified occupational hygienist or audiometric technician for compliance decisions.
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="window.print()">🖨 Print / Save PDF</button>
-      <button class="btn btn-primary" onclick="startOver()">Start over</button>
+      <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
     </div>
   </div>
 
@@ -951,384 +696,371 @@ Lᵢ = noise level (dBA) for task i
 
 <footer class="app-footer">
   <a href="#">About</a> · <a href="#">How it works</a> · <a href="#">GitHub</a>
-  <div style="margin-top:6px;">Free &amp; open source · MIT license · No data sent anywhere</div>
+  <div style="margin-top:6px;">Free &amp; open source · MIT licence · No data sent anywhere</div>
 </footer>
 
 <script>
-  // ── State ──────────────────────────────────────────────────────
-  const state = {
-    jurisdiction: 'BC',
-    jurisdictionLimit: 85,
-    path: 'A',        // 'A' or 'B'
-    lex: null,
-    weighting: 'dBA',
-    tasks: [],
-    hpdType: 'earplug',
-    nrr1: null,
-    nrr2: null,
-    hpd1Name: '',
-    hpd2Name: '',
-  };
+// ═══════════════════════════════════════════════════════
+// State
+// ═══════════════════════════════════════════════════════
+const S = {
+  mode:       'occup',  // 'occup' | 'measured'
+  lex:        null,
+  weighting:  'dBA',
+  hpdType:    'earplug',
+  nrr1:       null,
+  nrr2:       null,
+  hpd1Name:   '',
+  hpd2Name:   '',
+  jurLimit:   85,
+  jurName:    'British Columbia',
+};
 
-  // ── Fake datasets ──────────────────────────────────────────────
-  const TASKS = [
-    { id: 'jackhammer', label: 'Jackhammer operator', industry: 'Construction', dba_typical: 99, value_kind: 'lex', aliases: ['pneumatic breaker', 'demolition hammer'] },
-    { id: 'concrete-finisher', label: 'Concrete finisher', industry: 'Construction', dba_typical: 96, value_kind: 'lex', aliases: [] },
-    { id: 'carpenter', label: 'Carpenter — general', industry: 'Construction', dba_typical: 94, value_kind: 'lex', aliases: ['framing', 'formwork'] },
-    { id: 'electrician', label: 'Electrician — industrial', industry: 'Construction', dba_typical: 87, value_kind: 'lex', aliases: [] },
-    { id: 'chainsaw', label: 'Chainsaw operator', industry: 'Forestry', dba_typical: 104, value_kind: 'lex', aliases: ['faller', 'tree felling'] },
-    { id: 'forklift', label: 'Forklift operator', industry: 'Warehouse', dba_typical: 90, value_kind: 'lex', aliases: [] },
-    { id: 'welder', label: 'Welder', industry: 'Manufacturing', dba_typical: 91, value_kind: 'lex', aliases: ['welding', 'arc welder'] },
-    { id: 'grinder', label: 'Angle grinder use', industry: 'Fabrication', dba_typical: 103, value_kind: 'source_level', aliases: ['grinding', 'disc grinder'] },
-    { id: 'office', label: 'Office worker', industry: 'Office', dba_typical: 65, value_kind: 'lex', aliases: [] },
-    { id: 'sandblast', label: 'Sandblaster', industry: 'Surface Prep', dba_typical: 103, value_kind: 'lex', aliases: ['abrasive blasting'] },
-  ];
+// ═══════════════════════════════════════════════════════
+// Fake data — occupations with environment variants
+// ═══════════════════════════════════════════════════════
+const OCCUPATIONS = [
+  // Forklift operator — multiple environments
+  { id:'fl-warehouse',  label:'Forklift operator', env:'Warehouse',         industry:'Warehousing',    dba:78, src:'WorkSafeBC' },
+  { id:'fl-sawmill',    label:'Forklift operator', env:'Sawmill / Planer',  industry:'Forestry',       dba:91, src:'WorkSafeBC' },
+  { id:'fl-construct',  label:'Forklift operator', env:'Construction site', industry:'Construction',   dba:88, src:'WorkSafeBC' },
+  { id:'fl-mining',     label:'Forklift operator', env:'Surface mine',      industry:'Mining',         dba:90, src:'WorkSafeBC' },
+  // Carpenter
+  { id:'carp-resi',     label:'Carpenter',         env:'Residential construction', industry:'Construction', dba:94, src:'WorkSafeBC' },
+  { id:'carp-cabinet',  label:'Carpenter',         env:'Cabinet shop',      industry:'Woodworking',    dba:89, src:'WorkSafeBC' },
+  { id:'carp-framing',  label:'Carpenter',         env:'Commercial framing',industry:'Construction',   dba:96, src:'WorkSafeBC' },
+  // Sawmill
+  { id:'sm-labourer',   label:'Sawmill labourer',  env:'Green end / headrig',industry:'Forestry',      dba:98, src:'WorkSafeBC' },
+  { id:'sm-dry',        label:'Sawmill labourer',  env:'Dry kiln',          industry:'Forestry',       dba:92, src:'WorkSafeBC' },
+  { id:'sm-planer',     label:'Sawmill labourer',  env:'Planer mill',       industry:'Forestry',       dba:99, src:'WorkSafeBC' },
+  // Heavy equipment operator
+  { id:'heo-road',      label:'Heavy equipment operator', env:'Road construction', industry:'Construction', dba:95, src:'WorkSafeBC' },
+  { id:'heo-mining',    label:'Heavy equipment operator', env:'Open pit mine',     industry:'Mining',       dba:99, src:'WorkSafeBC' },
+  { id:'heo-logging',   label:'Heavy equipment operator', env:'Logging / skidding',industry:'Forestry',    dba:96, src:'WorkSafeBC' },
+  // Welder
+  { id:'weld-shop',     label:'Welder',            env:'Indoor fabrication shop', industry:'Manufacturing', dba:91, src:'WorkSafeBC' },
+  { id:'weld-shipyard', label:'Welder',            env:'Shipyard / outdoor',      industry:'Maritime',      dba:96, src:'WorkSafeBC' },
+  // Chainsaw
+  { id:'chainsaw',      label:'Chainsaw operator / Faller', env:'Forestry', industry:'Forestry',        dba:104, src:'WorkSafeBC' },
+  // Jackhammer
+  { id:'jackhammer',    label:'Jackhammer operator',env:'Construction',    industry:'Construction',     dba:103, src:'WorkSafeBC' },
+  // Sandblaster
+  { id:'sandblast',     label:'Sandblaster / Abrasive blaster', env:'Industrial', industry:'Surface Prep', dba:103, src:'WorkSafeBC' },
+  // Electrician
+  { id:'elec-ind',      label:'Electrician',       env:'Industrial plant',  industry:'Construction',   dba:87, src:'WorkSafeBC' },
+  { id:'elec-resi',     label:'Electrician',       env:'Residential',       industry:'Construction',   dba:78, src:'WorkSafeBC' },
+  // Office
+  { id:'office',        label:'Office worker',     env:'Open plan office',  industry:'Office',         dba:65, src:'WorkSafeBC' },
+  // Grinder
+  { id:'grinder',       label:'Grinder operator',  env:'Metal fabrication', industry:'Manufacturing',  dba:101, src:'WorkSafeBC' },
+  // Millwright
+  { id:'millwright-sm', label:'Millwright',        env:'Sawmill',           industry:'Forestry',       dba:89, src:'WorkSafeBC' },
+  { id:'millwright-mn', label:'Millwright',        env:'Mining / processing',industry:'Mining',        dba:93, src:'WorkSafeBC' },
+];
 
-  const HPDS = [
-    { id: '3m-ear-classic', brand: '3M', model: 'E-A-R Classic Plus', type: 'earplug', nrr: 33 },
-    { id: '3m-ear-soft', brand: '3M', model: 'E-A-R Soft Yellow Neons', type: 'earplug', nrr: 33 },
-    { id: 'hl-max', brand: 'Howard Leight', model: 'MAX Foam Earplugs', type: 'earplug', nrr: 33 },
-    { id: 'hl-laser-lite', brand: 'Howard Leight', model: 'Laser Lite', type: 'earplug', nrr: 32 },
-    { id: '3m-x5a', brand: '3M Peltor', model: 'X5A Over-the-Head', type: 'earmuff', nrr: 31 },
-    { id: '3m-x4a', brand: '3M Peltor', model: 'X4A', type: 'earmuff', nrr: 27 },
-    { id: 'honeywell-impact', brand: 'Honeywell', model: 'Impact Pro', type: 'earmuff', nrr: 30 },
-    { id: 'msa-sordin', brand: 'MSA', model: 'Sordin Supreme Pro', type: 'earmuff', nrr: 27 },
-    { id: 'uvex-k20', brand: 'uvex', model: 'K20', type: 'earmuff', nrr: 25 },
-  ];
+const HPDS = [
+  { id:'ear-classic', brand:'3M',           model:'E-A-R Classic Plus',      type:'earplug', nrr:33 },
+  { id:'ear-soft',    brand:'3M',           model:'E-A-R Soft Yellow Neons', type:'earplug', nrr:33 },
+  { id:'hl-max',      brand:'Howard Leight',model:'MAX Foam Earplugs',       type:'earplug', nrr:33 },
+  { id:'hl-laser',    brand:'Howard Leight',model:'Laser Lite',              type:'earplug', nrr:32 },
+  { id:'moldex-7700', brand:'Moldex',       model:'7700 Earplugs',           type:'earplug', nrr:33 },
+  { id:'3m-x5a',      brand:'3M Peltor',    model:'X5A Over-the-Head',       type:'earmuff', nrr:31 },
+  { id:'3m-x4a',      brand:'3M Peltor',    model:'X4A',                     type:'earmuff', nrr:27 },
+  { id:'hon-impact',  brand:'Honeywell',    model:'Impact Pro',              type:'earmuff', nrr:30 },
+  { id:'msa-sordin',  brand:'MSA',          model:'Sordin Supreme Pro',      type:'earmuff', nrr:27 },
+  { id:'uvex-k20',    brand:'uvex',         model:'K20',                     type:'earmuff', nrr:25 },
+  { id:'3m-optime',   brand:'3M Peltor',    model:'Optime 105',              type:'earmuff', nrr:30 },
+];
 
-  // ── Navigation ─────────────────────────────────────────────────
-  function goTo(step) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen' + step).classList.add('active');
-    updateStepIndicator(step);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// ═══════════════════════════════════════════════════════
+// Jurisdiction
+// ═══════════════════════════════════════════════════════
+const JUR_NAMES = {
+  BC:'British Columbia', AB:'Alberta', SK:'Saskatchewan', MB:'Manitoba',
+  ON:'Ontario', QC:'Quebec', NB:'New Brunswick', NS:'Nova Scotia',
+  PE:'PEI', NL:'Newfoundland & Labrador', YT:'Yukon', NT:'Northwest Territories',
+  NU:'Nunavut', FED:'Federal (Canada Labour Code)',
+};
+function setJurisdiction(code) {
+  S.jurLimit = code === 'FED' ? 87 : 85;
+  S.jurName  = JUR_NAMES[code] || code;
+  recalc();
+}
+
+// ═══════════════════════════════════════════════════════
+// Entry mode
+// ═══════════════════════════════════════════════════════
+function setMode(m) {
+  S.mode = m;
+  document.getElementById('modeOccup').classList.toggle('active', m === 'occup');
+  document.getElementById('modeMeasured').classList.toggle('active', m === 'measured');
+  document.getElementById('occupSection').style.display    = m === 'occup'    ? '' : 'none';
+  document.getElementById('measuredSection').style.display = m === 'measured' ? '' : 'none';
+  if (m === 'occup') { S.lex = getSelectedOccupLex(); }
+  else               { S.lex = null; }
+  recalc();
+}
+
+function getSelectedOccupLex() {
+  const chip = document.getElementById('occupChip');
+  if (!chip.classList.contains('visible')) return null;
+  return parseFloat(chip.dataset.dba) || null;
+}
+
+// ═══════════════════════════════════════════════════════
+// Weighting
+// ═══════════════════════════════════════════════════════
+function setWeighting(w) {
+  S.weighting = w;
+  document.getElementById('btnDba').classList.toggle('active', w === 'dBA');
+  document.getElementById('btnDbc').classList.toggle('active', w === 'dBC');
+  document.getElementById('weightNote').textContent = w === 'dBA'
+    ? '+3 dB spectral correction will be applied in the CSA formula.'
+    : 'No correction applied — dB(C) used directly.';
+  recalc();
+}
+
+// ═══════════════════════════════════════════════════════
+// Occupation search
+// ═══════════════════════════════════════════════════════
+function searchOccup(q) {
+  const box = document.getElementById('occupResults');
+  if (q.length < 2) { box.classList.remove('open'); box.innerHTML = ''; return; }
+  const lq = q.toLowerCase();
+  const hits = OCCUPATIONS.filter(o =>
+    o.label.toLowerCase().includes(lq) ||
+    o.env.toLowerCase().includes(lq)   ||
+    o.industry.toLowerCase().includes(lq)
+  ).slice(0, 8);
+  if (!hits.length) { box.classList.remove('open'); return; }
+  box.innerHTML = hits.map(o => `
+    <div class="sr-item" onclick="selectOccup('${o.id}')">
+      <div>
+        <div class="sr-name">${o.label}</div>
+        <div class="sr-env">${o.env} · ${o.industry} · ${o.src}</div>
+      </div>
+      <div class="sr-dba">${o.dba} dBA</div>
+    </div>`).join('');
+  box.classList.add('open');
+}
+
+function selectOccup(id) {
+  const o = OCCUPATIONS.find(x => x.id === id);
+  S.lex = o.dba;
+  const chip = document.getElementById('occupChip');
+  chip.dataset.dba = o.dba;
+  document.getElementById('occupChipName').textContent = o.label + ' — ' + o.env;
+  document.getElementById('occupChipMeta').textContent = o.industry + ' · ' + o.src;
+  document.getElementById('occupChipDba').textContent  = o.dba + ' dBA';
+  chip.classList.add('visible');
+  document.getElementById('occupSearch').value = '';
+  document.getElementById('occupResults').classList.remove('open');
+  recalc();
+}
+
+function clearOccup() {
+  S.lex = null;
+  document.getElementById('occupChip').classList.remove('visible');
+  document.getElementById('occupChip').dataset.dba = '';
+  recalc();
+}
+
+// ═══════════════════════════════════════════════════════
+// Measured Lex
+// ═══════════════════════════════════════════════════════
+function onLexInput() {
+  const val = parseFloat(document.getElementById('lexInput').value);
+  const err = document.getElementById('lexError');
+  if (isNaN(val) || val < 50 || val > 140) {
+    S.lex = null;
+    err.classList.add('show');
+  } else {
+    S.lex = val;
+    err.classList.remove('show');
   }
+  recalc();
+}
 
-  function updateStepIndicator(active) {
-    for (let i = 1; i <= 4; i++) {
-      const dot = document.getElementById('dot' + i);
-      const lbl = document.getElementById('lbl' + i);
-      dot.classList.remove('active', 'done');
-      lbl.classList.remove('active', 'done');
-      if (i < active) { dot.classList.add('done'); lbl.classList.add('done'); }
-      if (i === active) { dot.classList.add('active'); lbl.classList.add('active'); }
-      if (i < 4) {
-        const line = document.getElementById('line' + i);
-        line.classList.toggle('done', i < active);
-      }
-    }
-  }
+// ═══════════════════════════════════════════════════════
+// HPD type
+// ═══════════════════════════════════════════════════════
+function setHpdType(t) {
+  S.hpdType = t;
+  ['earplug','earmuff','dual'].forEach(x => {
+    const cap = x.charAt(0).toUpperCase() + x.slice(1);
+    document.getElementById('type' + cap).classList.toggle('active', x === t);
+  });
+  document.getElementById('dualSection').style.display = t === 'dual' ? '' : 'none';
+  const notes = { earplug:'CSA Z94.2: earplugs derated at 50%', earmuff:'CSA Z94.2: earmuffs derated at 70%', dual:'CSA Z94.2: 65% of (higher NRR + 5)' };
+  document.getElementById('deratingNote').textContent = notes[t];
+  recalc();
+}
 
-  // ── Step 1 — Jurisdiction ──────────────────────────────────────
-  function selectJurisdiction(el) {
-    document.querySelectorAll('.jurisdiction-item').forEach(i => i.classList.remove('selected'));
-    el.classList.add('selected');
-    state.jurisdiction = el.dataset.jur;
-    state.jurisdictionLimit = el.dataset.jur === 'FED' ? 87 : 85;
-  }
+// ═══════════════════════════════════════════════════════
+// HPD search
+// ═══════════════════════════════════════════════════════
+function searchHpd(q, slot) {
+  const box = document.getElementById('hpdResults' + slot);
+  if (q.length < 2) { box.classList.remove('open'); box.innerHTML = ''; return; }
+  const lq = q.toLowerCase();
+  const hits = HPDS.filter(h =>
+    h.brand.toLowerCase().includes(lq) ||
+    h.model.toLowerCase().includes(lq)
+  ).slice(0, 6);
+  if (!hits.length) { box.classList.remove('open'); return; }
+  box.innerHTML = hits.map(h => `
+    <div class="sr-item" onclick="selectHpd('${h.id}', ${slot})">
+      <div>
+        <div class="sr-name">${h.brand} ${h.model}</div>
+        <div class="sr-env">${h.type === 'earplug' ? '🟠 Earplug' : '🎧 Earmuff'}</div>
+      </div>
+      <div class="sr-dba">NRR ${h.nrr}</div>
+    </div>`).join('');
+  box.classList.add('open');
+}
 
-  // ── Step 2 — Path selection ────────────────────────────────────
-  function selectPath(p) {
-    state.path = p;
-    ['A', 'B'].forEach(id => {
-      document.getElementById('path' + id).classList.toggle('selected', id === p);
-    });
-  }
-
-  function setWeighting(w) {
-    state.weighting = w;
-    ['btnDba','btnDbc','btnDbaB','btnDbcB'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.toggle('active', (w === 'dBA' && id.includes('Dba')) || (w === 'dBC' && id.includes('Dbc')));
-    });
-    const help = document.getElementById('weightingHelp');
-    if (help) help.textContent = w === 'dBA'
-      ? 'A +3 dB spectral correction will be applied in the formula.'
-      : 'No spectral correction needed — dB(C) values are used directly.';
-  }
-
-  function goToStep3() {
-    let lex = null;
-    if (state.path === 'A') {
-      const val = parseFloat(document.getElementById('lexInput').value);
-      if (isNaN(val) || val < 50 || val > 140) {
-        document.getElementById('lexError').classList.add('visible');
-        return;
-      }
-      document.getElementById('lexError').classList.remove('visible');
-      lex = val;
-    } else {
-      if (state.tasks.length === 0) {
-        alert('Please add at least one task before continuing.');
-        return;
-      }
-      lex = computeLex();
-    }
-    state.lex = lex;
-    goTo(3);
-  }
-
-  // ── Task search ────────────────────────────────────────────────
-  function searchTasks(q) {
-    const container = document.getElementById('taskResults');
-    if (q.length < 2) { container.classList.remove('visible'); container.innerHTML = ''; return; }
-    const lq = q.toLowerCase();
-    const hits = TASKS.filter(t =>
-      t.label.toLowerCase().includes(lq) ||
-      t.industry.toLowerCase().includes(lq) ||
-      t.aliases.some(a => a.toLowerCase().includes(lq))
-    ).slice(0, 5);
-    if (!hits.length) { container.classList.remove('visible'); return; }
-    container.innerHTML = hits.map(t => `
-      <div class="search-result-item" onclick="addTask('${t.id}')">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div class="result-name">${t.label}</div>
-          <div class="result-dba">${t.dba_typical} dBA</div>
-        </div>
-        <div class="result-meta">
-          <span>${t.industry}</span>
-          ${t.value_kind === 'source_level' ? '<span class="source-level-tag">Source level — not 8-hr</span>' : ''}
-        </div>
-      </div>`).join('');
-    container.classList.add('visible');
-  }
-
-  function addTask(id) {
-    if (state.tasks.find(t => t.id === id)) return;
-    const task = TASKS.find(t => t.id === id);
-    state.tasks.push({ ...task, hours: 1 });
-    document.getElementById('taskSearch').value = '';
-    document.getElementById('taskResults').classList.remove('visible');
-    renderTaskList();
-  }
-
-  function renderTaskList() {
-    const list = document.getElementById('taskList');
-    list.innerHTML = state.tasks.map((t, i) => `
-      <div class="task-row">
-        <div>
-          <div class="task-row-name">${t.label}</div>
-          <div class="task-row-dba">${t.dba_typical} dBA · ${t.industry}</div>
-        </div>
-        <input type="number" class="task-hours" value="${t.hours}" min="0.1" max="12" step="0.5"
-          oninput="updateHours(${i}, this.value)" />
-        <span style="font-size:10px;color:var(--gray-400);">h</span>
-        <span class="task-remove" onclick="removeTask(${i})">✕</span>
-      </div>`).join('');
-    updateLexDisplay();
-  }
-
-  function updateHours(i, val) {
-    state.tasks[i].hours = parseFloat(val) || 0;
-    updateLexDisplay();
-  }
-
-  function removeTask(i) {
-    state.tasks.splice(i, 1);
-    renderTaskList();
-  }
-
-  function computeLex() {
-    if (!state.tasks.length) return null;
-    const sum = state.tasks.reduce((acc, t) => acc + (t.hours / 8) * Math.pow(10, t.dba_typical / 10), 0);
-    return sum > 0 ? 10 * Math.log10(sum) : null;
-  }
-
-  function updateLexDisplay() {
-    const display = document.getElementById('lexDisplay');
-    const lex = computeLex();
-    if (lex !== null && state.tasks.length > 0) {
-      display.style.display = 'flex';
-      document.getElementById('lexCalc').textContent = lex.toFixed(1) + ' dBA';
-    } else {
-      display.style.display = 'none';
-    }
-  }
-
-  // ── HPD search ─────────────────────────────────────────────────
-  function selectHpdType(type) {
-    state.hpdType = type;
-    ['earplug','earmuff','dual'].forEach(t => {
-      document.getElementById('type' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('selected', t === type);
-    });
-    document.getElementById('dualCard').style.display = type === 'dual' ? 'block' : 'none';
-  }
-
-  function searchHpd(q, slot) {
-    const container = document.getElementById('hpdResults' + slot);
-    if (q.length < 2) { container.classList.remove('visible'); container.innerHTML = ''; return; }
-    const lq = q.toLowerCase();
-    const hits = HPDS.filter(h =>
-      h.brand.toLowerCase().includes(lq) ||
-      h.model.toLowerCase().includes(lq)
-    ).slice(0, 5);
-    if (!hits.length) { container.classList.remove('visible'); return; }
-    container.innerHTML = hits.map(h => `
-      <div class="search-result-item" onclick="selectHpd('${h.id}', ${slot})">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div class="result-name">${h.brand} ${h.model}</div>
-          <div class="result-dba">NRR ${h.nrr}</div>
-        </div>
-        <div class="result-meta">
-          <span>${h.type === 'earplug' ? '🟠 Earplug' : '🎧 Earmuff'}</span>
-        </div>
-      </div>`).join('');
-    container.classList.add('visible');
-  }
-
-  function selectHpd(id, slot) {
-    const hpd = HPDS.find(h => h.id === id);
-    if (slot === 1) {
-      state.nrr1 = hpd.nrr;
-      state.hpd1Name = hpd.brand + ' ' + hpd.model;
-      document.getElementById('nrrInput1').value = hpd.nrr;
-      document.getElementById('hpdSearch1').value = '';
-      document.getElementById('hpdResults1').classList.remove('visible');
-      document.getElementById('chip1Name').textContent = hpd.brand + ' ' + hpd.model;
-      document.getElementById('chip1Nrr').textContent = 'NRR ' + hpd.nrr + ' · ' + hpd.type;
-      document.getElementById('selectedHpd1').classList.add('visible');
-      selectHpdType(hpd.type);
-    } else {
-      state.nrr2 = hpd.nrr;
-      state.hpd2Name = hpd.brand + ' ' + hpd.model;
-      document.getElementById('nrrInput2').value = hpd.nrr;
-      document.getElementById('hpdSearch2').value = '';
-      document.getElementById('hpdResults2').classList.remove('visible');
-      document.getElementById('chip2Name').textContent = hpd.brand + ' ' + hpd.model;
-      document.getElementById('chip2Nrr').textContent = 'NRR ' + hpd.nrr + ' · ' + hpd.type;
-      document.getElementById('selectedHpd2').classList.add('visible');
-    }
-  }
-
-  function clearHpd(slot) {
-    if (slot === 1) {
-      state.nrr1 = null; state.hpd1Name = '';
-      document.getElementById('nrrInput1').value = '';
-      document.getElementById('selectedHpd1').classList.remove('visible');
-    } else {
-      state.nrr2 = null; state.hpd2Name = '';
-      document.getElementById('nrrInput2').value = '';
-      document.getElementById('selectedHpd2').classList.remove('visible');
-    }
-  }
-
-  // ── Collapsible ────────────────────────────────────────────────
-  function toggleFormula(btn) {
-    btn.classList.toggle('open');
-    btn.nextElementSibling.classList.toggle('open');
-  }
-
-  // ── Calculation ────────────────────────────────────────────────
-  function calculate() {
-    const nrr1 = parseFloat(document.getElementById('nrrInput1').value);
-    if (isNaN(nrr1)) { alert('Please enter an NRR value for the hearing protector.'); return; }
-    if (state.hpdType === 'dual') {
-      const nrr2 = parseFloat(document.getElementById('nrrInput2').value);
-      if (isNaN(nrr2)) { alert('Dual protection requires two devices. Please add the second HPD.'); return; }
-      state.nrr2 = nrr2;
-    }
-    state.nrr1 = nrr1;
-
-    const correction = state.weighting === 'dBA' ? 3 : 0;
-    const lex = state.lex;
-    let lprot, deratingDesc, reductionDesc;
-
-    if (state.hpdType === 'earplug') {
-      lprot = lex + correction - (nrr1 * 0.50);
-      deratingDesc = '50% (earplug)';
-      reductionDesc = '−' + (correction + nrr1 * 0.50).toFixed(1) + ' dB';
-    } else if (state.hpdType === 'earmuff') {
-      lprot = lex + correction - (nrr1 * 0.70);
-      deratingDesc = '70% (earmuff)';
-      reductionDesc = '−' + (correction + nrr1 * 0.70).toFixed(1) + ' dB';
-    } else {
-      const nrr2 = state.nrr2;
-      const higher = Math.max(nrr1, nrr2);
-      const effective = (higher + 5) * 0.65;
-      lprot = lex + correction - effective;
-      deratingDesc = '65% of (NRR_higher + 5) = ' + effective.toFixed(1) + ' dB';
-      reductionDesc = '−' + (correction + effective).toFixed(1) + ' dB';
-    }
-
-    const limit = state.jurisdictionLimit;
-    let verdict, verdictClass, verdictDesc;
-    if (lprot > limit) {
-      verdict = '⚠ Under-protected'; verdictClass = 'under';
-      verdictDesc = 'This HPD does not reduce exposure to the regulatory limit. Select a higher-rated device.';
-    } else if (lprot < 75) {
-      verdict = '↓ Over-protected'; verdictClass = 'over';
-      verdictDesc = 'Protection is too high. The worker may have difficulty hearing safety signals or communicating. Consider a lower-attenuation device.';
-    } else {
-      verdict = '✓ Adequate'; verdictClass = 'adequate';
-      verdictDesc = 'This HPD provides sufficient protection for the stated exposure.';
-    }
-
-    const csaInfo = getCsaClass(lex);
-    const jurName = document.querySelector('.jurisdiction-item.selected .jurisdiction-name').textContent;
-
-    // Dual protection flag
-    if (state.hpdType !== 'dual') {
-      const singleLprot = state.hpdType === 'earplug'
-        ? lex + correction - (nrr1 * 0.50)
-        : lex + correction - (nrr1 * 0.70);
-      document.getElementById('dualFlag').classList.toggle('visible', singleLprot > limit);
-    } else {
-      document.getElementById('dualFlag').classList.remove('visible');
-    }
-
-    // Fill result screen
-    document.getElementById('verdictCard').className = 'verdict-card ' + verdictClass;
-    document.getElementById('protectedValue').textContent = lprot.toFixed(1);
-    document.getElementById('verdictBadge').textContent = verdict;
-    document.getElementById('verdictDesc').textContent = verdictDesc;
-    document.getElementById('csaClassValue').textContent = 'Class ' + csaInfo.class;
-    document.getElementById('csaGradeLabel').textContent = 'Grade ' + csaInfo.grade + ' · for ' + lex.toFixed(1) + ' dBA exposure';
-    document.getElementById('brJurisdiction').textContent = jurName;
-    document.getElementById('brLex').textContent = lex.toFixed(1) + ' dBA';
-    document.getElementById('brCorrection').textContent = correction > 0 ? '+' + correction + ' dB (dBA → applies spectral correction)' : 'None (dBC measurement)';
-    document.getElementById('brHpd').textContent = state.hpd1Name || 'Manual entry';
-    document.getElementById('brNrr').textContent = nrr1 + (state.hpdType === 'dual' ? ' (primary) + ' + state.nrr2 + ' (secondary)' : '');
-    document.getElementById('brDerating').textContent = deratingDesc;
-    document.getElementById('brReduction').textContent = reductionDesc;
-    document.getElementById('brProtected').textContent = lprot.toFixed(1) + ' dBA';
-    document.getElementById('brLimit').textContent = limit + ' dBA (' + (state.jurisdiction === 'FED' ? 'Federal' : state.jurisdiction) + ')';
-
-    goTo(4);
-  }
-
-  function getCsaClass(lex) {
-    if (lex <= 90) return { class: 'C', grade: 1 };
-    if (lex <= 95) return { class: 'B', grade: 2 };
-    if (lex <= 100) return { class: 'A', grade: 3 };
-    if (lex <= 105) return { class: 'A', grade: 4 };
-    return { class: 'Dual', grade: '5 / Dual' };
-  }
-
-  // ── Start over ────────────────────────────────────────────────
-  function startOver() {
-    state.lex = null;
-    state.path = 'A';
-    state.weighting = 'dBA';
-    state.tasks = [];
-    state.hpdType = 'earplug';
-    state.nrr1 = null;
-    state.nrr2 = null;
-    state.hpd1Name = '';
-    state.hpd2Name = '';
-    document.getElementById('lexInput').value = '';
-    document.getElementById('nrrInput1').value = '';
-    document.getElementById('nrrInput2').value = '';
-    document.getElementById('taskSearch').value = '';
+function selectHpd(id, slot) {
+  const h = HPDS.find(x => x.id === id);
+  if (slot === 1) {
+    S.nrr1 = h.nrr; S.hpd1Name = h.brand + ' ' + h.model;
+    document.getElementById('nrrInput1').value = h.nrr;
     document.getElementById('hpdSearch1').value = '';
+    document.getElementById('hpdResults1').classList.remove('open');
+    document.getElementById('hpdChip1Name').textContent = h.brand + ' ' + h.model;
+    document.getElementById('hpdChip1Meta').textContent = h.type;
+    document.getElementById('hpdChip1Nrr').textContent  = 'NRR ' + h.nrr;
+    document.getElementById('hpdChip1').classList.add('visible');
+    setHpdType(h.type);
+  } else {
+    S.nrr2 = h.nrr; S.hpd2Name = h.brand + ' ' + h.model;
+    document.getElementById('nrrInput2').value = h.nrr;
     document.getElementById('hpdSearch2').value = '';
-    renderTaskList();
-    clearHpd(1); clearHpd(2);
-    selectPath('A');
-    selectHpdType('earplug');
-    goTo(1);
+    document.getElementById('hpdResults2').classList.remove('open');
+    document.getElementById('hpdChip2Name').textContent = h.brand + ' ' + h.model;
+    document.getElementById('hpdChip2Meta').textContent = h.type;
+    document.getElementById('hpdChip2Nrr').textContent  = 'NRR ' + h.nrr;
+    document.getElementById('hpdChip2').classList.add('visible');
   }
-</script>
+  recalc();
+}
 
+function clearHpd(slot) {
+  if (slot === 1) {
+    S.nrr1 = null; S.hpd1Name = '';
+    document.getElementById('nrrInput1').value = '';
+    document.getElementById('hpdChip1').classList.remove('visible');
+  } else {
+    S.nrr2 = null; S.hpd2Name = '';
+    document.getElementById('nrrInput2').value = '';
+    document.getElementById('hpdChip2').classList.remove('visible');
+  }
+  recalc();
+}
+
+// ═══════════════════════════════════════════════════════
+// Breakdown toggle
+// ═══════════════════════════════════════════════════════
+function toggleBreakdown(btn) {
+  btn.classList.toggle('open');
+  document.getElementById('breakdownBody').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════
+// Calculation — runs live whenever anything changes
+// ═══════════════════════════════════════════════════════
+function recalc() {
+  // Read NRR from inputs (may be typed manually, not from search)
+  const nrr1raw = parseFloat(document.getElementById('nrrInput1').value);
+  const nrr2raw = parseFloat(document.getElementById('nrrInput2').value);
+  const nrr1 = isNaN(nrr1raw) ? null : nrr1raw;
+  const nrr2 = isNaN(nrr2raw) ? null : nrr2raw;
+
+  const lex = S.lex;
+  const card = document.getElementById('resultCard');
+
+  // Need both Lex and primary NRR; dual also needs nrr2
+  if (lex === null || nrr1 === null || (S.hpdType === 'dual' && nrr2 === null)) {
+    card.classList.remove('visible');
+    return;
+  }
+
+  // CSA Z94.2 formulas
+  const correction = S.weighting === 'dBA' ? 3 : 0;
+  let lprot, deratingDesc, effectiveReduction;
+
+  if (S.hpdType === 'earplug') {
+    effectiveReduction = nrr1 * 0.50 - correction; // net reduction after correction
+    lprot = lex + correction - (nrr1 * 0.50);
+    deratingDesc = `NRR ${nrr1} × 50% = ${(nrr1*0.50).toFixed(1)} dB`;
+  } else if (S.hpdType === 'earmuff') {
+    effectiveReduction = nrr1 * 0.70 - correction;
+    lprot = lex + correction - (nrr1 * 0.70);
+    deratingDesc = `NRR ${nrr1} × 70% = ${(nrr1*0.70).toFixed(1)} dB`;
+  } else {
+    const higher = Math.max(nrr1, nrr2);
+    const effective = (higher + 5) * 0.65;
+    effectiveReduction = effective - correction;
+    lprot = lex + correction - effective;
+    deratingDesc = `(NRR ${higher} + 5) × 65% = ${effective.toFixed(1)} dB`;
+  }
+
+  const limit = S.jurLimit;
+
+  // Colour / verdict
+  let cssClass, pillText, verdictText;
+  if (lprot < 75) {
+    cssClass = 'over';
+    pillText = '↓ Over-protected';
+    verdictText = 'Protection level is very high — the worker may have difficulty hearing safety signals or communicating with co-workers. Consider a lower-attenuation device.';
+  } else if (lprot <= limit) {
+    cssClass = 'adequate';
+    pillText = '✓ Adequate';
+    verdictText = 'This hearing protector provides sufficient protection for the stated noise exposure.';
+  } else if (lprot <= limit + 3) {
+    cssClass = 'caution';
+    pillText = '⚠ Marginally under-protected';
+    verdictText = `Protected level is ${(lprot - limit).toFixed(1)} dBA above the ${limit} dBA limit — within the caution zone. Consider a higher-rated device.`;
+  } else {
+    cssClass = 'danger';
+    pillText = '✖ Under-protected';
+    verdictText = `Protected level exceeds the ${limit} dBA limit by ${(lprot - limit).toFixed(1)} dBA. This HPD does not provide adequate protection — select a higher-rated device.`;
+  }
+
+  // CSA class
+  const csa = getCsaClass(lex);
+
+  // Render
+  card.className = 'result-card visible ' + cssClass;
+  document.getElementById('resultValue').textContent = lprot.toFixed(1);
+  document.getElementById('verdictPill').textContent = pillText;
+  document.getElementById('verdictText').textContent = verdictText;
+  document.getElementById('csaClassVal').textContent  = 'Class ' + csa.cls;
+  document.getElementById('csaGradeNote').textContent = `Grade ${csa.grade} · for ${lex.toFixed(1)} dBA exposure`;
+
+  // Breakdown
+  const hpdDesc = (S.hpd1Name || 'Manual entry') + (S.hpdType === 'dual' && S.hpd2Name ? ' + ' + S.hpd2Name : '');
+  const nrrDesc  = S.hpdType === 'dual' ? `${nrr1} (primary) + ${nrr2} (secondary)` : String(nrr1);
+  document.getElementById('brJur').textContent      = S.jurName;
+  document.getElementById('brLex').textContent      = lex.toFixed(1) + ' dBA';
+  document.getElementById('brCorr').textContent     = correction > 0 ? `+${correction} dB (dBA measurement)` : 'None (dBC)';
+  document.getElementById('brHpd').textContent      = hpdDesc;
+  document.getElementById('brNrr').textContent      = nrrDesc;
+  document.getElementById('brDerate').textContent   = deratingDesc;
+  document.getElementById('brProtected').textContent = lprot.toFixed(1) + ' dBA';
+  document.getElementById('brLimit').textContent    = limit + ' dBA (' + S.jurName + ')';
+}
+
+function getCsaClass(lex) {
+  if (lex <= 90)  return { cls:'C',    grade:1 };
+  if (lex <= 95)  return { cls:'B',    grade:2 };
+  if (lex <= 100) return { cls:'A',    grade:3 };
+  if (lex <= 105) return { cls:'A',    grade:4 };
+  return             { cls:'Dual',  grade:'5 / Dual' };
+}
+
+// Wire up NRR manual inputs for live recalc
+document.getElementById('nrrInput1').addEventListener('input', recalc);
+document.getElementById('nrrInput2').addEventListener('input', recalc);
+</script>
 </body>
 </html>
