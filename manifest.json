@@ -1,6 +1,6 @@
 {
-  "name": "HPD Adequacy Calculator",
-  "short_name": "HPD Calc",
+  "name": "Audiometrics Canada",
+  "short_name": "Audiometrics",
   "description": "CSA Z94.2 hearing protection adequacy screening tool",
   "start_url": "/",
   "display": "standalone",
