@@ -3,6 +3,7 @@ const PRECACHE = [
   '/',
   '/index.html',
   '/favicon.svg',
+  '/logo.svg',
   '/about.html',
   '/src/app.js',
   '/src/calc.js',
