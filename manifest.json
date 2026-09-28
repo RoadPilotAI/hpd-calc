@@ -1,0 +1,10 @@
+{
+  "name": "HPD Adequacy Calculator",
+  "short_name": "HPD Calc",
+  "description": "CSA Z94.2 hearing protection adequacy screening tool",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#e65100",
+  "icons": []
+}

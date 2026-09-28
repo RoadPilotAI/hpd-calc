@@ -1,0 +1,92 @@
+{
+  "_comment": "CSA Z94.2-14 / CSA Z94.2:18 regulatory values. All TODO_NORM items require Norm's confirmation before going live.",
+
+  "jurisdictions": {
+    "BC":  { "name": "British Columbia",              "limit_dba": 85, "exchange_rate_db": 3 },
+    "AB":  { "name": "Alberta",                        "limit_dba": 85, "exchange_rate_db": 3 },
+    "SK":  { "name": "Saskatchewan",                   "limit_dba": 85, "exchange_rate_db": 3 },
+    "MB":  { "name": "Manitoba",                       "limit_dba": 85, "exchange_rate_db": 3 },
+    "ON":  { "name": "Ontario",                        "limit_dba": 85, "exchange_rate_db": 3 },
+    "QC":  { "name": "Quebec",                         "limit_dba": 85, "exchange_rate_db": 3 },
+    "NB":  { "name": "New Brunswick",                  "limit_dba": 85, "exchange_rate_db": 3 },
+    "NS":  { "name": "Nova Scotia",                    "limit_dba": 85, "exchange_rate_db": 3 },
+    "PE":  { "name": "Prince Edward Island",           "limit_dba": 85, "exchange_rate_db": 3 },
+    "NL":  { "name": "Newfoundland and Labrador",      "limit_dba": 85, "exchange_rate_db": 3 },
+    "YT":  { "name": "Yukon",                          "limit_dba": 85, "exchange_rate_db": 3 },
+    "NT":  { "name": "Northwest Territories",          "limit_dba": 85, "exchange_rate_db": 3 },
+    "NU":  { "name": "Nunavut",                        "limit_dba": 85, "exchange_rate_db": 3 },
+    "FED": { "name": "Federal (Canada Labour Code)",   "limit_dba": 87, "exchange_rate_db": 3 }
+  },
+
+  "peak_limit_dbc": 140,
+  "TODO_NORM_peak": "Confirm 140 dBC peak limit applies uniformly across all jurisdictions listed above.",
+
+  "derating": {
+    "earplug": {
+      "factor": 0.50,
+      "ref": "CSA Z94.2 s.9.2",
+      "formula": "Lprot = Lex + 3 - (NRR × 0.50)"
+    },
+    "earmuff": {
+      "factor": 0.70,
+      "ref": "CSA Z94.2 s.9.2",
+      "formula": "Lprot = Lex + 3 - (NRR × 0.70)"
+    },
+    "dual": {
+      "bonus_nrr": 5,
+      "factor": 0.65,
+      "ref": "CSA Z94.2 s.9.2",
+      "formula": "Lprot = Lex + 3 - ((higher_NRR + 5) × 0.65)"
+    },
+    "TODO_NORM_slc80": "SLC80 derating formula not yet confirmed — stub only. Do not expose SLC80 input until this is resolved."
+  },
+
+  "weighting_correction_dba": 3,
+
+  "csa_classes": [
+    {
+      "lex_min": null,
+      "lex_max": 90,
+      "class": "C",
+      "grade": 1,
+      "label": "Class C / Grade 1"
+    },
+    {
+      "lex_min": 90,
+      "lex_max": 95,
+      "class": "B",
+      "grade": 2,
+      "label": "Class B / Grade 2",
+      "TODO_NORM_suffix": "Confirm: does the BL suffix (impulse/impact noise) affect the HPD selection calculation, or is it purely qualitative guidance?"
+    },
+    {
+      "lex_min": 95,
+      "lex_max": 100,
+      "class": "A",
+      "grade": 3,
+      "label": "Class A / Grade 3",
+      "TODO_NORM_suffix": "Confirm: does the AL suffix (impulse/impact noise) affect the HPD selection calculation, or is it purely qualitative guidance?"
+    },
+    {
+      "lex_min": 100,
+      "lex_max": 105,
+      "class": "A",
+      "grade": 4,
+      "label": "Class A / Grade 4"
+    },
+    {
+      "lex_min": 105,
+      "lex_max": null,
+      "class": "Dual",
+      "grade": 5,
+      "label": "Grade 5 — Dual protection required",
+      "TODO_NORM_dual": "Confirm acceptable HPD combination for Grade 5: any earplug + earmuff, or are there class requirements for each device in the pair?"
+    }
+  ],
+
+  "adequacy": {
+    "over_protected_below": 75,
+    "caution_margin_db": 3,
+    "_bands": "over-protected: Lprot < 75 (blue); adequate: 75 ≤ Lprot ≤ limit (green); caution: limit < Lprot ≤ limit+3 (yellow); danger: Lprot > limit+3 (red)"
+  }
+}

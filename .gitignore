@@ -1,0 +1,6 @@
+node_modules/
+dist/
+rd-1005-2014-0/
+*.local
+.DS_Store
+Thumbs.db

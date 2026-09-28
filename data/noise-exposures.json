@@ -1,0 +1,2016 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-09-28",
+    "entry_count": 112,
+    "value_types": {
+      "measured": "Mean of field measurements from the cited source (NIOSH HHE program)",
+      "estimated": "Typical Lex,8h from published occupational noise guidance; may differ from site-specific conditions"
+    }
+  },
+  "entries": [
+    {
+      "id": "farm-technician",
+      "job_title": "Farm technician",
+      "environment": "Agriculture",
+      "industry": "Agriculture",
+      "lex_8h": 86.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "agricultural worker",
+        "farm worker",
+        "crop technician"
+      ],
+      "notes": null
+    },
+    {
+      "id": "animal-kennel-worker",
+      "job_title": "Animal kennel worker",
+      "environment": "Animal Services",
+      "industry": "Animal Services",
+      "lex_8h": 90.9,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "dog kennel",
+        "veterinary kennel",
+        "animal shelter"
+      ],
+      "notes": null
+    },
+    {
+      "id": "auto-body-repair-technician",
+      "job_title": "Auto body repair technician",
+      "environment": "Auto Repair",
+      "industry": "Auto Repair",
+      "lex_8h": 87.4,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "autobody",
+        "body shop",
+        "collision repair",
+        "panel beater"
+      ],
+      "notes": null
+    },
+    {
+      "id": "auto-repair-body-tech",
+      "job_title": "Auto body repair technician",
+      "environment": "Body Shop",
+      "industry": "Auto Repair",
+      "lex_8h": 91,
+      "aliases": [
+        "autobody",
+        "body shop tech",
+        "collision repair",
+        "panel beater",
+        "body man",
+        "dent repair"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": "Grinding and metal work phases louder than painting",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "auto-general-mechanic",
+      "job_title": "Auto/general mechanic",
+      "environment": "Auto Repair",
+      "industry": "Auto Repair",
+      "lex_8h": 93.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "automotive mechanic",
+        "mechanic",
+        "auto tech"
+      ],
+      "notes": null
+    },
+    {
+      "id": "auto-repair-mechanic",
+      "job_title": "Automotive mechanic",
+      "environment": "Auto Repair Shop",
+      "industry": "Auto Repair",
+      "lex_8h": 84,
+      "aliases": [
+        "auto tech",
+        "car mechanic",
+        "automotive technician",
+        "service technician",
+        "auto service"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "auto-repair-exhaust",
+      "job_title": "Exhaust / muffler installer",
+      "environment": "Auto Repair Shop",
+      "industry": "Auto Repair",
+      "lex_8h": 92,
+      "aliases": [
+        "muffler shop",
+        "exhaust installer",
+        "resonator",
+        "catalytic converter",
+        "exhaust tech"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "auto-repair-tire-tech",
+      "job_title": "Tire shop technician",
+      "environment": "Tire Shop",
+      "industry": "Auto Repair",
+      "lex_8h": 87,
+      "aliases": [
+        "tire installer",
+        "tire tech",
+        "wheel and tire",
+        "tire change",
+        "lube tech"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "airport-ramp-worker",
+      "job_title": "Airport ramp worker",
+      "environment": "Aviation",
+      "industry": "Aviation",
+      "lex_8h": 91.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "baggage handler",
+        "aircraft marshaller",
+        "ground crew",
+        "ramp agent"
+      ],
+      "notes": null
+    },
+    {
+      "id": "airport-security-screener",
+      "job_title": "Airport security screener",
+      "environment": "Aviation",
+      "industry": "Aviation",
+      "lex_8h": 83.4,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "TSA",
+        "security screening",
+        "airport security"
+      ],
+      "notes": null
+    },
+    {
+      "id": "aviation-maintenance-mechanic",
+      "job_title": "Aviation maintenance mechanic",
+      "environment": "Aviation",
+      "industry": "Aviation",
+      "lex_8h": 87.9,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "aircraft mechanic",
+        "AME",
+        "line mechanic",
+        "avionics tech"
+      ],
+      "notes": null
+    },
+    {
+      "id": "construction-air-chisel",
+      "job_title": "Air chisel / chipping hammer operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 100,
+      "aliases": [
+        "chipping hammer",
+        "air chisel",
+        "pneumatic chisel",
+        "needle gun"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-angle-grinder",
+      "job_title": "Angle grinder operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 94,
+      "aliases": [
+        "disc grinder",
+        "grinder",
+        "cut-off tool",
+        "die grinder"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Range 88-102 dBA depending on material and wheel type",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-bulldozer",
+      "job_title": "Bulldozer operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 91,
+      "aliases": [
+        "dozer",
+        "crawler tractor",
+        "D8",
+        "D9",
+        "blade operator"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-carpenter",
+      "job_title": "Carpenter",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 93,
+      "aliases": [
+        "framing carpenter",
+        "finish carpenter",
+        "form carpenter",
+        "joiner"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-circular-saw",
+      "job_title": "Circular saw operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 94,
+      "aliases": [
+        "skill saw",
+        "worm drive saw",
+        "chop saw",
+        "table saw"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-concrete-worker",
+      "job_title": "Concrete / form worker",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 88,
+      "aliases": [
+        "concrete finisher",
+        "cement mason",
+        "form setter",
+        "concrete worker",
+        "concrete pumper"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-concrete-saw",
+      "job_title": "Concrete saw operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 99,
+      "aliases": [
+        "concrete cutter",
+        "road saw",
+        "masonry saw",
+        "cut-off saw"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-foreman",
+      "job_title": "Construction foreman",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 97.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "site foreman",
+        "construction supervisor"
+      ],
+      "notes": null
+    },
+    {
+      "id": "construction-labourer",
+      "job_title": "Construction labourer",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 91.4,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "construction worker",
+        "general labourer"
+      ],
+      "notes": null
+    },
+    {
+      "id": "construction-crane",
+      "job_title": "Crane operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 87,
+      "aliases": [
+        "crane",
+        "tower crane",
+        "mobile crane",
+        "overhead crane"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-demolition",
+      "job_title": "Demolition worker",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 99,
+      "aliases": [
+        "wrecker",
+        "tear-down crew",
+        "wrecking crew",
+        "demolition"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": "High variability; peak exposures well above Lex,8h",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-excavator",
+      "job_title": "Excavator / backhoe operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 89,
+      "aliases": [
+        "backhoe",
+        "excavator",
+        "trackhoe",
+        "hydraulic excavator",
+        "hoe"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "excavator-trackhoe-operator",
+      "job_title": "Excavator/trackhoe operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 85.2,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "excavator",
+        "backhoe",
+        "trackhoe",
+        "hydraulic excavator"
+      ],
+      "notes": null
+    },
+    {
+      "id": "construction-heavy-equip",
+      "job_title": "Heavy equipment operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 91,
+      "aliases": [
+        "equipment operator",
+        "grader operator",
+        "compactor operator",
+        "scraper",
+        "motor grader"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Covers graders, compactors, and scrapers",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-ironworker",
+      "job_title": "Ironworker",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 95,
+      "aliases": [
+        "structural steel worker",
+        "steel erector",
+        "rod busting",
+        "rebar",
+        "reinforcing steel"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-jackhammer",
+      "job_title": "Jackhammer operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 102,
+      "aliases": [
+        "pneumatic drill",
+        "air hammer",
+        "jack hammer",
+        "pavement breaker"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Varies with material and duration; full-shift range 96-108 dBA",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "construction-nail-gun",
+      "job_title": "Nail gun operator",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 96,
+      "aliases": [
+        "pneumatic nailer",
+        "framing nailer",
+        "nail driver",
+        "nail shooter"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Construction bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "roofer",
+      "job_title": "Roofer",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 94.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "roofing worker",
+        "shingles",
+        "roofing crew"
+      ],
+      "notes": null
+    },
+    {
+      "id": "roofing-crew-member",
+      "job_title": "Roofing crew member",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 97.7,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "roofing assistant",
+        "second man roofer"
+      ],
+      "notes": null
+    },
+    {
+      "id": "construction-welder",
+      "job_title": "Welder (construction)",
+      "environment": "Construction",
+      "industry": "Construction",
+      "lex_8h": 87,
+      "aliases": [
+        "arc welder",
+        "MIG welder",
+        "TIG welder",
+        "welding",
+        "fitter welder"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "band-director-music-teacher",
+      "job_title": "Band director / music teacher",
+      "environment": "Entertainment",
+      "industry": "Entertainment",
+      "lex_8h": 92.3,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "music conductor",
+        "school band",
+        "orchestra director"
+      ],
+      "notes": "Measured during rehearsals/performances"
+    },
+    {
+      "id": "commercial-kitchen-cook",
+      "job_title": "Commercial kitchen cook",
+      "environment": "Food Service",
+      "industry": "Food Service",
+      "lex_8h": 84.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "chef",
+        "kitchen worker",
+        "food prep"
+      ],
+      "notes": null
+    },
+    {
+      "id": "forestry-chainsaw-felling",
+      "job_title": "Chainsaw operator — felling",
+      "environment": "Logging — Felling",
+      "industry": "Forestry / Logging",
+      "lex_8h": 104,
+      "aliases": [
+        "faller",
+        "feller",
+        "chainsaw",
+        "fallers helper",
+        "tree faller",
+        "fallers"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Full-shift; varies with cutting time vs. walking time — range 99-110 dBA",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-chainsaw-limbing",
+      "job_title": "Chainsaw operator — limbing/bucking",
+      "environment": "Logging — Processing",
+      "industry": "Forestry / Logging",
+      "lex_8h": 101,
+      "aliases": [
+        "bucker",
+        "limber",
+        "hand bucker",
+        "tree length logging",
+        "choke setter"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-feller-buncher",
+      "job_title": "Feller-buncher operator",
+      "environment": "Logging",
+      "industry": "Forestry / Logging",
+      "lex_8h": 91,
+      "aliases": [
+        "feller buncher",
+        "harvester",
+        "mechanical harvester",
+        "tree harvester",
+        "feller buncher operator"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-forwarder",
+      "job_title": "Forwarder operator",
+      "environment": "Logging",
+      "industry": "Forestry / Logging",
+      "lex_8h": 90,
+      "aliases": [
+        "forwarding machine",
+        "cut-to-length forwarder",
+        "CTL forwarder"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-log-loader",
+      "job_title": "Log loader operator",
+      "environment": "Logging / Log Yard",
+      "industry": "Forestry / Logging",
+      "lex_8h": 95,
+      "aliases": [
+        "log loader",
+        "knuckle boom loader",
+        "log truck loader",
+        "loader forestry",
+        "heel boom loader"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-log-sort",
+      "job_title": "Log sort worker",
+      "environment": "Log Sort / Booming Ground",
+      "industry": "Forestry / Logging",
+      "lex_8h": 88,
+      "aliases": [
+        "boom man",
+        "boomboat operator",
+        "log sorter",
+        "sort yard worker",
+        "log pond"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-log-truck",
+      "job_title": "Log truck driver",
+      "environment": "Logging",
+      "industry": "Forestry / Logging",
+      "lex_8h": 88,
+      "aliases": [
+        "logging truck",
+        "self-loader",
+        "pole truck",
+        "log hauler",
+        "B-train logging"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-skidder",
+      "job_title": "Skidder operator",
+      "environment": "Logging — Skidding",
+      "industry": "Forestry / Logging",
+      "lex_8h": 93,
+      "aliases": [
+        "grapple skidder",
+        "cable skidder",
+        "skidding tractor",
+        "skidder"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "forestry-yarder",
+      "job_title": "Yarder operator",
+      "environment": "Logging — Cable",
+      "industry": "Forestry / Logging",
+      "lex_8h": 96,
+      "aliases": [
+        "grapple yarder",
+        "cable yarder",
+        "tower yarder",
+        "yarding engineer",
+        "skyline yarder"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Forestry bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "registered-nurse",
+      "job_title": "Registered nurse",
+      "environment": "Healthcare",
+      "industry": "Healthcare",
+      "lex_8h": 76.2,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "RN",
+        "nurse",
+        "hospital nurse"
+      ],
+      "notes": null
+    },
+    {
+      "id": "surgical-technician",
+      "job_title": "Surgical technician",
+      "environment": "Healthcare",
+      "industry": "Healthcare",
+      "lex_8h": 74.5,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "OR tech",
+        "scrub tech",
+        "operating room technician"
+      ],
+      "notes": null
+    },
+    {
+      "id": "food-service-worker",
+      "job_title": "Food service worker",
+      "environment": "Healthcare / Food Service",
+      "industry": "Healthcare / Food Service",
+      "lex_8h": 80.9,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "cafeteria worker",
+        "dietary aide",
+        "food handler"
+      ],
+      "notes": null
+    },
+    {
+      "id": "hd-mechanic-diesel",
+      "job_title": "Diesel mechanic",
+      "environment": "Shop / Field",
+      "industry": "Heavy Duty Mechanics",
+      "lex_8h": 89,
+      "aliases": [
+        "diesel tech",
+        "diesel engine mechanic",
+        "diesel fitter",
+        "diesel technician"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "hd-mechanic-heavy-equip",
+      "job_title": "Heavy equipment mechanic",
+      "environment": "Equipment Yard / Shop",
+      "industry": "Heavy Duty Mechanics",
+      "lex_8h": 91,
+      "aliases": [
+        "heavy duty mechanic",
+        "HD mechanic",
+        "heavy equipment tech",
+        "red seal mechanic",
+        "off-road mechanic"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "hd-mechanic-truck",
+      "job_title": "Truck mechanic",
+      "environment": "Trucking Fleet Shop",
+      "industry": "Heavy Duty Mechanics",
+      "lex_8h": 88,
+      "aliases": [
+        "transport mechanic",
+        "fleet mechanic",
+        "commercial vehicle tech",
+        "semi truck mechanic"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "banding-machine-operator",
+      "job_title": "Banding machine operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 94.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "strapping machine",
+        "steel banding"
+      ],
+      "notes": null
+    },
+    {
+      "id": "foundry-worker",
+      "job_title": "Foundry worker",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 101.9,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "casting",
+        "smelter",
+        "foundry"
+      ],
+      "notes": null
+    },
+    {
+      "id": "grinder-operator",
+      "job_title": "Grinder operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 91.0,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "angle grinder",
+        "bench grinder",
+        "surface grinder"
+      ],
+      "notes": null
+    },
+    {
+      "id": "industrial-maintenance-worker",
+      "job_title": "Industrial maintenance worker",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 89.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "maintenance technician",
+        "maintenance mechanic"
+      ],
+      "notes": null
+    },
+    {
+      "id": "industrial-painter",
+      "job_title": "Industrial painter",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 88.3,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "spray painter",
+        "industrial coating"
+      ],
+      "notes": null
+    },
+    {
+      "id": "industrial-printer-operator",
+      "job_title": "Industrial printer operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 100.3,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "press room",
+        "offset press"
+      ],
+      "notes": null
+    },
+    {
+      "id": "industrial-saw-operator",
+      "job_title": "Industrial saw operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 91.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "metal saw",
+        "cold saw",
+        "power saw"
+      ],
+      "notes": null
+    },
+    {
+      "id": "machine-operator",
+      "job_title": "Machine operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 97.3,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "production worker",
+        "line operator"
+      ],
+      "notes": "Mean across multiple manufacturing studies"
+    },
+    {
+      "id": "manufacturing-supervisor",
+      "job_title": "Manufacturing supervisor",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 82.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "foreman",
+        "production supervisor"
+      ],
+      "notes": null
+    },
+    {
+      "id": "material-handler",
+      "job_title": "Material handler",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 88.4,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "warehouse worker",
+        "parts handler",
+        "stock handler"
+      ],
+      "notes": null
+    },
+    {
+      "id": "packaging-machine-operator",
+      "job_title": "Packaging machine operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 90.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "packing line",
+        "packaging line"
+      ],
+      "notes": null
+    },
+    {
+      "id": "palletizer",
+      "job_title": "Palletizer",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 87.3,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "pallet stacker",
+        "palletizing machine"
+      ],
+      "notes": null
+    },
+    {
+      "id": "pelletizer",
+      "job_title": "Pelletizer",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 94.0,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "plastic pellets",
+        "rubber pellets"
+      ],
+      "notes": null
+    },
+    {
+      "id": "roll-mill-operator",
+      "job_title": "Roll mill operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 88.5,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "rolling mill",
+        "steel mill operator"
+      ],
+      "notes": null
+    },
+    {
+      "id": "sandblast-shotblast-operator",
+      "job_title": "Sandblast/shotblast operator",
+      "environment": "Manufacturing",
+      "industry": "Manufacturing",
+      "lex_8h": 96.6,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "sand blaster",
+        "abrasive blasting",
+        "shot blast"
+      ],
+      "notes": null
+    },
+    {
+      "id": "metal-fabricator",
+      "job_title": "Metal fabricator",
+      "environment": "Metal Fabrication",
+      "industry": "Metal Fabrication",
+      "lex_8h": 87.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "welder fabricator",
+        "steel fabricator",
+        "sheet metal fabricator"
+      ],
+      "notes": "Large sample across diverse fabrication contexts"
+    },
+    {
+      "id": "sheet-metal-shear-operator",
+      "job_title": "Sheet metal shear operator",
+      "environment": "Metal Fabrication",
+      "industry": "Metal Fabrication",
+      "lex_8h": 97.9,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "shear press",
+        "guillotine shear"
+      ],
+      "notes": null
+    },
+    {
+      "id": "drop-hammer-operator",
+      "job_title": "Drop hammer operator",
+      "environment": "Metal Forging",
+      "industry": "Metal Forging",
+      "lex_8h": 104.8,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "forging press",
+        "hammer forge",
+        "drop forge"
+      ],
+      "notes": null
+    },
+    {
+      "id": "trim-press-operator",
+      "job_title": "Trim press operator",
+      "environment": "Metal Forging",
+      "industry": "Metal Forging",
+      "lex_8h": 101.0,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "press operator",
+        "metal press"
+      ],
+      "notes": null
+    },
+    {
+      "id": "mining-blaster",
+      "job_title": "Blaster / shot firer",
+      "environment": "Mining",
+      "industry": "Mining",
+      "lex_8h": 91,
+      "aliases": [
+        "blasting technician",
+        "shot firer",
+        "powder monkey",
+        "explosives handler",
+        "blaster miner"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": "Day-shift TWA; peak impulse levels may exceed 140 dBC — confirm peak separately",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-continuous-miner",
+      "job_title": "Continuous miner operator",
+      "environment": "Underground Coal Mining",
+      "industry": "Mining",
+      "lex_8h": 103,
+      "aliases": [
+        "continuous miner",
+        "coal miner",
+        "continuous mining machine",
+        "joy miner"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": "Underground coal context",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-crusher-operator",
+      "job_title": "Crusher operator",
+      "environment": "Mining / Aggregate",
+      "industry": "Mining",
+      "lex_8h": 100,
+      "aliases": [
+        "rock crusher",
+        "stone crusher",
+        "jaw crusher",
+        "cone crusher",
+        "aggregate plant",
+        "crusher"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-haul-truck",
+      "job_title": "Mine haul truck driver",
+      "environment": "Surface Mining",
+      "industry": "Mining",
+      "lex_8h": 94,
+      "aliases": [
+        "haul truck",
+        "dump truck driver",
+        "off-highway truck",
+        "mining truck",
+        "Caterpillar 777"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-loader-operator",
+      "job_title": "Mine loader operator",
+      "environment": "Mining",
+      "industry": "Mining",
+      "lex_8h": 96,
+      "aliases": [
+        "LHD operator",
+        "load haul dump",
+        "front end loader",
+        "mining shovel",
+        "scoop tram",
+        "scooptram"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-maintenance-worker",
+      "job_title": "Mine maintenance worker",
+      "environment": "Mining",
+      "industry": "Mining",
+      "lex_8h": 92,
+      "aliases": [
+        "mine mechanic",
+        "underground maintenance",
+        "mine electrician",
+        "mining maintenance"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-mill-operator",
+      "job_title": "Mine mill operator",
+      "environment": "Mining — Mill / Process",
+      "industry": "Mining",
+      "lex_8h": 98,
+      "aliases": [
+        "ore mill",
+        "ball mill",
+        "SAG mill",
+        "concentrator",
+        "process plant",
+        "grinding mill"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-roof-bolter",
+      "job_title": "Roof bolter operator",
+      "environment": "Underground Mining",
+      "industry": "Mining",
+      "lex_8h": 101,
+      "aliases": [
+        "roof bolt",
+        "rock bolter",
+        "bolting machine",
+        "cable bolter"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-surface-driller",
+      "job_title": "Surface / blast hole driller",
+      "environment": "Surface Mining",
+      "industry": "Mining",
+      "lex_8h": 100,
+      "aliases": [
+        "blast hole drill",
+        "rotary drill",
+        "surface drill",
+        "drill rig operator",
+        "production driller"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "mining-underground-driller",
+      "job_title": "Underground driller",
+      "environment": "Underground Mining",
+      "industry": "Mining",
+      "lex_8h": 107,
+      "aliases": [
+        "jackleg driller",
+        "stoper driller",
+        "underground drill",
+        "drill jumbo operator",
+        "drift driller"
+      ],
+      "source": "MSHA Metal/Nonmetal and Coal Mine noise guidance; Mine Safety and Health Administration",
+      "source_url": "https://www.msha.gov/data-and-reports/data-sources-and-calculators/data-resources/mdsrg/noise-samples-data-set",
+      "notes": "Among the highest noise exposures in any industry; range 100-114 dBA",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-garbage-truck",
+      "job_title": "Garbage truck driver / waste collector",
+      "environment": "Waste Collection",
+      "industry": "Municipal Utilities",
+      "lex_8h": 89,
+      "aliases": [
+        "sanitation worker",
+        "refuse collector",
+        "garbage collector",
+        "recycling driver",
+        "waste hauler",
+        "solid waste"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-powerline-tech",
+      "job_title": "Powerline technician",
+      "environment": "Electrical Utilities",
+      "industry": "Municipal Utilities",
+      "lex_8h": 85,
+      "aliases": [
+        "lineman",
+        "linesperson",
+        "electrician utilities",
+        "power line worker",
+        "hydro worker",
+        "line crew"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-pump-station",
+      "job_title": "Pump station operator",
+      "environment": "Pump Station",
+      "industry": "Municipal Utilities",
+      "lex_8h": 86,
+      "aliases": [
+        "lift station",
+        "pump house",
+        "booster station",
+        "pump operator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-street-sweeper",
+      "job_title": "Street sweeper operator",
+      "environment": "Municipal Roads",
+      "industry": "Municipal Utilities",
+      "lex_8h": 88,
+      "aliases": [
+        "street cleaner",
+        "road sweeper",
+        "municipal sweeper",
+        "sweeper operator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-underground-worker",
+      "job_title": "Underground utility worker",
+      "environment": "Municipal Works",
+      "industry": "Municipal Utilities",
+      "lex_8h": 92,
+      "aliases": [
+        "utility locator",
+        "sewer worker",
+        "water main",
+        "underground services",
+        "trenching",
+        "hydrovac operator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": "Includes trenching and excavation operations",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "vactor-vacuum-truck-operator",
+      "job_title": "Vactor/vacuum truck operator",
+      "environment": "Municipal Utilities",
+      "industry": "Municipal Utilities",
+      "lex_8h": 86.2,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "vacuum truck",
+        "sewer cleaner",
+        "hydrovac"
+      ],
+      "notes": null
+    },
+    {
+      "id": "utility-wastewater",
+      "job_title": "Wastewater treatment plant operator",
+      "environment": "Wastewater Treatment Plant",
+      "industry": "Municipal Utilities",
+      "lex_8h": 85,
+      "aliases": [
+        "sewage treatment",
+        "WWTP operator",
+        "wastewater operator",
+        "biosolids",
+        "lift station operator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "utility-water-treatment",
+      "job_title": "Water treatment plant operator",
+      "environment": "Water Treatment Plant",
+      "industry": "Municipal Utilities",
+      "lex_8h": 83,
+      "aliases": [
+        "water operator",
+        "waterworks operator",
+        "drinking water treatment",
+        "WTP operator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "oilgas-drill-floor",
+      "job_title": "Drill floor worker",
+      "environment": "Oil & Gas — Drill Rig",
+      "industry": "Oil & Gas",
+      "lex_8h": 97,
+      "aliases": [
+        "roughneck",
+        "derrickhand",
+        "floorhand",
+        "rig worker",
+        "driller oilfield",
+        "derrick hand"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Oil & Gas bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Range varies by rig type and phase of drilling operations",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "oilgas-compressor",
+      "job_title": "Gas compressor operator",
+      "environment": "Compressor Station",
+      "industry": "Oil & Gas",
+      "lex_8h": 98,
+      "aliases": [
+        "compressor station",
+        "gas plant operator",
+        "compression",
+        "pipeline compressor",
+        "gas compression"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Oil & Gas bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Compressor buildings consistently above action levels",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "oilgas-mud-engineer",
+      "job_title": "Mud engineer / mud logger",
+      "environment": "Oil & Gas — Drill Rig",
+      "industry": "Oil & Gas",
+      "lex_8h": 88,
+      "aliases": [
+        "drilling fluids",
+        "mud tech",
+        "mud man",
+        "drilling fluids engineer"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Oil & Gas bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "oilgas-pump-jack",
+      "job_title": "Pump jack / wellsite operator",
+      "environment": "Oil & Gas — Production",
+      "industry": "Oil & Gas",
+      "lex_8h": 90,
+      "aliases": [
+        "pumpjack",
+        "beam pump",
+        "wellsite operator",
+        "lease operator",
+        "production operator"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Oil & Gas bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-chipper-operator",
+      "job_title": "Chipper operator",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 102,
+      "aliases": [
+        "wood chipper",
+        "chip screen",
+        "chipping machine",
+        "whole tree chipper"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-debarker",
+      "job_title": "Debarker operator",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 101,
+      "aliases": [
+        "debarking machine",
+        "ring debarker",
+        "log debarker",
+        "cambio debarker"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-edger",
+      "job_title": "Edger operator",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 100,
+      "aliases": [
+        "edger",
+        "edger tail sawyer",
+        "gang edger"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-head-sawyer",
+      "job_title": "Head sawyer",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 102,
+      "aliases": [
+        "head saw operator",
+        "primary breakdown",
+        "log breakdown",
+        "band saw operator"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-lumber-grader",
+      "job_title": "Lumber grader",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 92,
+      "aliases": [
+        "grade setter",
+        "grader sorter",
+        "lumber inspector",
+        "lumber tallier"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-planer-operator",
+      "job_title": "Planer operator",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 104,
+      "aliases": [
+        "surfacer",
+        "planing mill",
+        "planer mill operator",
+        "moulder operator"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Planer mills are among the loudest environments in the forest industry",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-maintenance",
+      "job_title": "Sawmill maintenance worker",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 96,
+      "aliases": [
+        "mill mechanic",
+        "saw filer",
+        "maintenance millwright",
+        "saw doctor"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "sawmill-general-worker",
+      "job_title": "Sawmill production worker",
+      "environment": "Sawmill",
+      "industry": "Sawmill / Wood Processing",
+      "lex_8h": 97,
+      "aliases": [
+        "sawmill worker",
+        "lumber worker",
+        "mill worker",
+        "wood products worker",
+        "green chain"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Sawmill/Wood Products bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "security-officer",
+      "job_title": "Security officer",
+      "environment": "Services",
+      "industry": "Services",
+      "lex_8h": 92.7,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "security guard",
+        "loss prevention"
+      ],
+      "notes": null
+    },
+    {
+      "id": "shipyard-chipper-grinder",
+      "job_title": "Chipping / grinding — shipyard",
+      "environment": "Shipyard",
+      "industry": "Shipbuilding / Ship Repair",
+      "lex_8h": 107,
+      "aliases": [
+        "shipyard chipping",
+        "needle gun",
+        "flux chipping",
+        "rust removal shipyard",
+        "deck chipping"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Shipbuilding bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": "Confined spaces amplify levels; among highest exposures in any industry",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "shipyard-burner-cutter",
+      "job_title": "Shipyard burner / plate cutter",
+      "environment": "Shipyard",
+      "industry": "Shipbuilding / Ship Repair",
+      "lex_8h": 95,
+      "aliases": [
+        "burning torch",
+        "plasma cutter",
+        "oxy-fuel",
+        "steel cutting shipyard",
+        "burner"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Shipbuilding bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "shipyard-driller",
+      "job_title": "Shipyard driller / fabricator",
+      "environment": "Shipyard",
+      "industry": "Shipbuilding / Ship Repair",
+      "lex_8h": 102,
+      "aliases": [
+        "hull driller",
+        "shipyard fabrication",
+        "marine fabricator",
+        "ship fitter"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Shipbuilding bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "shipyard-welder",
+      "job_title": "Welder — shipyard",
+      "environment": "Shipyard",
+      "industry": "Shipbuilding / Ship Repair",
+      "lex_8h": 87,
+      "aliases": [
+        "shipyard welder",
+        "hull welder",
+        "marine welder",
+        "ship repair welder"
+      ],
+      "source": "WorkSafeBC \"How Loud Is It?\" Shipbuilding bulletin",
+      "source_url": "https://www.worksafebc.com/en/health-safety/hazards-exposures/noise",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "trades-boilermaker",
+      "job_title": "Boilermaker",
+      "environment": "Industrial",
+      "industry": "Trades",
+      "lex_8h": 97,
+      "aliases": [
+        "pressure vessel",
+        "boiler repair",
+        "heat exchanger",
+        "vessel fabricator"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "trades-electrician-industrial",
+      "job_title": "Electrician (industrial)",
+      "environment": "Industrial / Construction",
+      "industry": "Trades",
+      "lex_8h": 85,
+      "aliases": [
+        "industrial electrician",
+        "electrical tradesperson",
+        "journeyman electrician",
+        "wireman"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": "Varies significantly by environment; louder in industrial plants than commercial",
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "electrician-transit-utility",
+      "job_title": "Electrician (transit/utility)",
+      "environment": "Trades",
+      "industry": "Trades",
+      "lex_8h": 82.4,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "electrical worker",
+        "transit electrician"
+      ],
+      "notes": "Transit facility context"
+    },
+    {
+      "id": "millwright",
+      "job_title": "Millwright",
+      "environment": "Trades",
+      "industry": "Trades",
+      "lex_8h": 92.1,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "industrial mechanic",
+        "machine repair"
+      ],
+      "notes": null
+    },
+    {
+      "id": "trades-pipefitter",
+      "job_title": "Pipefitter",
+      "environment": "Industrial",
+      "industry": "Trades",
+      "lex_8h": 91,
+      "aliases": [
+        "pipe fitter",
+        "piping mechanic",
+        "sprinkler fitter",
+        "steamfitter pipefitter"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "trades-plumber-industrial",
+      "job_title": "Plumber (industrial)",
+      "environment": "Industrial / Construction",
+      "industry": "Trades",
+      "lex_8h": 87,
+      "aliases": [
+        "plumber",
+        "steamfitter",
+        "journeyman plumber",
+        "gas fitter"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "trades-refrigeration-mech",
+      "job_title": "Refrigeration mechanic",
+      "environment": "Industrial / Commercial",
+      "industry": "Trades",
+      "lex_8h": 82,
+      "aliases": [
+        "refrigeration tech",
+        "HVAC refrigeration",
+        "ammonia refrigeration",
+        "industrial refrigeration"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "trades-sheet-metal-hvac",
+      "job_title": "Sheet metal worker / HVAC technician",
+      "environment": "Construction / Industrial",
+      "industry": "Trades",
+      "lex_8h": 92,
+      "aliases": [
+        "HVAC tech",
+        "sheet metal",
+        "tin knocker",
+        "ductwork installer",
+        "heating cooling"
+      ],
+      "source": "NIOSH Pub. No. 98-126 (1998): Criteria for a Recommended Standard — Occupational Noise Exposure",
+      "source_url": "https://www.cdc.gov/niosh/docs/98-126/default.html",
+      "notes": null,
+      "weighting": "dBA",
+      "value_type": "estimated"
+    },
+    {
+      "id": "industrial-truck-driver",
+      "job_title": "Industrial truck driver",
+      "environment": "Transportation",
+      "industry": "Transportation",
+      "lex_8h": 89.7,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "truck driver",
+        "lorry driver",
+        "hauler"
+      ],
+      "notes": "Plant/facility truck drivers"
+    },
+    {
+      "id": "dock-worker-warehouse-operator",
+      "job_title": "Dock worker / warehouse operator",
+      "environment": "Transportation & Warehousing",
+      "industry": "Transportation & Warehousing",
+      "lex_8h": 92.5,
+      "weighting": "dBA",
+      "value_type": "measured",
+      "source": "NIOSH Health Hazard Evaluation Program — Noise Database (rd-1005-2014-0); CDC/NIOSH, 2014",
+      "source_url": "https://www.cdc.gov/niosh/data/datasets/rd-1005-2014-0/default.html",
+      "aliases": [
+        "loading dock",
+        "dock labourer",
+        "warehouse dock"
+      ],
+      "notes": null
+    }
+  ]
+}

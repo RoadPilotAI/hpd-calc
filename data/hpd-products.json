@@ -1,0 +1,270 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-09-28",
+    "TODO_NORM": "Review this product list and confirm it covers the HPDs you most commonly see in BC/AB/SK workplaces. Add missing products or flag any that should be removed. NRR values are from manufacturer published data sheets.",
+    "fields": {
+      "id": "Unique kebab-case identifier",
+      "brand": "Manufacturer brand name",
+      "model": "Product model name",
+      "type": "earplug or earmuff",
+      "nrr": "Noise Reduction Rating (dB) — from manufacturer published data",
+      "aliases": "Additional search terms",
+      "notes": "Optional notes (discontinued, common variant names, etc.)"
+    }
+  },
+  "products": [
+    {
+      "id": "3m-e-a-r-classic",
+      "brand": "3M",
+      "model": "E-A-R Classic",
+      "type": "earplug",
+      "nrr": 29,
+      "aliases": ["EAR Classic", "yellow foam", "3M Classic", "EAR classic"],
+      "notes": "One of the most widely used disposable earplugs in North America"
+    },
+    {
+      "id": "3m-e-a-r-softfoam",
+      "brand": "3M",
+      "model": "E-A-R Soft Yellow Neons",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["EAR Soft", "yellow neons", "3M 312-1250"],
+      "notes": null
+    },
+    {
+      "id": "3m-e-a-r-ultrafit",
+      "brand": "3M",
+      "model": "E-A-R UltraFit",
+      "type": "earplug",
+      "nrr": 25,
+      "aliases": ["UltraFit", "3M ultrafit", "reusable earplug 3M"],
+      "notes": "Reusable corded earplug"
+    },
+    {
+      "id": "3m-1100",
+      "brand": "3M",
+      "model": "3M 1100",
+      "type": "earplug",
+      "nrr": 29,
+      "aliases": ["3M one thousand", "foam earplug 3M"],
+      "notes": null
+    },
+    {
+      "id": "3m-1110",
+      "brand": "3M",
+      "model": "3M 1110",
+      "type": "earplug",
+      "nrr": 29,
+      "aliases": ["3M 1110", "corded foam earplug"],
+      "notes": "Corded version"
+    },
+    {
+      "id": "3m-push-ins",
+      "brand": "3M",
+      "model": "3M Push-Ins",
+      "type": "earplug",
+      "nrr": 28,
+      "aliases": ["push-in earplug", "no-roll foam", "3M 318"],
+      "notes": "No-roll foam earplug"
+    },
+    {
+      "id": "howard-leight-max",
+      "brand": "Howard Leight",
+      "model": "MAX",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["Leight MAX", "Howard Leight max", "HL max", "orange foam earplug"],
+      "notes": "High-attenuation foam earplug"
+    },
+    {
+      "id": "howard-leight-max-lite",
+      "brand": "Howard Leight",
+      "model": "MAX-Lite",
+      "type": "earplug",
+      "nrr": 30,
+      "aliases": ["MAX lite", "Howard Leight max lite"],
+      "notes": "Smaller diameter foam for smaller ear canals"
+    },
+    {
+      "id": "howard-leight-laser-lite",
+      "brand": "Howard Leight",
+      "model": "Laser Lite",
+      "type": "earplug",
+      "nrr": 32,
+      "aliases": ["laser lite", "pink yellow earplug", "HL laser"],
+      "notes": null
+    },
+    {
+      "id": "howard-leight-quiet",
+      "brand": "Howard Leight",
+      "model": "Quiet",
+      "type": "earplug",
+      "nrr": 26,
+      "aliases": ["Howard Leight quiet reusable", "reusable corded"],
+      "notes": "Reusable corded earplug"
+    },
+    {
+      "id": "moldex-spark-plugs",
+      "brand": "Moldex",
+      "model": "Spark Plugs",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["spark plugs earplug", "Moldex sparkplug"],
+      "notes": null
+    },
+    {
+      "id": "moldex-meteors",
+      "brand": "Moldex",
+      "model": "Meteors",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["Moldex meteor", "pura-fit"],
+      "notes": null
+    },
+    {
+      "id": "moldex-pura-fit",
+      "brand": "Moldex",
+      "model": "Pura-Fit",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["Pura Fit", "Moldex purafit", "green foam earplug"],
+      "notes": null
+    },
+    {
+      "id": "moldex-softies",
+      "brand": "Moldex",
+      "model": "Softies",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["Moldex softie"],
+      "notes": "Smaller diameter — suitable for smaller ear canals"
+    },
+    {
+      "id": "uvex-x-fit",
+      "brand": "uvex",
+      "model": "X-fit",
+      "type": "earplug",
+      "nrr": 33,
+      "aliases": ["uvex xfit", "uvex earplug"],
+      "notes": null
+    },
+    {
+      "id": "3m-optime-105",
+      "brand": "3M",
+      "model": "Peltor Optime 105",
+      "type": "earmuff",
+      "nrr": 30,
+      "aliases": ["Optime 105", "Peltor 105", "3M optime", "over-ear 105"],
+      "notes": "High-attenuation cap-mount or headband earmuff"
+    },
+    {
+      "id": "3m-optime-101",
+      "brand": "3M",
+      "model": "Peltor Optime 101",
+      "type": "earmuff",
+      "nrr": 26,
+      "aliases": ["Optime 101", "Peltor 101", "3M peltor"],
+      "notes": null
+    },
+    {
+      "id": "3m-peltor-x5a",
+      "brand": "3M",
+      "model": "Peltor X5A",
+      "type": "earmuff",
+      "nrr": 31,
+      "aliases": ["X5A", "Peltor X5", "3M X5A"],
+      "notes": "High-attenuation headband earmuff"
+    },
+    {
+      "id": "3m-peltor-x4a",
+      "brand": "3M",
+      "model": "Peltor X4A",
+      "type": "earmuff",
+      "nrr": 27,
+      "aliases": ["X4A", "Peltor X4", "3M X4"],
+      "notes": null
+    },
+    {
+      "id": "3m-peltor-x3a",
+      "brand": "3M",
+      "model": "Peltor X3A",
+      "type": "earmuff",
+      "nrr": 28,
+      "aliases": ["X3A", "Peltor X3", "3M X3"],
+      "notes": null
+    },
+    {
+      "id": "3m-peltor-x2a",
+      "brand": "3M",
+      "model": "Peltor X2A",
+      "type": "earmuff",
+      "nrr": 24,
+      "aliases": ["X2A", "Peltor X2", "3M X2"],
+      "notes": null
+    },
+    {
+      "id": "3m-peltor-h10a",
+      "brand": "3M",
+      "model": "Peltor H10A",
+      "type": "earmuff",
+      "nrr": 30,
+      "aliases": ["H10A", "Peltor H10", "3M H10"],
+      "notes": "Classic cap-mount earmuff, common in construction and industry"
+    },
+    {
+      "id": "howard-leight-leightning-l3",
+      "brand": "Howard Leight",
+      "model": "Leightning L3",
+      "type": "earmuff",
+      "nrr": 30,
+      "aliases": ["L3 earmuff", "leightning L3", "Howard Leight L3"],
+      "notes": null
+    },
+    {
+      "id": "howard-leight-leightning-l1",
+      "brand": "Howard Leight",
+      "model": "Leightning L1",
+      "type": "earmuff",
+      "nrr": 25,
+      "aliases": ["L1 earmuff", "leightning L1"],
+      "notes": null
+    },
+    {
+      "id": "moldex-m4",
+      "brand": "Moldex",
+      "model": "M4",
+      "type": "earmuff",
+      "nrr": 27,
+      "aliases": ["Moldex M4 earmuff"],
+      "notes": null
+    },
+    {
+      "id": "moldex-m6",
+      "brand": "Moldex",
+      "model": "M6",
+      "type": "earmuff",
+      "nrr": 29,
+      "aliases": ["Moldex M6 earmuff"],
+      "notes": null
+    },
+    {
+      "id": "honeywell-act",
+      "brand": "Honeywell",
+      "model": "ACT",
+      "type": "earmuff",
+      "nrr": 28,
+      "aliases": ["Honeywell ACT earmuff", "Sperian ACT"],
+      "notes": null
+    },
+    {
+      "id": "uvex-k-2h",
+      "brand": "uvex",
+      "model": "K2H",
+      "type": "earmuff",
+      "nrr": 26,
+      "aliases": ["uvex K2H", "uvex earmuff"],
+      "notes": null
+    }
+  ]
+}

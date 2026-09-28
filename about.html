@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>About — HPD Adequacy Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    :root {
+      --orange: #e65100; --orange-light: #fff3e0; --orange-border: #ffcc80;
+      --gray-900: #1a1a1a; --gray-700: #424242; --gray-500: #757575;
+      --gray-400: #9e9e9e; --gray-200: #e0e0e0; --gray-100: #f5f5f5;
+      --white: #ffffff; --radius: 12px; --radius-sm: 8px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .app-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 0 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .app-header-inner {
+      max-width: 520px; margin: 0 auto;
+      display: flex; align-items: center;
+      height: 56px; gap: 12px;
+    }
+    .app-title    { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+    .app-subtitle { font-size: 10px; color: var(--gray-500); margin-top: 1px; }
+    .main { max-width: 520px; margin: 0 auto; padding: 16px 16px 60px; display: flex; flex-direction: column; gap: 12px; }
+    .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+    h2 { font-size: 17px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+    h3 { font-size: 13px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 6px; }
+    p  { font-size: 14px; color: var(--gray-700); line-height: 1.65; margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+    ul { font-size: 14px; color: var(--gray-700); line-height: 1.65; padding-left: 20px; margin-bottom: 10px; }
+    li { margin-bottom: 4px; }
+    code {
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      padding: 2px 5px;
+    }
+    .formula-block {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.8;
+      margin: 8px 0;
+      font-family: "Courier New", monospace;
+    }
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .app-footer {
+      max-width: 520px; margin: 0 auto; padding: 20px 16px;
+      text-align: center; font-size: 11px; color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+    }
+    .app-footer a { color: var(--orange); text-decoration: none; }
+    .back-link { font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div>
+      <div class="app-title">HPD Adequacy Calculator</div>
+      <div class="app-subtitle">CSA Z94.2 · Screening estimates only</div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <p class="back-link"><a href="index.html">← Back to calculator</a></p>
+
+  <div class="card">
+    <h2>About this tool</h2>
+    <p>The HPD Adequacy Calculator is a free, open-source screening tool for estimating whether a hearing protection device (HPD) provides adequate protection for a given noise exposure. It implements the derating method from <strong>CSA Z94.2, Hearing Protection Devices — Performance, Selection, Care, and Use</strong>.</p>
+    <p>This tool is intended for use by occupational hygienists, audiometric technicians, safety officers, and other health and safety professionals in Canada.</p>
+
+    <h3>What this tool is NOT</h3>
+    <ul>
+      <li>It is not a substitute for noise measurement. In BC, noise measurement is required where workers may be exposed above 82 dBA Lex (WorkSafeBC OHS Reg Part 7).</li>
+      <li>It is not medical advice and does not constitute a formal noise assessment.</li>
+      <li>Occupational exposure values are estimates drawn from published surveys — individual workplaces vary significantly. Never substitute a lookup value for actual dosimetry when making compliance decisions.</li>
+      <li>It does not account for improperly fitted, damaged, or inconsistently worn hearing protectors.</li>
+    </ul>
+  </div>
+
+  <div class="card" id="how-it-works">
+    <h2>How it works</h2>
+    <p>The calculator uses the CSA Z94.2 derating method to estimate the sound level reaching the ear (Lprot) when an HPD is worn in a given noise environment.</p>
+
+    <h3>Derating formulas (CSA Z94.2)</h3>
+    <div class="formula-block">
+      Earplug:  Lprot = Lex + 3 − (NRR × 0.50)<br>
+      Earmuff:  Lprot = Lex + 3 − (NRR × 0.70)<br>
+      Dual:     Lprot = Lex + 3 − ((NRR_higher + 5) × 0.65)
+    </div>
+    <p>The <code>+3</code> spectral correction is applied when the noise measurement is in dB(A). When a dB(C) measurement is entered, no correction is applied.</p>
+    <p><strong>NRR</strong> is the Noise Reduction Rating published on the HPD packaging (ANSI S3.19 laboratory measurement). CSA Z94.2 derates NRR to account for real-world fit and use differences from the laboratory.</p>
+
+    <h3>Adequacy thresholds</h3>
+    <p>Results are classified based on the estimated protected level (Lprot) compared to the applicable regulatory limit:</p>
+    <ul>
+      <li><strong>Over-protected</strong> — Lprot &lt; 75 dBA. Attenuation is excessive; may impair communication or situational awareness.</li>
+      <li><strong>Adequate</strong> — Lprot between 75 dBA and the regulatory limit.</li>
+      <li><strong>Caution</strong> — Lprot within 3 dB above the regulatory limit.</li>
+      <li><strong>Under-protected</strong> — Lprot more than 3 dB above the regulatory limit.</li>
+    </ul>
+    <p>Regulatory limits: 85 dBA for all provinces and territories; 87 dBA for federally regulated workplaces (Canada Labour Code).</p>
+
+    <h3>CSA class / grade</h3>
+    <p>The minimum required HPD class is determined from the noise exposure (Lex) per CSA Z94.2:</p>
+    <ul>
+      <li>Class C / Grade 1 — Lex ≤ 90 dBA</li>
+      <li>Class B / Grade 2 — Lex 91–95 dBA</li>
+      <li>Class A / Grade 3 — Lex 96–100 dBA</li>
+      <li>Class A / Grade 4 — Lex 101–105 dBA</li>
+      <li>Dual / Grade 5 — Lex &gt; 105 dBA</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Data sources</h2>
+
+    <h3>Occupational noise exposure values</h3>
+    <p>The occupation lookup database combines three public sources:</p>
+    <ul>
+      <li><strong>WorkSafeBC occupational hygiene bulletins</strong> — "How Loud Is It?" series and related occupational health publications. Available at <a href="https://www.worksafebc.com">worksafebc.com</a>.</li>
+      <li><strong>NIOSH Health Hazard Evaluations (HHE)</strong> — Personal noise dosimetry records from NIOSH field investigations (dataset rd-1005-2014-0). Published by the U.S. National Institute for Occupational Safety and Health.</li>
+      <li><strong>NIOSH Publication 98-126</strong> — Criteria for a recommended standard: Occupational noise exposure (revised). U.S. DHHS (NIOSH), 1998.</li>
+      <li><strong>MSHA noise compliance sampling data</strong> — Public enforcement records from the U.S. Mine Safety and Health Administration, mining environments only.</li>
+    </ul>
+    <p>Measured values are means of field dosimetry reported in the cited source. Estimated values are derived from published guidance ranges; individual workplaces vary.</p>
+
+    <h3>HPD products</h3>
+    <p>NRR values are taken from manufacturer published data sheets and product labelling. The product list is limited to devices commonly available in Canada; it is not exhaustive.</p>
+
+    <h3>Further reference: 3M Noise Navigator</h3>
+    <p>The 3M Noise Navigator Sound Level Database is a large collection of occupational noise level measurements compiled by 3M. It is 3M's proprietary work and is not reproduced here. Search for "3M Noise Navigator Sound Level Database" on the 3M website to find it.</p>
+  </div>
+
+  <div class="card">
+    <h2>Licence &amp; contributing</h2>
+    <p>Source code is released under the <strong>MIT licence</strong>. Data files in <code>data/</code> are published under <strong>CC BY 4.0</strong>.</p>
+    <p>Contributions of additional occupational noise levels, HPD products, or regulatory corrections are welcome. See the <a href="https://github.com/RoadPilotAI/hpd-calc/blob/main/CONTRIBUTING.md">contributing guide on GitHub</a> for rules and instructions.</p>
+    <p>Source code and issue tracker: <a href="https://github.com/RoadPilotAI/hpd-calc">github.com/RoadPilotAI/hpd-calc</a></p>
+  </div>
+
+</main>
+
+<footer class="app-footer">
+  <a href="index.html">Calculator</a> · <a href="https://github.com/RoadPilotAI/hpd-calc">GitHub</a>
+  <div style="margin-top:6px;">Free &amp; open source · MIT licence · No data sent anywhere</div>
+</footer>
+
+</body>
+</html>

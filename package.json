@@ -1,9 +1,10 @@
 {
-  "name": "react-example",
+  "name": "hpd-calc",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test": "node --test test/calc.test.mjs",
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",

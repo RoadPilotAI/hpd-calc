@@ -1,12 +1,699 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HPD Noise Protection Calculator</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>HPD Adequacy Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Tokens ── */
+    :root {
+      --orange:        #e65100;
+      --orange-light:  #fff3e0;
+      --orange-border: #ffcc80;
+      --green:         #1b5e20;
+      --green-mid:     #2e7d32;
+      --green-light:   #e8f5e9;
+      --green-border:  #a5d6a7;
+      --yellow:        #7c4f00;
+      --yellow-mid:    #f57f17;
+      --yellow-light:  #fff8e1;
+      --yellow-border: #ffe082;
+      --red:           #b71c1c;
+      --red-light:     #ffebee;
+      --red-border:    #ef9a9a;
+      --blue:          #0d47a1;
+      --blue-light:    #e3f2fd;
+      --blue-border:   #90caf9;
+      --gray-900:      #1a1a1a;
+      --gray-700:      #424242;
+      --gray-500:      #757575;
+      --gray-400:      #9e9e9e;
+      --gray-200:      #e0e0e0;
+      --gray-100:      #f5f5f5;
+      --white:         #ffffff;
+      --radius:        12px;
+      --radius-sm:     8px;
+      --shadow:        0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    /* ── Header ── */
+    .app-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .app-header-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 12px;
+    }
+    .app-title    { font-size: 15px; font-weight: 700; color: var(--gray-900); white-space: nowrap; }
+    .app-subtitle { font-size: 10px; color: var(--gray-500); margin-top: 1px; }
+    .jur-select {
+      font-size: 12px;
+      font-weight: 600;
+      border: 2px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      outline: none;
+      flex-shrink: 0;
+    }
+    .jur-select:focus { border-color: var(--orange); }
+
+    /* ── Main ── */
+    .main {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 16px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ── Section card ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .section-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+    .section-heading {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 14px;
+    }
+
+    /* ── Entry mode toggle ── */
+    .mode-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .mode-btn.active {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: var(--orange-light);
+    }
+
+    /* ── Search ── */
+    .search-wrap { position: relative; }
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      font-size: 15px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-900);
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    .search-wrap input:focus { border-color: var(--orange); }
+    .search-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+    .search-results {
+      display: none;
+      border: 2px solid var(--orange-border);
+      border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .search-results.open { display: block; }
+    .sr-item {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--gray-100);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      transition: background 0.1s;
+    }
+    .sr-item:last-child { border-bottom: none; }
+    .sr-item:hover { background: var(--orange-light); }
+    .sr-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+    .sr-env  { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    .sr-dba  { font-size: 15px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+
+    /* ── Selected chip ── */
+    .selected-chip {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: var(--gray-100);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .selected-chip.visible { display: flex; }
+    .chip-icon { font-size: 18px; flex-shrink: 0; }
+    .chip-body { flex: 1; min-width: 0; }
+    .chip-name { font-size: 13px; font-weight: 600; color: var(--gray-900); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chip-meta { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    .chip-dba  { font-size: 15px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+    .chip-clear {
+      color: var(--gray-400);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px 4px;
+      flex-shrink: 0;
+    }
+    .chip-clear:hover { color: var(--red); }
+
+    /* ── Manual Lex entry ── */
+    .manual-entry { display: none; }
+    .manual-entry.visible { display: block; }
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 5px;
+    }
+    .field input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 18px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .field input[type="number"]:focus { border-color: var(--orange); }
+    .toggle-group { display: flex; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); overflow: hidden; }
+    .toggle-btn {
+      flex: 1;
+      padding: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toggle-btn.active { background: var(--orange); color: var(--white); }
+    .helper { font-size: 11px; color: var(--gray-500); margin-top: 5px; line-height: 1.5; }
+    .error-msg { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+    .error-msg.show { display: block; }
+
+    /* ── HPD type ── */
+    .hpd-type-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .hpd-type-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .hpd-type-btn:hover { border-color: var(--orange-border); }
+    .hpd-type-btn.active { border-color: var(--orange); background: var(--orange-light); }
+    .hpd-type-btn .t-icon  { font-size: 20px; display: block; margin-bottom: 3px; }
+    .hpd-type-btn .t-label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
+    .hpd-type-btn.active .t-label { color: var(--orange); }
+
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 14px 0; }
+
+    /* ── NRR manual ── */
+    .nrr-row { display: flex; align-items: center; gap: 10px; }
+    .nrr-row input[type="number"] {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 18px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      outline: none;
+      -webkit-appearance: none;
+      text-align: center;
+    }
+    .nrr-row input[type="number"]:focus { border-color: var(--orange); }
+    .nrr-unit { font-size: 14px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+
+    /* ── Info box ── */
+    .info-box {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #1565c0;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+
+    /* ══════════════════════════════════════
+       RESULT CARD
+    ═══════════════════════════════════════ */
+    .result-card {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: none;
+    }
+    .result-card.visible { display: block; }
+
+    /* colour variants */
+    .result-card.adequate  { border: 3px solid var(--green-border); }
+    .result-card.adequate  .result-hero { background: var(--green-light); }
+    .result-card.adequate  .result-value  { color: var(--green-mid); }
+    .result-card.adequate  .verdict-pill  { background: var(--green-mid); }
+
+    .result-card.caution   { border: 3px solid var(--yellow-border); }
+    .result-card.caution   .result-hero { background: var(--yellow-light); }
+    .result-card.caution   .result-value  { color: var(--yellow-mid); }
+    .result-card.caution   .verdict-pill  { background: var(--yellow-mid); }
+
+    .result-card.danger    { border: 3px solid var(--red-border); }
+    .result-card.danger    .result-hero { background: var(--red-light); }
+    .result-card.danger    .result-value  { color: var(--red); }
+    .result-card.danger    .verdict-pill  { background: var(--red); }
+
+    .result-card.over      { border: 3px solid var(--blue-border); }
+    .result-card.over      .result-hero { background: var(--blue-light); }
+    .result-card.over      .result-value  { color: var(--blue); }
+    .result-card.over      .verdict-pill  { background: var(--blue); }
+
+    .result-hero {
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .result-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 6px; }
+    .result-value {
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+    }
+    .result-unit  { font-size: 16px; color: var(--gray-500); margin-bottom: 14px; }
+    .verdict-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .verdict-text { font-size: 13px; color: var(--gray-700); max-width: 300px; margin: 0 auto; line-height: 1.5; }
+
+    .result-body { background: var(--white); padding: 16px 20px; }
+
+    /* CSA class row */
+    .csa-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--orange-light);
+      border: 2px solid var(--orange-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+    .csa-row-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray-700); }
+    .csa-row-value { font-size: 20px; font-weight: 800; color: var(--orange); }
+
+    /* Breakdown */
+    .breakdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--orange);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 4px;
+    }
+    .breakdown-toggle .arr { transition: transform 0.2s; display: inline-block; }
+    .breakdown-toggle.open .arr { transform: rotate(90deg); }
+    .breakdown-body { display: none; margin-top: 10px; }
+    .breakdown-body.open { display: block; }
+    .br-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 13px;
+      gap: 12px;
+    }
+    .br-row:last-child { border-bottom: none; }
+    .br-key { color: var(--gray-500); flex-shrink: 0; }
+    .br-val { font-weight: 600; color: var(--gray-900); text-align: right; }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    .disclaimer strong { color: var(--gray-700); }
+
+    /* Print button */
+    .print-btn {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .print-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* Print date (hidden on screen) */
+    .print-date { display: none; }
+
+    /* Footer */
+    .app-footer {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+    }
+    .app-footer a { color: var(--orange); text-decoration: none; }
+
+    @media print {
+      .app-header, .breakdown-toggle, .print-btn,
+      .mode-row, .search-wrap, .nrr-unit,
+      .selected-chip .chip-clear { display: none !important; }
+      body { background: white; }
+      .breakdown-body { display: block !important; }
+      .result-card { display: block !important; }
+      .print-date { display: block; font-size: 11px; color: #757575; margin-bottom: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loadingOverlay" style="position:fixed;inset:0;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:14px;color:#757575;z-index:999;">Loading data…</div>
+
+<header class="app-header">
+  <div class="app-header-inner">
+    <div>
+      <div class="app-title">HPD Adequacy Calculator</div>
+      <div class="app-subtitle">CSA Z94.2 · Screening estimates only</div>
+    </div>
+    <select class="jur-select" id="jurSelect">
+      <option value="BC">🇨🇦 BC</option>
+      <option value="AB">🇨🇦 AB</option>
+      <option value="SK">🇨🇦 SK</option>
+      <option value="MB">🇨🇦 MB</option>
+      <option value="ON">🇨🇦 ON</option>
+      <option value="QC">🇨🇦 QC</option>
+      <option value="NB">🇨🇦 NB</option>
+      <option value="NS">🇨🇦 NS</option>
+      <option value="PE">🇨🇦 PE</option>
+      <option value="NL">🇨🇦 NL</option>
+      <option value="YT">🇨🇦 YT</option>
+      <option value="NT">🇨🇦 NT</option>
+      <option value="NU">🇨🇦 NU</option>
+      <option value="FED">🏛 Federal</option>
+    </select>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ══════════════════════════════════
+       SECTION 1 — Noise Exposure
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="section-tag">Step 1</div>
+    <div class="section-heading">What is the noise exposure?</div>
+
+    <div class="mode-row">
+      <button class="mode-btn active" id="modeOccup">🔍 Search occupation</button>
+      <button class="mode-btn" id="modeMeasured">📏 Enter measured value</button>
+    </div>
+
+    <!-- Occupation search -->
+    <div id="occupSection">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="occupSearch"
+               placeholder="e.g. Forklift operator, Carpenter, Welder…"
+               autocomplete="off" />
+      </div>
+      <div class="search-results" id="occupResults"></div>
+
+      <div class="selected-chip" id="occupChip">
+        <span class="chip-icon">👷</span>
+        <div class="chip-body">
+          <div class="chip-name" id="occupChipName"></div>
+          <div class="chip-meta" id="occupChipMeta"></div>
+        </div>
+        <div class="chip-dba" id="occupChipDba"></div>
+        <span class="chip-clear" id="occupChipClear">✕</span>
+      </div>
+
+      <div class="helper" style="margin-top:8px;">
+        Can't find your occupation? Use "Enter measured value" above if you have dosimetry data, or try broader search terms (e.g. "operator", "labourer").
+      </div>
+    </div>
+
+    <!-- Measured value entry -->
+    <div class="manual-entry" id="measuredSection">
+      <div class="field">
+        <label for="lexInput">Lex,8h or Leq (daily noise exposure)</label>
+        <input type="number" id="lexInput" placeholder="95" min="50" max="140" />
+        <div class="error-msg" id="lexError">Enter a number between 50 and 140.</div>
+      </div>
+      <div class="field">
+        <label>Measurement weighting</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="btnDba">dB(A)</button>
+          <button class="toggle-btn"        id="btnDbc">dB(C)</button>
+        </div>
+        <div class="helper" id="weightNote">+3 dB spectral correction will be applied in the CSA formula.</div>
+      </div>
+      <div class="info-box">
+        📏 <strong>BC note:</strong> Noise measurement is required where workers may be exposed above 82 dBA Lex (WorkSafeBC OHS Reg Part 7).
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 2 — Hearing Protector
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="section-tag">Step 2</div>
+    <div class="section-heading">What hearing protector is being used?</div>
+
+    <!-- HPD type -->
+    <div class="hpd-type-row">
+      <div class="hpd-type-btn active" id="typeEarplug">
+        <span class="t-icon">🟠</span>
+        <div class="t-label">Earplug</div>
+      </div>
+      <div class="hpd-type-btn" id="typeEarmuff">
+        <span class="t-icon">🎧</span>
+        <div class="t-label">Earmuff</div>
+      </div>
+      <div class="hpd-type-btn" id="typeDual">
+        <span class="t-icon">🔇</span>
+        <div class="t-label">Dual</div>
+      </div>
+    </div>
+
+    <!-- Primary HPD search -->
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="hpdSearch1"
+             placeholder="Search brand or model (e.g. 3M, Howard Leight…)"
+             autocomplete="off" />
+    </div>
+    <div class="search-results" id="hpdResults1"></div>
+    <div class="selected-chip" id="hpdChip1">
+      <span class="chip-icon">🛡</span>
+      <div class="chip-body">
+        <div class="chip-name" id="hpdChip1Name"></div>
+        <div class="chip-meta" id="hpdChip1Meta"></div>
+      </div>
+      <div class="chip-dba" id="hpdChip1Nrr"></div>
+      <span class="chip-clear" id="hpdChip1Clear">✕</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field">
+      <label for="nrrInput1" id="nrrLabel1">NRR <span style="font-weight:400;color:var(--gray-500)">(auto-filled from search, or enter manually)</span></label>
+      <div class="nrr-row">
+        <input type="number" id="nrrInput1" placeholder="29" min="1" max="40" />
+        <span class="nrr-unit">NRR</span>
+      </div>
+      <div class="helper" id="deratingNote">CSA Z94.2: earplugs derated at 50%</div>
+    </div>
+
+    <!-- Dual — second HPD -->
+    <div id="dualSection" style="display:none;">
+      <div class="divider"></div>
+      <div class="section-tag" style="margin-bottom:6px;">Second device</div>
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="hpdSearch2"
+               placeholder="Search second device…"
+               autocomplete="off" />
+      </div>
+      <div class="search-results" id="hpdResults2"></div>
+      <div class="selected-chip" id="hpdChip2">
+        <span class="chip-icon">🛡</span>
+        <div class="chip-body">
+          <div class="chip-name" id="hpdChip2Name"></div>
+          <div class="chip-meta" id="hpdChip2Meta"></div>
+        </div>
+        <div class="chip-dba" id="hpdChip2Nrr"></div>
+        <span class="chip-clear" id="hpdChip2Clear">✕</span>
+      </div>
+      <div class="field" style="margin-top:12px;">
+        <label for="nrrInput2">Second device NRR</label>
+        <div class="nrr-row">
+          <input type="number" id="nrrInput2" placeholder="27" min="1" max="40" />
+          <span class="nrr-unit">NRR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       RESULT
+  ═══════════════════════════════════ -->
+  <div class="result-card" id="resultCard">
+    <div class="result-hero">
+      <div class="result-label">Estimated protected level at ear</div>
+      <div class="result-value" id="resultValue">—</div>
+      <div class="result-unit">dBA</div>
+      <div class="verdict-pill" id="verdictPill">—</div>
+      <div class="verdict-text" id="verdictText">—</div>
+    </div>
+
+    <div class="result-body">
+      <div class="print-date" id="printDate"></div>
+
+      <div class="csa-row">
+        <div>
+          <div class="csa-row-label">Minimum HPD class required</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:2px;" id="csaGradeNote">for this exposure</div>
+        </div>
+        <div class="csa-row-value" id="csaClassVal">—</div>
+      </div>
+
+      <button class="breakdown-toggle" id="breakdownToggle">
+        <span class="arr">▶</span> Show calculation
+      </button>
+      <div class="breakdown-body" id="breakdownBody">
+        <div class="br-row"><span class="br-key">Jurisdiction</span>        <span class="br-val" id="brJur">—</span></div>
+        <div class="br-row"><span class="br-key">Noise exposure (Lex)</span> <span class="br-val" id="brLex">—</span></div>
+        <div class="br-row"><span class="br-key">Spectral correction</span>  <span class="br-val" id="brCorr">—</span></div>
+        <div class="br-row"><span class="br-key">HPD</span>                  <span class="br-val" id="brHpd">—</span></div>
+        <div class="br-row"><span class="br-key">NRR</span>                  <span class="br-val" id="brNrr">—</span></div>
+        <div class="br-row"><span class="br-key">Derating (CSA Z94.2)</span> <span class="br-val" id="brDerate">—</span></div>
+        <div class="br-row"><span class="br-key">Protected level</span>      <span class="br-val" id="brProtected">—</span></div>
+        <div class="br-row"><span class="br-key">Regulatory limit</span>     <span class="br-val" id="brLimit">—</span></div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> Results are screening estimates only and do not replace noise measurement or a formal noise assessment. In BC, measurement is required where a worker may be exposed above 82 dBA Lex. Actual protection depends on proper fit, device condition, and consistent use. Consult a qualified occupational hygienist or audiometric technician for compliance decisions.
+      </div>
+
+      <button class="print-btn" id="printBtn">🖨 Print / Save as PDF</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="app-footer">
+  <a href="about.html">About</a> · <a href="about.html#how-it-works">How it works</a> · <a href="https://github.com/RoadPilotAI/hpd-calc">GitHub</a>
+  <div style="margin-top:6px;">Free &amp; open source · MIT licence · No data sent anywhere</div>
+</footer>
+
+<script type="module" src="src/app.js"></script>
+</body>
 </html>
