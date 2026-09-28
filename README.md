@@ -1,4 +1,4 @@
-# HPD Adequacy Calculator
+# Audiometrics Canada
 
 A free, open-source tool for screening whether a hearing protection device (HPD) provides adequate protection under **CSA Z94.2** methodology.
 
