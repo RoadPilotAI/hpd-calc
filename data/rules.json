@@ -13,8 +13,8 @@
     "PE":  { "name": "Prince Edward Island",         "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": null },
     "NL":  { "name": "Newfoundland and Labrador",    "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140 },
     "YT":  { "name": "Yukon",                        "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140 },
-    "NT":  { "name": "Northwest Territories",        "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140, "exchange_rate_verified": false, "TODO_NORM": "Confirm exchange rate in NWT/NU OHS Regulations." },
-    "NU":  { "name": "Nunavut",                      "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140, "exchange_rate_verified": false, "TODO_NORM": "Confirm exchange rate in NWT/NU OHS Regulations." },
+    "NT":  { "name": "Northwest Territories",        "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140, "_note": "WSCC OHS Regulations R-039-2015 Part 8. 85 dBA / 3 dB exchange rate confirmed." },
+    "NU":  { "name": "Nunavut",                      "limit_dba": 85, "exchange_rate_db": 3, "peak_limit_dbc": 140, "_note": "WSCC OHS Regulations R-003-2016 Part 8. 85 dBA / 3 dB exchange rate confirmed." },
     "FED": { "name": "Federal (Canada Labour Code)", "limit_dba": 87, "exchange_rate_db": 3, "peak_limit_dbc": null }
   },
 

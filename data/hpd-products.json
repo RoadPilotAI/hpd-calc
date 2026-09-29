@@ -1,18 +1,19 @@
 {
   "_meta": {
     "version": "1.0.0",
-    "last_updated": "2026-09-28",
+    "last_updated": "2026-09-29",
     "TODO_NORM": "Review this product list and confirm it covers the HPDs you most commonly see in BC/AB/SK workplaces. Add missing products or flag any that should be removed. NRR values are from manufacturer published data sheets.",
+    "TODO_NORM_csa_class_remaining": "8 products still have csa_class:null. See individual product notes. Moldex Meteors and uvex X-fit — not found on Canadian CSA listings; uvex X-fit may only have European SNR certification. Howard Leight L3 — not found with CSA class. Moldex M4/M6 model names do not match Moldex current lineup (MX-5 NRR 27, MX-6 NRR 30, MX-7 NRR 28); verify these are the correct models and NRR values. Honeywell ACT — not found with CSA class. uvex K2H — no CSA class found.",
     "fields": {
       "id": "Unique kebab-case identifier",
       "brand": "Manufacturer brand name",
       "model": "Product model name",
       "type": "earplug or earmuff",
       "nrr": "Noise Reduction Rating (dB) — from manufacturer published data",
+      "csa_class": "CSA Z94.2 class: A, AL, B, BL, C, or null if not confirmed",
       "aliases": "Additional search terms",
       "notes": "Optional notes (discontinued, common variant names, etc.)"
-    },
-    "TODO_NORM_csa_class": "Fill in csa_class for each product (A, AL, B, BL, C, or null if unknown). Used in dual-protection minimum class check."
+    }
   },
   "products": [
     {
@@ -21,14 +22,14 @@
       "model": "E-A-R Classic",
       "type": "earplug",
       "nrr": 29,
+      "csa_class": "AL",
       "aliases": [
         "EAR Classic",
         "yellow foam",
         "3M Classic",
         "EAR classic"
       ],
-      "notes": "One of the most widely used disposable earplugs in North America",
-      "csa_class": null
+      "notes": "One of the most widely used disposable earplugs in North America"
     },
     {
       "id": "3m-e-a-r-softfoam",
@@ -36,13 +37,13 @@
       "model": "E-A-R Soft Yellow Neons",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": "AL",
       "aliases": [
         "EAR Soft",
         "yellow neons",
         "3M 312-1250"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-e-a-r-ultrafit",
@@ -50,13 +51,13 @@
       "model": "E-A-R UltraFit",
       "type": "earplug",
       "nrr": 25,
+      "csa_class": "AL",
       "aliases": [
         "UltraFit",
         "3M ultrafit",
         "reusable earplug 3M"
       ],
-      "notes": "Reusable corded earplug",
-      "csa_class": null
+      "notes": "Reusable corded earplug"
     },
     {
       "id": "3m-1100",
@@ -64,12 +65,12 @@
       "model": "3M 1100",
       "type": "earplug",
       "nrr": 29,
+      "csa_class": "AL",
       "aliases": [
         "3M one thousand",
         "foam earplug 3M"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-1110",
@@ -77,12 +78,12 @@
       "model": "3M 1110",
       "type": "earplug",
       "nrr": 29,
+      "csa_class": "AL",
       "aliases": [
         "3M 1110",
         "corded foam earplug"
       ],
-      "notes": "Corded version",
-      "csa_class": null
+      "notes": "Corded version"
     },
     {
       "id": "3m-push-ins",
@@ -90,13 +91,13 @@
       "model": "3M Push-Ins",
       "type": "earplug",
       "nrr": 28,
+      "csa_class": "AL",
       "aliases": [
         "push-in earplug",
         "no-roll foam",
         "3M 318"
       ],
-      "notes": "No-roll foam earplug",
-      "csa_class": null
+      "notes": "No-roll foam earplug"
     },
     {
       "id": "howard-leight-max",
@@ -104,14 +105,14 @@
       "model": "MAX",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": "AL",
       "aliases": [
         "Leight MAX",
         "Howard Leight max",
         "HL max",
         "orange foam earplug"
       ],
-      "notes": "High-attenuation foam earplug",
-      "csa_class": null
+      "notes": "High-attenuation foam earplug"
     },
     {
       "id": "howard-leight-max-lite",
@@ -119,12 +120,12 @@
       "model": "MAX-Lite",
       "type": "earplug",
       "nrr": 30,
+      "csa_class": "AL",
       "aliases": [
         "MAX lite",
         "Howard Leight max lite"
       ],
-      "notes": "Smaller diameter foam for smaller ear canals",
-      "csa_class": null
+      "notes": "Smaller diameter foam for smaller ear canals"
     },
     {
       "id": "howard-leight-laser-lite",
@@ -132,13 +133,13 @@
       "model": "Laser Lite",
       "type": "earplug",
       "nrr": 32,
+      "csa_class": "AL",
       "aliases": [
         "laser lite",
         "pink yellow earplug",
         "HL laser"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "howard-leight-quiet",
@@ -146,12 +147,12 @@
       "model": "Quiet",
       "type": "earplug",
       "nrr": 26,
+      "csa_class": "AL",
       "aliases": [
         "Howard Leight quiet reusable",
         "reusable corded"
       ],
-      "notes": "Reusable corded earplug",
-      "csa_class": null
+      "notes": "Reusable corded earplug"
     },
     {
       "id": "moldex-spark-plugs",
@@ -159,12 +160,12 @@
       "model": "Spark Plugs",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": "AL",
       "aliases": [
         "spark plugs earplug",
         "Moldex sparkplug"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "moldex-meteors",
@@ -172,12 +173,12 @@
       "model": "Meteors",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": null,
       "aliases": [
         "Moldex meteor",
         "pura-fit"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "CSA class not confirmed — not listed on Moldex Canadian product page. Verify with manufacturer."
     },
     {
       "id": "moldex-pura-fit",
@@ -185,13 +186,13 @@
       "model": "Pura-Fit",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": "AL",
       "aliases": [
         "Pura Fit",
         "Moldex purafit",
         "green foam earplug"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "moldex-softies",
@@ -199,11 +200,11 @@
       "model": "Softies",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": "AL",
       "aliases": [
         "Moldex softie"
       ],
-      "notes": "Smaller diameter — suitable for smaller ear canals",
-      "csa_class": null
+      "notes": "Smaller diameter — suitable for smaller ear canals"
     },
     {
       "id": "uvex-x-fit",
@@ -211,12 +212,12 @@
       "model": "X-fit",
       "type": "earplug",
       "nrr": 33,
+      "csa_class": null,
       "aliases": [
         "uvex xfit",
         "uvex earplug"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "CSA class not confirmed — uvex products appear to carry European SNR certification only. Verify NRR and CSA class with Canadian distributor."
     },
     {
       "id": "3m-optime-105",
@@ -224,14 +225,14 @@
       "model": "Peltor Optime 105",
       "type": "earmuff",
       "nrr": 30,
+      "csa_class": "AL",
       "aliases": [
         "Optime 105",
         "Peltor 105",
         "3M optime",
         "over-ear 105"
       ],
-      "notes": "High-attenuation cap-mount or headband earmuff",
-      "csa_class": null
+      "notes": "High-attenuation cap-mount or headband earmuff"
     },
     {
       "id": "3m-optime-101",
@@ -239,13 +240,13 @@
       "model": "Peltor Optime 101",
       "type": "earmuff",
       "nrr": 26,
+      "csa_class": "A",
       "aliases": [
         "Optime 101",
         "Peltor 101",
         "3M peltor"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-peltor-x5a",
@@ -253,13 +254,13 @@
       "model": "Peltor X5A",
       "type": "earmuff",
       "nrr": 31,
+      "csa_class": "AL",
       "aliases": [
         "X5A",
         "Peltor X5",
         "3M X5A"
       ],
-      "notes": "High-attenuation headband earmuff",
-      "csa_class": null
+      "notes": "High-attenuation headband earmuff"
     },
     {
       "id": "3m-peltor-x4a",
@@ -267,13 +268,13 @@
       "model": "Peltor X4A",
       "type": "earmuff",
       "nrr": 27,
+      "csa_class": "AL",
       "aliases": [
         "X4A",
         "Peltor X4",
         "3M X4"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-peltor-x3a",
@@ -281,13 +282,13 @@
       "model": "Peltor X3A",
       "type": "earmuff",
       "nrr": 28,
+      "csa_class": "AL",
       "aliases": [
         "X3A",
         "Peltor X3",
         "3M X3"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-peltor-x2a",
@@ -295,13 +296,13 @@
       "model": "Peltor X2A",
       "type": "earmuff",
       "nrr": 24,
+      "csa_class": "A",
       "aliases": [
         "X2A",
         "Peltor X2",
         "3M X2"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "3m-peltor-h10a",
@@ -309,13 +310,13 @@
       "model": "Peltor H10A",
       "type": "earmuff",
       "nrr": 30,
+      "csa_class": "AL",
       "aliases": [
         "H10A",
         "Peltor H10",
         "3M H10"
       ],
-      "notes": "Classic cap-mount earmuff, common in construction and industry",
-      "csa_class": null
+      "notes": "Classic cap-mount earmuff, common in construction and industry"
     },
     {
       "id": "howard-leight-leightning-l3",
@@ -323,13 +324,13 @@
       "model": "Leightning L3",
       "type": "earmuff",
       "nrr": 30,
+      "csa_class": null,
       "aliases": [
         "L3 earmuff",
         "leightning L3",
         "Howard Leight L3"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "CSA class not confirmed — primarily marketed as a shooting/sport earmuff; Canadian CSA listing not found. Verify with manufacturer."
     },
     {
       "id": "howard-leight-leightning-l1",
@@ -337,12 +338,12 @@
       "model": "Leightning L1",
       "type": "earmuff",
       "nrr": 25,
+      "csa_class": "B",
       "aliases": [
         "L1 earmuff",
         "leightning L1"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": null
     },
     {
       "id": "moldex-m4",
@@ -350,11 +351,11 @@
       "model": "M4",
       "type": "earmuff",
       "nrr": 27,
+      "csa_class": null,
       "aliases": [
         "Moldex M4 earmuff"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "TODO_NORM: Moldex current earmuff lineup is MX-5 (NRR 27), MX-6 (NRR 30), MX-7 (NRR 28). Confirm whether 'M4' is the correct model name and NRR 27 matches the Canadian product. CSA class not confirmed."
     },
     {
       "id": "moldex-m6",
@@ -362,11 +363,11 @@
       "model": "M6",
       "type": "earmuff",
       "nrr": 29,
+      "csa_class": null,
       "aliases": [
         "Moldex M6 earmuff"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "TODO_NORM: Moldex MX-6 is NRR 30, not 29. Confirm whether 'M6' is the correct model name and whether NRR 29 is accurate. CSA class not confirmed."
     },
     {
       "id": "honeywell-act",
@@ -374,12 +375,12 @@
       "model": "ACT",
       "type": "earmuff",
       "nrr": 28,
+      "csa_class": null,
       "aliases": [
         "Honeywell ACT earmuff",
         "Sperian ACT"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "CSA class not confirmed — product not found in current Canadian CSA listings. Verify with manufacturer."
     },
     {
       "id": "uvex-k-2h",
@@ -387,12 +388,12 @@
       "model": "K2H",
       "type": "earmuff",
       "nrr": 26,
+      "csa_class": null,
       "aliases": [
         "uvex K2H",
         "uvex earmuff"
       ],
-      "notes": null,
-      "csa_class": null
+      "notes": "CSA class not confirmed — uvex products appear to carry European SNR certification only. Verify NRR and CSA class with Canadian distributor."
     }
   ]
 }
