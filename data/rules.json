@@ -7,14 +7,14 @@
     "SK":  { "name": "Saskatchewan",                   "limit_dba": 85, "exchange_rate_db": 3 },
     "MB":  { "name": "Manitoba",                       "limit_dba": 85, "exchange_rate_db": 3 },
     "ON":  { "name": "Ontario",                        "limit_dba": 85, "exchange_rate_db": 3 },
-    "QC":  { "name": "Quebec",                         "limit_dba": 85, "exchange_rate_db": 3 },
+    "QC":  { "name": "Quebec",                         "limit_dba": 85, "exchange_rate_db": 3, "TODO_NORM": "Verify: Quebec RSST may use 90 dBA / 5 dB exchange rate rather than 85 dBA / 3 dB." },
     "NB":  { "name": "New Brunswick",                  "limit_dba": 85, "exchange_rate_db": 3 },
     "NS":  { "name": "Nova Scotia",                    "limit_dba": 85, "exchange_rate_db": 3 },
     "PE":  { "name": "Prince Edward Island",           "limit_dba": 85, "exchange_rate_db": 3 },
     "NL":  { "name": "Newfoundland and Labrador",      "limit_dba": 85, "exchange_rate_db": 3 },
-    "YT":  { "name": "Yukon",                          "limit_dba": 85, "exchange_rate_db": 3 },
-    "NT":  { "name": "Northwest Territories",          "limit_dba": 85, "exchange_rate_db": 3 },
-    "NU":  { "name": "Nunavut",                        "limit_dba": 85, "exchange_rate_db": 3 },
+    "YT":  { "name": "Yukon",                          "limit_dba": 85, "exchange_rate_db": 3, "TODO_NORM": "Verify: federally regulated workers in YT may be subject to the 87 dBA CLC limit rather than 85 dBA." },
+    "NT":  { "name": "Northwest Territories",          "limit_dba": 85, "exchange_rate_db": 3, "TODO_NORM": "Verify: federally regulated workers in NT may be subject to the 87 dBA CLC limit rather than 85 dBA." },
+    "NU":  { "name": "Nunavut",                        "limit_dba": 85, "exchange_rate_db": 3, "TODO_NORM": "Verify: federally regulated workers in NU may be subject to the 87 dBA CLC limit rather than 85 dBA." },
     "FED": { "name": "Federal (Canada Labour Code)",   "limit_dba": 87, "exchange_rate_db": 3 }
   },
 
@@ -34,9 +34,9 @@
     },
     "dual": {
       "bonus_nrr": 5,
-      "factor": 0.65,
       "ref": "CSA Z94.2 s.9.2",
-      "formula": "Lprot = Lex + 3 - ((higher_NRR + 5) × 0.65)"
+      "formula": "Lprot = Lex + 3 - (max(NRR_plug × 0.50, NRR_muff × 0.70) + 5)",
+      "TODO_NORM": "Confirm dual formula: the +5 dB bonus is applied after derating each device by its own type factor and taking the better result. Verify this matches your copy of Z94.2 s.9.2."
     },
     "TODO_NORM_slc80": "SLC80 derating formula not yet confirmed — stub only. Do not expose SLC80 input until this is resolved."
   },
@@ -85,8 +85,9 @@
   ],
 
   "adequacy": {
-    "over_protected_below": 75,
+    "over_protected_below": 70,
     "caution_margin_db": 3,
-    "_bands": "over-protected: Lprot < 75 (blue); adequate: 75 ≤ Lprot ≤ limit (green); caution: limit < Lprot ≤ limit+3 (yellow); danger: Lprot > limit+3 (red)"
+    "_bands": "over-protected: Lprot < 70 (blue); adequate: 70 ≤ Lprot ≤ limit (green); caution: limit < Lprot ≤ limit+3 (yellow); danger: Lprot > limit+3 (red)",
+    "_over_protected_note": "Threshold lowered from 75 to 70 dBA. EN 458 treats 70–80 dBA as acceptable. Flagging 74 dBA as over-protected could pressure users toward inadequate protection."
   }
 }

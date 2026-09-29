@@ -10,6 +10,8 @@ const S = {
   nrr2:     null,
   hpd1Name: '',
   hpd2Name: '',
+  hpd1Type: 'earplug',
+  hpd2Type: 'earmuff',
   jurCode:  'BC',
 };
 
@@ -217,7 +219,7 @@ function setHpdType(t) {
   const notes = {
     earplug: 'CSA Z94.2: earplugs derated at 50%',
     earmuff: 'CSA Z94.2: earmuffs derated at 70%',
-    dual:    'CSA Z94.2: 65% of (higher NRR + 5)',
+    dual:    'CSA Z94.2: each device derated by type (plug 50%, muff 70%); +5 dB added to the better result',
   };
   document.getElementById('deratingNote').textContent = notes[t];
   recalc();
@@ -267,6 +269,7 @@ function selectHpd(id, slot) {
   if (slot === 1) {
     S.nrr1     = p.nrr;
     S.hpd1Name = p.brand + ' ' + p.model;
+    S.hpd1Type = p.type;
     document.getElementById('nrrInput1').value = p.nrr;
     document.getElementById('hpdSearch1').value = '';
     document.getElementById('hpdResults1').classList.remove('open');
@@ -274,10 +277,13 @@ function selectHpd(id, slot) {
     document.getElementById('hpdChip1Meta').textContent = p.type === 'earplug' ? 'Earplug' : 'Earmuff';
     document.getElementById('hpdChip1Nrr').textContent  = 'NRR ' + p.nrr;
     document.getElementById('hpdChip1').classList.add('visible');
-    setHpdType(p.type);
+    // In dual mode the top-level type selector must stay on 'dual'; only switch it for single-device selection
+    if (S.hpdType !== 'dual') setHpdType(p.type);
+    else recalc();
   } else {
     S.nrr2     = p.nrr;
     S.hpd2Name = p.brand + ' ' + p.model;
+    S.hpd2Type = p.type;
     document.getElementById('nrrInput2').value = p.nrr;
     document.getElementById('hpdSearch2').value = '';
     document.getElementById('hpdResults2').classList.remove('open');
@@ -291,11 +297,11 @@ function selectHpd(id, slot) {
 
 function clearHpd(slot) {
   if (slot === 1) {
-    S.nrr1 = null; S.hpd1Name = '';
+    S.nrr1 = null; S.hpd1Name = ''; S.hpd1Type = 'earplug';
     document.getElementById('nrrInput1').value = '';
     document.getElementById('hpdChip1').classList.remove('visible');
   } else {
-    S.nrr2 = null; S.hpd2Name = '';
+    S.nrr2 = null; S.hpd2Name = ''; S.hpd2Type = 'earmuff';
     document.getElementById('nrrInput2').value = '';
     document.getElementById('hpdChip2').classList.remove('visible');
   }
@@ -330,7 +336,7 @@ function recalc() {
   }
 
   const jur   = rules.jurisdictions[S.jurCode];
-  const lprot = computeLprot(S.lex, S.weighting, S.hpdType, nrr1, nrr2, rules.derating);
+  const lprot = computeLprot(S.lex, S.weighting, S.hpdType, nrr1, nrr2, rules.derating, S.hpd1Type, S.hpd2Type);
   const verdict = getVerdict(lprot, jur.limit_dba, rules.adequacy);
   const csa   = getCsaClass(S.lex, rules.csa_classes);
 
@@ -340,7 +346,7 @@ function recalc() {
     case 'over-protected':
       cssClass    = 'over';
       pillText    = '↓ Over-protected';
-      verdictText = 'Protection level is very high — the worker may have difficulty hearing safety signals or communicating with co-workers. Consider a lower-attenuation device.';
+      verdictText = 'Protected level is below 70 dBA — attenuation may be higher than needed. Consider whether a lower-rated device would still protect while preserving situational awareness and communication.';
       break;
     case 'adequate':
       cssClass    = 'adequate';
@@ -365,8 +371,15 @@ function recalc() {
   } else if (S.hpdType === 'earmuff') {
     derateDesc = `NRR ${nrr1} × 70% = ${(nrr1 * 0.70).toFixed(1)} dB`;
   } else {
-    const higher = Math.max(nrr1, nrr2);
-    derateDesc = `(NRR ${higher} + 5) × 65% = ${((higher + 5) * 0.65).toFixed(1)} dB`;
+    const eff1 = nrr1 * rules.derating[S.hpd1Type].factor;
+    const eff2 = nrr2 * rules.derating[S.hpd2Type].factor;
+    const betterIsSlot2 = eff2 > eff1;
+    const betterType = betterIsSlot2 ? S.hpd2Type : S.hpd1Type;
+    const betterNrr  = betterIsSlot2 ? nrr2 : nrr1;
+    const betterEff  = Math.max(eff1, eff2);
+    const betterPct  = betterType === 'earmuff' ? '70%' : '50%';
+    const betterLabel = betterType === 'earmuff' ? 'Muff' : 'Plug';
+    derateDesc = `${betterLabel} NRR ${betterNrr} × ${betterPct} = ${betterEff.toFixed(1)} dB (best) + 5 dB dual bonus`;
   }
 
   // HPD and NRR description
@@ -385,8 +398,8 @@ function recalc() {
   document.getElementById('resultValue').textContent   = lprot.toFixed(1);
   document.getElementById('verdictPill').textContent   = pillText;
   document.getElementById('verdictText').textContent   = verdictText;
-  document.getElementById('csaClassVal').textContent   = 'Class ' + csa.class;
-  document.getElementById('csaGradeNote').textContent  = `Grade ${csa.grade} · for ${S.lex.toFixed(1)} dBA exposure`;
+  document.getElementById('csaClassVal').textContent   = 'Class ' + csa.class + ' required';
+  document.getElementById('csaGradeNote').textContent  = `Grade ${csa.grade} HPD needed for ${S.lex.toFixed(1)} dBA · verdict above confirms whether your device passes`;
 
   document.getElementById('brJur').textContent       = jur.name;
   document.getElementById('brLex').textContent       = S.lex.toFixed(1) + ' dBA';

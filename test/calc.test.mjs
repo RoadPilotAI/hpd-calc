@@ -53,12 +53,24 @@ test('Case 4 — earmuff dBA: Lex 85, NRR 30 → 67.0 dBA, over-protected (BC)',
   assert.strictEqual(v.color, 'blue');
 });
 
-test('Case 5 — dual dBA: Lex 108, EP NRR 33 + EM NRR 29 → 86.3 dBA, caution (BC)', () => {
-  const lprot = computeLprot(108, 'dBA', 'dual', 33, 29, derating);
-  assert.strictEqual(r1(lprot), 86.3);
+test('Case 5 — dual dBA: Lex 108, EP NRR 33 + EM NRR 29 → 85.7 dBA, caution (BC)', () => {
+  // Muff eff = 29 × 0.70 = 20.3 dB beats plug eff = 33 × 0.50 = 16.5 dB
+  // Lprot = 108 + 3 − (20.3 + 5) = 85.7
+  const lprot = computeLprot(108, 'dBA', 'dual', 33, 29, derating, 'earplug', 'earmuff');
+  assert.strictEqual(r1(lprot), 85.7);
   const v = getVerdict(lprot, jurisdictions.BC.limit_dba, adequacy);
   assert.strictEqual(v.status, 'caution');
   assert.strictEqual(v.color, 'yellow');
+});
+
+test('Case 5b — dual: muff NRR 25 beats plug NRR 29 due to derating difference', () => {
+  // Plug eff = 29 × 0.50 = 14.5 dB; Muff eff = 25 × 0.70 = 17.5 dB → muff wins
+  // Lprot = 100 + 3 − (17.5 + 5) = 80.5 dBA, adequate
+  const lprot = computeLprot(100, 'dBA', 'dual', 29, 25, derating, 'earplug', 'earmuff');
+  assert.strictEqual(r1(lprot), 80.5);
+  const v = getVerdict(lprot, jurisdictions.BC.limit_dba, adequacy);
+  assert.strictEqual(v.status, 'adequate');
+  assert.strictEqual(v.color, 'green');
 });
 
 test('Case 6 — earplug dBC: Lex 96, NRR 26 → 83.0 dBA, adequate (BC)', () => {

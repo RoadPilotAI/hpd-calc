@@ -27,7 +27,7 @@ export function computeLex(tasks) {
  * @param {object} derating - derating object from rules.json
  * @returns {number} Lprot in dBA
  */
-export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating) {
+export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating, type1 = 'earplug', type2 = 'earmuff') {
   const correction = weighting === 'dBA' ? 3 : 0;
 
   if (hpdType === 'earplug') {
@@ -37,8 +37,12 @@ export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating) {
     return lex + correction - (nrr1 * derating.earmuff.factor);
   }
   if (hpdType === 'dual') {
-    const higher = Math.max(nrr1, nrr2 ?? 0);
-    return lex + correction - ((higher + derating.dual.bonus_nrr) * derating.dual.factor);
+    // Each device is derated by its own type factor first, then +5 dB is added to
+    // the better (higher) effective attenuation. A muff with NRR 29 (20.3 dB effective)
+    // outranks a plug with NRR 33 (16.5 dB effective) — raw NRR alone is misleading.
+    const eff1 = nrr1 * derating[type1].factor;
+    const eff2 = (nrr2 ?? 0) * derating[type2].factor;
+    return lex + correction - (Math.max(eff1, eff2) + derating.dual.bonus_nrr);
   }
   throw new Error(`Unknown HPD type: ${hpdType}`);
 }
