@@ -1,4 +1,4 @@
-const CACHE = 'hpd-calc-v1';
+const CACHE = 'hpd-calc-v2';
 const PRECACHE = [
   '/',
   '/index.html',

@@ -103,12 +103,12 @@ function setMode(m) {
   document.getElementById('modeOccup').classList.toggle('active', m === 'occup');
   document.getElementById('modeMeasured').classList.toggle('active', m === 'measured');
   document.getElementById('occupSection').style.display    = m === 'occup'    ? '' : 'none';
-  document.getElementById('measuredSection').style.display = m === 'measured' ? '' : 'none';
+  document.getElementById('measuredSection').style.display = m === 'measured' ? 'block' : 'none';
   if (m === 'occup') {
     const chip = document.getElementById('occupChip');
     S.lex = chip.classList.contains('visible') ? parseFloat(chip.dataset.dba) || null : null;
   } else {
-    S.lex = null;
+    onLexInput();
   }
   recalc();
 }
@@ -428,7 +428,7 @@ function recalc() {
   }
 
   document.getElementById('brJur').textContent       = jur.name;
-  document.getElementById('brLex').textContent       = S.lex.toFixed(1) + ' dBA';
+  document.getElementById('brLex').textContent       = S.lex.toFixed(1) + ' ' + S.weighting;
   document.getElementById('brCorr').textContent      = corrDesc;
   document.getElementById('brHpd').textContent       = hpdDesc;
   document.getElementById('brNrr').textContent       = nrrDesc;
