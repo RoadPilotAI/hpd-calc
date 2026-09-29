@@ -2,8 +2,7 @@ const CACHE = 'hpd-calc-v1';
 const PRECACHE = [
   '/',
   '/index.html',
-  '/favicon.svg',
-  '/logo.svg',
+  '/icon.png',
   '/about.html',
   '/src/app.js',
   '/src/calc.js',
