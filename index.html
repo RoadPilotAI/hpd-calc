@@ -644,6 +644,7 @@
           <input type="number" id="nrrInput2" placeholder="27" min="1" max="40" />
           <span class="nrr-unit">NRR</span>
         </div>
+        <div style="font-size:11px;color:var(--gray-500);margin-top:4px;">Both devices required — result will appear when both NRRs are entered.</div>
       </div>
     </div>
   </div>
@@ -670,6 +671,8 @@
         </div>
         <div class="csa-row-value" id="csaClassVal">—</div>
       </div>
+      <div id="lSuffixNote" style="display:none;font-size:12px;color:var(--gray-500);margin-top:6px;padding:0 2px;line-height:1.5;"></div>
+      <div id="dualClassCaution" style="display:none;font-size:12px;color:var(--yellow-mid);margin-top:6px;padding:0 2px;line-height:1.5;"></div>
 
       <button class="breakdown-toggle" id="breakdownToggle">
         <span class="arr">▶</span> Show calculation
@@ -683,6 +686,7 @@
         <div class="br-row"><span class="br-key">Derating (CSA Z94.2)</span> <span class="br-val" id="brDerate">—</span></div>
         <div class="br-row"><span class="br-key">Protected level</span>      <span class="br-val" id="brProtected">—</span></div>
         <div class="br-row"><span class="br-key">Regulatory limit</span>     <span class="br-val" id="brLimit">—</span></div>
+        <div class="br-row" id="brPeakRow" style="display:none;"><span class="br-key">Peak limit</span>           <span class="br-val" id="brPeak">—</span></div>
       </div>
 
       <div class="disclaimer">

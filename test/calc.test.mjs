@@ -1,5 +1,5 @@
 /**
- * Unit tests for src/calc.js — CSA Z94.2 calculation engine.
+ * Unit tests for src/calc.js — CSA Z94.2-14 calculation engine.
  * Test cases approved by Norm (industrial audiometric technician, BC).
  * Run with: npm test
  */
@@ -53,24 +53,13 @@ test('Case 4 — earmuff dBA: Lex 85, NRR 30 → 67.0 dBA, over-protected (BC)',
   assert.strictEqual(v.color, 'blue');
 });
 
-test('Case 5 — dual dBA: Lex 108, EP NRR 33 + EM NRR 29 → 85.7 dBA, caution (BC)', () => {
-  // Muff eff = 29 × 0.70 = 20.3 dB beats plug eff = 33 × 0.50 = 16.5 dB
-  // Lprot = 108 + 3 − (20.3 + 5) = 85.7
-  const lprot = computeLprot(108, 'dBA', 'dual', 33, 29, derating, 'earplug', 'earmuff');
-  assert.strictEqual(r1(lprot), 85.7);
+test('Case 5 — dual dBA: Lex 108, EP NRR 33 + EM NRR 29 → 86.3 dBA, caution (BC)', () => {
+  // CSA Z94.2-14 s.9: (NRR_higher + 5) × 0.65 → (33 + 5) × 0.65 = 24.7; Lprot = 108 + 3 − 24.7 = 86.3
+  const lprot = computeLprot(108, 'dBA', 'dual', 33, 29, derating);
+  assert.strictEqual(r1(lprot), 86.3);
   const v = getVerdict(lprot, jurisdictions.BC.limit_dba, adequacy);
   assert.strictEqual(v.status, 'caution');
   assert.strictEqual(v.color, 'yellow');
-});
-
-test('Case 5b — dual: muff NRR 25 beats plug NRR 29 due to derating difference', () => {
-  // Plug eff = 29 × 0.50 = 14.5 dB; Muff eff = 25 × 0.70 = 17.5 dB → muff wins
-  // Lprot = 100 + 3 − (17.5 + 5) = 80.5 dBA, adequate
-  const lprot = computeLprot(100, 'dBA', 'dual', 29, 25, derating, 'earplug', 'earmuff');
-  assert.strictEqual(r1(lprot), 80.5);
-  const v = getVerdict(lprot, jurisdictions.BC.limit_dba, adequacy);
-  assert.strictEqual(v.status, 'adequate');
-  assert.strictEqual(v.color, 'green');
 });
 
 test('Case 6 — earplug dBC: Lex 96, NRR 26 → 83.0 dBA, adequate (BC)', () => {
@@ -89,6 +78,13 @@ test('Case 7 — earmuff dBA Federal: Lex 92, NRR 25 → 77.5 dBA, adequate (FED
   assert.strictEqual(v.color, 'green');
 });
 
+test('dual: missing nrr2 throws', () => {
+  assert.throws(
+    () => computeLprot(100, 'dBA', 'dual', 29, null, derating),
+    /requires both NRR/
+  );
+});
+
 // ─── computeLex ─────────────────────────────────────────────────────────────
 
 test('computeLex — single task full shift: 95 dBA × 8 h → 95.0 dBA', () => {
@@ -105,39 +101,69 @@ test('computeLex — two equal tasks split shift: 90 dBA × 4 h + 90 dBA × 4 h 
 });
 
 // ─── getCsaClass ─────────────────────────────────────────────────────────────
+// Bands (CSA Z94.2-14): Lex < 90 → C; 90–95 → B; 95 < Lex ≤ 105 → A; > 105 → Dual
 
-test('getCsaClass — 85 dBA → Class C / Grade 1', () => {
+test('getCsaClass — 85 dBA → Class C', () => {
   const c = getCsaClass(85, csaClasses);
   assert.strictEqual(c.class, 'C');
-  assert.strictEqual(c.grade, 1);
 });
 
-test('getCsaClass — 90 dBA → Class C / Grade 1 (boundary: ≤90)', () => {
-  const c = getCsaClass(90, csaClasses);
+test('getCsaClass — 89.9 dBA → Class C (just below 90 boundary)', () => {
+  const c = getCsaClass(89.9, csaClasses);
   assert.strictEqual(c.class, 'C');
-  assert.strictEqual(c.grade, 1);
 });
 
-test('getCsaClass — 91 dBA → Class B / Grade 2', () => {
+test('getCsaClass — 90 dBA → Class B (boundary inclusive to B)', () => {
+  const c = getCsaClass(90, csaClasses);
+  assert.strictEqual(c.class, 'B');
+});
+
+test('getCsaClass — 91 dBA → Class B', () => {
   const c = getCsaClass(91, csaClasses);
   assert.strictEqual(c.class, 'B');
-  assert.strictEqual(c.grade, 2);
 });
 
-test('getCsaClass — 100 dBA → Class A / Grade 3 (boundary: ≤100)', () => {
+test('getCsaClass — 95 dBA → Class B (boundary inclusive to B)', () => {
+  const c = getCsaClass(95, csaClasses);
+  assert.strictEqual(c.class, 'B');
+});
+
+test('getCsaClass — 95.1 dBA → Class A (just above B upper boundary)', () => {
+  const c = getCsaClass(95.1, csaClasses);
+  assert.strictEqual(c.class, 'A');
+});
+
+test('getCsaClass — 100 dBA → Class A', () => {
   const c = getCsaClass(100, csaClasses);
   assert.strictEqual(c.class, 'A');
-  assert.strictEqual(c.grade, 3);
 });
 
-test('getCsaClass — 102 dBA → Class A / Grade 4', () => {
-  const c = getCsaClass(102, csaClasses);
+test('getCsaClass — 105 dBA → Class A (boundary inclusive to A)', () => {
+  const c = getCsaClass(105, csaClasses);
   assert.strictEqual(c.class, 'A');
-  assert.strictEqual(c.grade, 4);
 });
 
-test('getCsaClass — 106 dBA → Dual / Grade 5', () => {
+test('getCsaClass — 105.1 dBA → Dual (just above A upper boundary)', () => {
+  const c = getCsaClass(105.1, csaClasses);
+  assert.strictEqual(c.class, 'Dual');
+});
+
+test('getCsaClass — 106 dBA → Dual', () => {
   const c = getCsaClass(106, csaClasses);
   assert.strictEqual(c.class, 'Dual');
-  assert.strictEqual(c.grade, 5);
+});
+
+test('getCsaClass — Class B returns l_suffix_note', () => {
+  const c = getCsaClass(92, csaClasses);
+  assert.ok(c.l_suffix_note && c.l_suffix_note.includes('BL'));
+});
+
+test('getCsaClass — Class A returns l_suffix_note', () => {
+  const c = getCsaClass(100, csaClasses);
+  assert.ok(c.l_suffix_note && c.l_suffix_note.includes('AL'));
+});
+
+test('getCsaClass — Dual returns dual_min_note', () => {
+  const c = getCsaClass(108, csaClasses);
+  assert.ok(c.dual_min_note && c.dual_min_note.includes('Class A'));
 });

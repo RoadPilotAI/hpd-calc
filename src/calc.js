@@ -19,15 +19,20 @@ export function computeLex(tasks) {
 
 /**
  * Compute the estimated protected level at the ear (Lprot).
- * @param {number} lex - Lex,8h in dBA (or dBC — see weighting param)
+ * Formulas from CSA Z94.2-14 s.9.
+ *   Earplug: Lex + 3 − (NRR × 0.50)
+ *   Earmuff: Lex + 3 − (NRR × 0.70)
+ *   Dual:    Lex + 3 − ((NRR_higher + 5) × 0.65)
+ * The +3 spectral correction applies only when weighting === 'dBA'.
+ * @param {number} lex
  * @param {'dBA'|'dBC'} weighting
  * @param {'earplug'|'earmuff'|'dual'} hpdType
  * @param {number} nrr1 - NRR of primary HPD
- * @param {number|null} nrr2 - NRR of secondary HPD (dual only)
+ * @param {number|null} nrr2 - NRR of secondary HPD (dual only; must not be null)
  * @param {object} derating - derating object from rules.json
  * @returns {number} Lprot in dBA
  */
-export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating, type1 = 'earplug', type2 = 'earmuff') {
+export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating) {
   const correction = weighting === 'dBA' ? 3 : 0;
 
   if (hpdType === 'earplug') {
@@ -37,22 +42,19 @@ export function computeLprot(lex, weighting, hpdType, nrr1, nrr2, derating, type
     return lex + correction - (nrr1 * derating.earmuff.factor);
   }
   if (hpdType === 'dual') {
-    // Each device is derated by its own type factor first, then +5 dB is added to
-    // the better (higher) effective attenuation. A muff with NRR 29 (20.3 dB effective)
-    // outranks a plug with NRR 33 (16.5 dB effective) — raw NRR alone is misleading.
-    const eff1 = nrr1 * derating[type1].factor;
-    const eff2 = (nrr2 ?? 0) * derating[type2].factor;
-    return lex + correction - (Math.max(eff1, eff2) + derating.dual.bonus_nrr);
+    if (nrr2 == null) throw new Error('Dual protection requires both NRR values.');
+    const higher = Math.max(nrr1, nrr2);
+    return lex + correction - ((higher + derating.dual.bonus_nrr) * derating.dual.factor);
   }
   throw new Error(`Unknown HPD type: ${hpdType}`);
 }
 
 /**
  * Determine the adequacy verdict for a computed Lprot.
- * @param {number} lprot - protected level at ear in dBA
- * @param {number} jurLimit - regulatory limit from rules.json jurisdictions
- * @param {object} adequacy - adequacy object from rules.json
- * @returns {{ status: 'over-protected'|'adequate'|'caution'|'danger', color: 'blue'|'green'|'yellow'|'red' }}
+ * @param {number} lprot
+ * @param {number} jurLimit
+ * @param {object} adequacy
+ * @returns {{ status: 'over-protected'|'adequate'|'caution'|'danger', color: string }}
  */
 export function getVerdict(lprot, jurLimit, adequacy) {
   if (lprot < adequacy.over_protected_below) {
@@ -68,19 +70,31 @@ export function getVerdict(lprot, jurLimit, adequacy) {
 }
 
 /**
- * Get the CSA class and grade recommendation for a given Lex.
- * Bands are ≤ lex_max and (> lex_min or lex_min is null).
+ * Get the CSA Z94.2-14 required protection class for a given Lex.
+ * Bands (from rules.json csa_classes, checked in order — first match wins):
+ *   Class C  — Lex < 90 dBA
+ *   Class B  — 90 ≤ Lex ≤ 95 dBA
+ *   Class A  — 95 < Lex ≤ 105 dBA
+ *   Dual     — Lex > 105 dBA
+ * Lower bound is always inclusive (lex >= lex_min).
+ * Upper bound is inclusive when band.max_inclusive === true, exclusive otherwise.
  * @param {number} lex
- * @param {Array} csaClasses - csa_classes array from rules.json
- * @returns {{ class: string, grade: number|string, label: string }}
+ * @param {Array} csaClasses
+ * @returns {{ class: string, label: string, l_suffix_note?: string, dual_min_note?: string }}
  */
 export function getCsaClass(lex, csaClasses) {
   for (const band of csaClasses) {
-    const aboveMin = band.lex_min === null || lex > band.lex_min;
-    const atOrBelowMax = band.lex_max === null || lex <= band.lex_max;
+    const aboveMin    = band.lex_min === null || lex >= band.lex_min;
+    const atOrBelowMax = band.lex_max === null ||
+      (band.max_inclusive ? lex <= band.lex_max : lex < band.lex_max);
     if (aboveMin && atOrBelowMax) {
-      return { class: band.class, grade: band.grade, label: band.label };
+      return {
+        class:         band.class,
+        label:         band.label,
+        l_suffix_note: band.l_suffix_note  ?? null,
+        dual_min_note: band.dual_min_note  ?? null,
+      };
     }
   }
-  return { class: 'Unknown', grade: 'Unknown', label: 'Unknown' };
+  return { class: 'Unknown', label: 'Unknown', l_suffix_note: null, dual_min_note: null };
 }

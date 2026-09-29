@@ -124,22 +124,24 @@
     <h3>Adequacy thresholds</h3>
     <p>Results are classified based on the estimated protected level (Lprot) compared to the applicable regulatory limit:</p>
     <ul>
-      <li><strong>Over-protected</strong> — Lprot &lt; 75 dBA. Attenuation is excessive; may impair communication or situational awareness.</li>
-      <li><strong>Adequate</strong> — Lprot between 75 dBA and the regulatory limit.</li>
+      <li><strong>Over-protected</strong> — Lprot &lt; 70 dBA. Attenuation may be higher than needed; consider whether a lower-rated device would still protect while preserving situational awareness.</li>
+      <li><strong>Adequate</strong> — Lprot between 70 dBA and the regulatory limit.</li>
       <li><strong>Caution</strong> — Lprot within 3 dB above the regulatory limit.</li>
       <li><strong>Under-protected</strong> — Lprot more than 3 dB above the regulatory limit.</li>
     </ul>
-    <p>Regulatory limits: 85 dBA for all provinces and territories; 87 dBA for federally regulated workplaces (Canada Labour Code).</p>
+    <p>Regulatory limits: 85 dBA Lex for all provinces and territories; 87 dBA for federally regulated workplaces (Canada Labour Code).</p>
+    <p>Peak limits (where specified in provincial OHS regulations): 140 dBC for BC, QC, NB, NS, NL, YT, NT, and NU. No peak limit specified in the regulations for AB, SK, MB, ON, PE, and Federal.</p>
 
-    <h3>CSA class / grade</h3>
-    <p>The minimum required HPD class is determined from the noise exposure (Lex) per CSA Z94.2:</p>
+    <h3>CSA Z94.2 class selection</h3>
+    <p>The minimum required HPD class is determined from the noise exposure (Lex) per CSA Z94.2-14:</p>
     <ul>
-      <li>Class C / Grade 1 — Lex ≤ 90 dBA</li>
-      <li>Class B / Grade 2 — Lex 91–95 dBA</li>
-      <li>Class A / Grade 3 — Lex 96–100 dBA</li>
-      <li>Class A / Grade 4 — Lex 101–105 dBA</li>
-      <li>Dual / Grade 5 — Lex &gt; 105 dBA</li>
+      <li><strong>Class C</strong> — Lex &lt; 90 dBA</li>
+      <li><strong>Class B</strong> — 90 ≤ Lex ≤ 95 dBA. For low-frequency noise sources (large diesel engines, compressors), consider a BL-rated device (≥20 dB attenuation at 125 Hz).</li>
+      <li><strong>Class A</strong> — 95 &lt; Lex ≤ 105 dBA. For low-frequency noise, consider an AL-rated device.</li>
+      <li><strong>Dual protection required</strong> — Lex &gt; 105 dBA. Minimum: Class A earplug + Class B earmuff (CSA Z94.2-14 s.9).</li>
     </ul>
+    <p>The L suffix (AL, BL) denotes devices with at least 20 dB low-frequency attenuation at 125 Hz. It does not affect the Lprot calculation — it is a selection criterion for environments with dominant low-frequency noise.</p>
+    <p>The CSA class tells you what <em>class</em> of HPD is needed for the exposure. The adequacy verdict (above) tells you whether the specific NRR of your chosen device achieves a protected level below the regulatory limit. Both checks are relevant: a high-NRR device may pass the verdict while still being the wrong class for the exposure band.</p>
   </div>
 
   <div class="card">

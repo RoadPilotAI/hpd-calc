@@ -63,10 +63,10 @@ if (rules) {
 
   // CSA class bands
   const bands = rules.csa_classes ?? [];
-  if (bands.length < 5) err('rules.json', `Expected at least 5 CSA class bands, got ${bands.length}`);
+  if (bands.length < 4) err('rules.json', `Expected at least 4 CSA class bands, got ${bands.length}`);
   for (const [i, b] of bands.entries()) {
-    if (!b.class)               err('rules.json', `csa_classes[${i}].class missing`);
-    if (b.grade === undefined)  err('rules.json', `csa_classes[${i}].grade missing`);
+    if (!b.class) err('rules.json', `csa_classes[${i}].class missing`);
+    if (!b.label) err('rules.json', `csa_classes[${i}].label missing`);
   }
   ok(`${bands.length} CSA class bands`);
 
@@ -129,6 +129,8 @@ if (hpdProd) {
     if (!['earplug','earmuff'].includes(p.type)) err('hpd-products.json', `${loc}: type must be 'earplug' or 'earmuff'`);
     if (typeof p.nrr !== 'number')    err('hpd-products.json', `${loc}: nrr must be a number`);
     if (p.nrr < 0 || p.nrr > 40)     warn('hpd-products.json', `${loc}: nrr ${p.nrr} outside expected range 0–40`);
+    const validClasses = ['A', 'AL', 'B', 'BL', 'C', null];
+    if (!validClasses.includes(p.csa_class ?? null)) err('hpd-products.json', `${loc}: csa_class must be A, AL, B, BL, C, or null`);
 
     if (p.id && ids.has(p.id))        err('hpd-products.json', `Duplicate id: ${p.id}`);
     if (p.id) ids.add(p.id);

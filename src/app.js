@@ -219,7 +219,7 @@ function setHpdType(t) {
   const notes = {
     earplug: 'CSA Z94.2: earplugs derated at 50%',
     earmuff: 'CSA Z94.2: earmuffs derated at 70%',
-    dual:    'CSA Z94.2: each device derated by type (plug 50%, muff 70%); +5 dB added to the better result',
+    dual:    'CSA Z94.2-14 s.9: (NRR_higher + 5) × 0.65 — both device NRRs required',
   };
   document.getElementById('deratingNote').textContent = notes[t];
   recalc();
@@ -336,7 +336,7 @@ function recalc() {
   }
 
   const jur   = rules.jurisdictions[S.jurCode];
-  const lprot = computeLprot(S.lex, S.weighting, S.hpdType, nrr1, nrr2, rules.derating, S.hpd1Type, S.hpd2Type);
+  const lprot = computeLprot(S.lex, S.weighting, S.hpdType, nrr1, nrr2, rules.derating);
   const verdict = getVerdict(lprot, jur.limit_dba, rules.adequacy);
   const csa   = getCsaClass(S.lex, rules.csa_classes);
 
@@ -371,15 +371,8 @@ function recalc() {
   } else if (S.hpdType === 'earmuff') {
     derateDesc = `NRR ${nrr1} × 70% = ${(nrr1 * 0.70).toFixed(1)} dB`;
   } else {
-    const eff1 = nrr1 * rules.derating[S.hpd1Type].factor;
-    const eff2 = nrr2 * rules.derating[S.hpd2Type].factor;
-    const betterIsSlot2 = eff2 > eff1;
-    const betterType = betterIsSlot2 ? S.hpd2Type : S.hpd1Type;
-    const betterNrr  = betterIsSlot2 ? nrr2 : nrr1;
-    const betterEff  = Math.max(eff1, eff2);
-    const betterPct  = betterType === 'earmuff' ? '70%' : '50%';
-    const betterLabel = betterType === 'earmuff' ? 'Muff' : 'Plug';
-    derateDesc = `${betterLabel} NRR ${betterNrr} × ${betterPct} = ${betterEff.toFixed(1)} dB (best) + 5 dB dual bonus`;
+    const higher = Math.max(nrr1, nrr2);
+    derateDesc = `(NRR ${higher} + 5) × 65% = ${((higher + 5) * 0.65).toFixed(1)} dB`;
   }
 
   // HPD and NRR description
@@ -398,8 +391,41 @@ function recalc() {
   document.getElementById('resultValue').textContent   = lprot.toFixed(1);
   document.getElementById('verdictPill').textContent   = pillText;
   document.getElementById('verdictText').textContent   = verdictText;
-  document.getElementById('csaClassVal').textContent   = 'Class ' + csa.class + ' required';
-  document.getElementById('csaGradeNote').textContent  = `Grade ${csa.grade} HPD needed for ${S.lex.toFixed(1)} dBA · verdict above confirms whether your device passes`;
+  document.getElementById('csaClassVal').textContent  = csa.label;
+  document.getElementById('csaGradeNote').textContent = `Required for ${S.lex.toFixed(1)} dBA · verdict above confirms whether your device passes`;
+
+  // L-suffix note (Class A/B only)
+  const lNote = document.getElementById('lSuffixNote');
+  if (lNote) {
+    lNote.textContent = csa.l_suffix_note || '';
+    lNote.style.display = csa.l_suffix_note ? '' : 'none';
+  }
+
+  // Dual min-class caution
+  const dualCaution = document.getElementById('dualClassCaution');
+  if (dualCaution && S.hpdType === 'dual') {
+    const products = hpdData?.products ?? [];
+    const p1 = products.find(p => p.brand + ' ' + p.model === S.hpd1Name);
+    const p2 = products.find(p => p.brand + ' ' + p.model === S.hpd2Name);
+    const warn = [];
+    const plugClasses  = ['A', 'AL'];
+    const muffClasses  = ['A', 'AL', 'B', 'BL'];
+    if (p1?.csa_class && !plugClasses.includes(p1.csa_class)) warn.push(`Primary device (${p1.model}) is ${p1.csa_class} — minimum Class A earplug required`);
+    if (p2?.csa_class && !muffClasses.includes(p2.csa_class)) warn.push(`Secondary device (${p2.model}) is ${p2.csa_class} — minimum Class B earmuff required`);
+    dualCaution.textContent = warn.length ? '⚠ ' + warn.join('; ') : '';
+    dualCaution.style.display = warn.length ? '' : 'none';
+  } else if (dualCaution) {
+    dualCaution.style.display = 'none';
+  }
+
+  // Peak limit row
+  const peakRow = document.getElementById('brPeakRow');
+  const peakVal = document.getElementById('brPeak');
+  if (peakRow && peakVal) {
+    const peak = jur.peak_limit_dbc;
+    peakRow.style.display = peak != null ? '' : 'none';
+    peakVal.textContent   = peak != null ? peak + ' dBC' : '';
+  }
 
   document.getElementById('brJur').textContent       = jur.name;
   document.getElementById('brLex').textContent       = S.lex.toFixed(1) + ' dBA';
