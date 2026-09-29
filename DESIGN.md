@@ -1,8 +1,9 @@
 # HPD Calculator — Design Document
 
-**Version:** Phase 1 draft  
+**Version:** Phase 4 complete — live at https://roadpilotai.github.io/hpd-calc/  
 **Standard:** CSA Z94.2-14 / CSA Z94.2:18  
-**Audience:** Workers, supervisors, and safety professionals in Canada
+**Audience:** Workers, supervisors, and safety professionals in Canada  
+**Brand:** Audiometrics Canada
 
 ---
 
@@ -43,8 +44,8 @@ The user can move backward at any step. Completing Step 3 triggers the calculati
 
 ### 4.1 App Header (always visible)
 
-- App name: "HPD Adequacy Calculator"
-- Subtitle: "CSA Z94.2 — Canadian Standard"
+- App name / brand: "Audiometrics Canada" with logo (icon.png)
+- Subtitle: "HPD Adequacy Calculator · CSA Z94.2"
 - Small disclaimer chip: "Screening estimates only — not a substitute for measurement"
 - No navigation menu (single-flow tool)
 
@@ -62,9 +63,10 @@ The user can move backward at any step. Completing Step 3 triggers the calculati
 - "Next" button (always active — a jurisdiction is always pre-selected)
 
 **Rules applied by jurisdiction:**
-- All provinces & territories: 85 dBA limit, 3 dB exchange rate
-- Federal: 87 dBA limit, 3 dB exchange rate
-- Peak limit for all: 140 dB (C-weighted) — shown as info, not user input
+- All provinces & territories: 85 dBA Lex limit, 3 dB exchange rate
+- Federal (Canada Labour Code): 87 dBA Lex limit, 3 dB exchange rate
+- Peak limit (140 dBC): BC, QC, NB, NS, NL, YT, NT, NU — shown as info when non-null, not user input
+- No peak limit specified: AB, SK, MB, ON, PE, Federal
 
 ---
 
@@ -126,9 +128,8 @@ At least one task with valid hours is required to proceed.
 - "Don't see your HPD?" → link to manual entry
 
 **Manual entry** (secondary path):
-- Rating type selector: **NRR** | **SLC80** | **CSA Class/Grade**
-- Number input: rating value
-- Note: If Class/Grade is selected, the user also enters the NRR (since the class alone doesn't give enough precision for the formula).
+- Rating type: NRR only (CSA Z94.2-14 uses NRR; SLC80 removed — not used in Z94.2-14)
+- Number input: NRR value
 
 **HPD type selector** (earplug / earmuff / dual):
 - Required. If HPD was selected from search, pre-filled.
@@ -147,14 +148,17 @@ At least one task with valid hours is required to proceed.
 **Top section — verdict:**
 - Large number: estimated protected level at the ear (e.g., "79.5 dBA")
 - Colour-coded verdict badge:
-  - Green — **ADEQUATE** — "This HPD provides sufficient protection."
-  - Yellow — **OVER-PROTECTED** — "Protection is too high. Worker may have trouble hearing safety signals or communicating. Consider a lower-attenuation device."
-  - Red — **UNDER-PROTECTED** — "This HPD does not provide sufficient protection. Select a higher-rated device."
+  - Green — **ADEQUATE** — 70 dBA ≤ Lprot ≤ regulatory limit
+  - Yellow — **CAUTION** — Lprot within 3 dB above the limit
+  - Red — **UNDER-PROTECTED** — Lprot more than 3 dB above the limit
+  - Blue — **OVER-PROTECTED** — Lprot < 70 dBA (threshold per EN 458; may impair situational awareness)
 - Dual protection flag (if applicable): "Dual protection is required for this exposure level."
 
 **Middle section — recommendation:**
-- "For an exposure of XX dBA, the minimum required HPD is: Class X / Grade Y"
-- Shows the full class/grade table for reference (collapsed by default)
+- "For an exposure of XX dBA, the minimum required CSA class is: Class X"
+- CSA classes (no grade labels): C (Lex < 90), B or BL (90–95), A or AL (95–105), Dual > 105
+- L-suffix note shown for Class B and A exposures (BL/AL = ≥20 dB attenuation at 125 Hz, for low-frequency noise sources)
+- Dual minimum class note shown for Lex > 105: Class A earplug + Class B earmuff
 
 **Bottom section — calculation breakdown:**
 - Noise exposure: XX dBA (measured / estimated from tasks)
@@ -228,15 +232,14 @@ Earmuff:  Lprot = Lex + 3 − (NRR × 0.70)
 Dual:     Lprot = Lex + 3 − ((NRR_higher + 5) × 0.65)
 ```
 
-**Adequacy thresholds:**
-- Under-protected: Lprot > 85 dBA (exceeds limit)
-- Adequate: 75 dBA ≤ Lprot ≤ 85 dBA
-- Over-protected: Lprot < 75 dBA
+**Adequacy thresholds (per rules.json):**
+- Over-protected: Lprot < 70 dBA (blue) — threshold per EN 458
+- Adequate: 70 dBA ≤ Lprot ≤ limit (green)
+- Caution: limit < Lprot ≤ limit + 3 dB (yellow)
+- Under-protected: Lprot > limit + 3 dB (red)
 
 **Dual protection trigger:**
-Required when single-device Lprot > 85 dBA (HPD alone is insufficient).
-
-**TODO_NORM:** SLC80 formula — no derating formula confirmed for SLC80 yet. Will be stubbed in `rules.json` until confirmed.
+Required when Lex > 105 dBA (CSA class = Dual). Minimum: Class A earplug + Class B earmuff.
 
 ---
 
@@ -268,12 +271,29 @@ No technical jargon (no "NaN", no "undefined", no stack traces) ever reaches the
 
 ---
 
-## 9. Open Items / TODO_NORM
+## 9. Status and Open Items
+
+### Resolved (2026-09-29)
+
+All original TODO_NORM items have been resolved by Norm (industrial audiometric technician, BC):
+
+| Item | Decision |
+|------|----------|
+| SLC80 | Removed — CSA Z94.2-14 uses NRR and SNR(SF84), not SLC80 |
+| AL/BL suffix | Qualitative only — indicates ≥20 dB attenuation at 125 Hz. Does not affect Lprot calculation. |
+| Peak limits | 140 dBC for BC, QC, NB, NS, NL, YT, NT, NU. No limit specified for AB, SK, MB, ON, PE, FED. |
+| Dual minimum class | Class A earplug + Class B earmuff (CSA Z94.2-14 s.9) |
+| CSA classes | 4-band system: C (< 90), B/BL (90–95), A/AL (95–105), Dual (> 105). Grade labels removed. |
+| Over-protected threshold | 70 dBA (updated from 75 per EN 458 guidance) |
+| NT/NU exchange rate | Confirmed 85 dBA / 3 dB — WSCC OHS Reg R-039-2015 (NT) and R-003-2016 (NU) Part 8 |
+
+### Open / Pending
 
 | # | Item | Where |
 |---|------|--------|
-| 1 | SLC80 derating formula | `data/rules.json` |
-| 2 | Confirm "L-suffix" (AL/BL) — is this purely qualitative, or does it affect the calculation? | `data/rules.json` |
-| 3 | Peak noise limit per jurisdiction (140 dBC is the general value — confirm this applies uniformly) | `data/rules.json` |
-| 4 | Confirm acceptable HPD types for Grade 5 / Dual (any earplug + earmuff, or specific class requirements for each) | `data/rules.json` |
-| 5 | Initial HPD product dataset — need Norm's input on which brands/models are most common in BC/AB/SK workplaces | `data/hpd-products.json` |
+| 1 | CSA class for 8 products still null — not found in Canadian listings | `data/hpd-products.json` (see product notes) |
+| 2 | Moldex M4 / M6 model names and NRRs may not match current lineup | `data/hpd-products.json` |
+
+### Next
+
+**Phase 5 — QA:** End-to-end browser testing of all calculator paths (measured input, task builder, earplug, earmuff, dual, all verdict states, print layout, offline/service worker).
